@@ -1,4 +1,5 @@
 # front-end
+cnpm install -g vue-cli
 
 cd earn-big-money
 
