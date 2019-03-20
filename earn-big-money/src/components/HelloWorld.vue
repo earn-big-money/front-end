@@ -26,8 +26,8 @@ export default {
   },
   methods: {
     testApi: function() {
-      console.log("http://localhost:3000/" + this.content );
-      this.$http.get("http://localhost:3000/" + this.content ).then(
+      console.log("http://localhost:8080/" + this.content );
+      this.$http.get("http://localhost:8080/" + this.content ).then(
         function(res) {
           if(res.ok) {
             this.msg = JSON.stringify(res.data, null, 4);
