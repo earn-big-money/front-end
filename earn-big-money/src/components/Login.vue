@@ -12,11 +12,9 @@
                 <form class="form-container">
                     <div class="tips">提示</div>
                     <div class="form-group">
-                        <!-- <label for="username_input">用户名</label> -->
                         <input id="username-input" type="text" v-model="username" class="form-input" placeholder="用户名"/>
                     </div>
                     <div class="form-group">
-                        <!-- <label for="password">Password</label> -->
                         <input id="password-input" type="password" v-model="password"  class="form-input" placeholder="密码"/>
 
                     </div>
