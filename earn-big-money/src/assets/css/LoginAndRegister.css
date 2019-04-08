@@ -1,0 +1,105 @@
+:root {
+    --blue: rgb(0, 132, 255);
+    --blue-hover: rgb(15, 79, 207);
+    --grey-menu: rgb(88, 88, 106);
+    --grey-hover: rgb(210, 210, 210);
+    --grey-shadow: rgb(190, 190, 190);
+    --grey-background: rgb(240, 240, 240);
+}
+
+#header {
+    width: 100%;
+    height: 60px;
+    top: 0;
+    left: 0;
+    background-color: var(--blue);
+    /*shadow*/
+    box-shadow: 1px 1px 5px var(--grey-shadow);
+    z-index: 100;
+}
+
+#title {
+    left:0;
+    top:21%;
+    width: 225px;
+    text-align: center;
+    background-color: var(--blue);
+    font-size: 1.5em;
+    font-weight: lighter;
+    color: white;
+}
+
+.container {
+/*    background: red;*/
+    
+    width: 960px;
+    margin: 80px auto
+}
+
+.input-container {
+    border: 1px solid #a0b1c4;
+    width: 334px;
+    background-color: #fff;
+    padding: 0;
+    border-radius: 5px;
+}
+
+.register-container {
+    margin: 0px auto;
+}
+
+.login-container {
+    float: right;
+}
+
+.subtitle {
+    margin: 0;
+    padding: 15px 0;
+    background-color: #f9fbfe;
+    border-bottom: 1px solid #a0b1c4;
+}
+
+.form-container {
+    margin: 10px 20px 20px 20px;
+    /*background: green;*/
+    display: block;
+}
+
+.tips {
+    font-size: 13px;
+    text-align: left;
+    color: red;
+    padding-left: 20px;
+}
+
+.form-group {
+    padding: 10px 0px;
+    margin: 10px auto;
+    text-align: left;
+}
+
+.form-input {
+    width: 80%;
+    padding: 10px 40px 10px 10px;
+    
+}
+
+.btn {
+    font-weight: 400;
+    text-align: center;
+    width: 100%;
+    border: 1px solid transparent;
+    padding: 3px 6px;
+    font-size: 20px;
+    line-height: 1.5;
+    border-radius: 5px;
+}
+
+.login-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.link-btn {
+    display: block;
+}
