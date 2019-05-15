@@ -7,99 +7,68 @@
     --grey-background: rgb(240, 240, 240);
 }
 
-#header {
-    width: 100%;
-    height: 60px;
-    top: 0;
-    left: 0;
-    background-color: var(--blue);
-    /*shadow*/
-    box-shadow: 1px 1px 5px var(--grey-shadow);
-    z-index: 100;
-}
-
-#title {
-    left:0;
-    top:21%;
-    width: 225px;
-    text-align: center;
-    background-color: var(--blue);
-    font-size: 1.5em;
-    font-weight: lighter;
-    color: white;
+.login_page {
+    background-color: rgba(240, 242, 245, 1);
 }
 
 .container {
-/*    background: red;*/
-    
-    width: 960px;
-    margin: 80px auto
+
+    width: 460px; 
+    margin: 100px auto;
+    border: 1px solid #eee;
+    background-color: white;
 }
 
-.input-container {
-    border: 1px solid #a0b1c4;
-    width: 334px;
-    background-color: #fff;
-    padding: 0;
-    border-radius: 5px;
+.logo {
+    margin: 0 auto;
+    position: relative;
+    top: -70px;
+    width: 140px;
+    height: 140px;
+    border-radius: 284px;
+    background-color: white;
+
+    display: flex;
+    justify-content:center;
+    align-items: center;
+
 }
 
-.register-container {
-    margin: 0px auto;
-}
-
-.login-container {
-    float: right;
-}
-
-.subtitle {
-    margin: 0;
-    padding: 15px 0;
-    background-color: #f9fbfe;
-    border-bottom: 1px solid #a0b1c4;
-}
-
-.form-container {
-    margin: 10px 20px 20px 20px;
-    /*background: green;*/
-    display: block;
-}
-
-.tips {
-    font-size: 13px;
-    text-align: left;
-    color: red;
-    padding-left: 20px;
-}
-
-.form-group {
-    padding: 10px 0px;
-    margin: 10px auto;
-    text-align: left;
-}
-
-.form-input {
-    width: 80%;
-    padding: 10px 40px 10px 10px;
-    
-}
-
-.btn {
-    font-weight: 400;
-    text-align: center;
-    width: 100%;
-    border: 1px solid transparent;
-    padding: 3px 6px;
+.logo > p {
+    font-family: '微软雅黑 Bold', '微软雅黑 Regular', '微软雅黑';
+    font-weight: 700;
+    font-style: normal;
     font-size: 20px;
-    line-height: 1.5;
-    border-radius: 5px;
+    color: #999999;
+    line-height: 36px;
 }
 
-.login-btn {
-    background-color: #007bff;
-    color: white;
+.login_container {
+    width: 350px;
+    margin: 50px auto;
 }
 
-.link-btn {
-    display: block;
+.el-tabs__item {
+    height: 50px;
+}
+
+.tabs_label_onclick {
+    font-family: '微软雅黑 Bold', '微软雅黑 Regular', '微软雅黑';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    color: #0079FE;
+}
+
+.login_form_item {
+    margin-top: 15px;
+    height: 50px;
+}
+
+.login_option {
+
+}
+
+.other_login_way {
+
 }
