@@ -11,7 +11,14 @@
 					<div class="warning">{{warnMsg.taskName}}</div>
 				</el-col>
 			</el-form-item>
-
+			
+			<el-form-item label="任务类型">
+				<el-radio-group v-model="form.taskType">
+					<el-radio label='问卷'>问卷</el-radio>
+					<el-radio label='其他'>其他</el-radio>
+				</el-radio-group v-model="radio">
+			</el-form-item>
+			
 			<el-form-item label="任务内容">
 				<el-col :span="18">
 					<el-input v-model="form.taskContent" type="textarea":autosize="{ minRows: 4, maxRows: 10}"></el-input>
@@ -66,7 +73,6 @@
 
 <script>
 	import DateTimePicker from './DateTimePicker.vue'
-	import axios from 'axios'
 	export default {
 	components: {
 		"v-DateTimePicker":DateTimePicker
@@ -78,17 +84,19 @@
 				taskName:'',
 				taskContent:'',
 				paticipantNum:'',
-				taskWage:''
+				taskWage:'',
+				taskType:'问卷',
 			},
-
+			
 			warnMsg:{
 				taskName:'',
 				taskContent:'',
 				taskTime:'',
 				paticipantNum:'',
 				taskWage:''
-			}
-	  }
+			},
+			user: 'ddghost'
+		}
 	},
 
 	methods: {
@@ -110,12 +118,23 @@
 
 
 		sendForm: function(){
-			console.log('???')
-
-			axios.get('/api/').then(function (response) {
-				console.log(response);
-			}).catch(function (error) {
-				console.log(error);
+			var requestForm = {
+				"dtitle": this.form.taskName,
+				"dsponsor": this.user,
+				"daccepters": this.form.paticipantNum,
+				"dcontent": this.form.taskContent,
+				"dstartTime": this.$refs.taskTime.value[0].toString(),
+				"dendTime": this.$refs.taskTime.value[1].toString(),
+				"dmoney": this.form.taskWage,
+				"dtype": this.form.taskType
+			}
+			
+			console.log(requestForm)
+	
+			this.$http.get('/api/test').then(function(response){
+				
+			}, function(response){
+				// 响应错误回调
 			});
 
 		},
