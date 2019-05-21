@@ -13,10 +13,12 @@
 			</el-form-item>
 
 			<el-form-item label="任务类型">
-				<el-radio-group v-model="form.taskType">
-					<el-radio label='问卷'>问卷</el-radio>
-					<el-radio label='其他'>其他</el-radio>
-				</el-radio-group v-model="radio">
+				<el-col :span="18">
+					<el-radio-group v-model="form.taskType">
+						<el-radio label='问卷'>问卷</el-radio>
+						<el-radio label='其他'>其他</el-radio>
+					</el-radio-group v-model="radio">
+				</el-col>
 			</el-form-item>
 
 			<el-form-item label="任务时间">
