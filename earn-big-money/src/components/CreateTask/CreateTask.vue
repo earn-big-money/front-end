@@ -11,21 +11,12 @@
 					<div class="warning">{{warnMsg.taskName}}</div>
 				</el-col>
 			</el-form-item>
-			
+
 			<el-form-item label="任务类型">
 				<el-radio-group v-model="form.taskType">
 					<el-radio label='问卷'>问卷</el-radio>
 					<el-radio label='其他'>其他</el-radio>
 				</el-radio-group v-model="radio">
-			</el-form-item>
-			
-			<el-form-item label="任务内容">
-				<el-col :span="18">
-					<el-input v-model="form.taskContent" type="textarea":autosize="{ minRows: 4, maxRows: 10}"></el-input>
-				</el-col>
-				<el-col :span="6">
-					<div class="warning">{{warnMsg.taskContent}}</div>
-				</el-col>
 			</el-form-item>
 
 			<el-form-item label="任务时间">
@@ -36,6 +27,16 @@
 					<div class="warning">{{warnMsg.taskTime}}</div>
 				</el-col>
 			</el-form-item>
+
+			<el-form-item label="任务内容">
+				<el-col :span="18">
+					<el-input v-model="form.taskContent" type="textarea":autosize="{ minRows: 4, maxRows: 10}"></el-input>
+				</el-col>
+				<el-col :span="6">
+					<div class="warning">{{warnMsg.taskContent}}</div>
+				</el-col>
+			</el-form-item>
+
 
 			<el-form-item label="参加人数" >
 				<el-col :span="18">
@@ -87,11 +88,11 @@
 				taskWage:'',
 				taskType:'问卷',
 			},
-			
+
 			warnMsg:{
 				taskName:'',
-				taskContent:'',
 				taskTime:'',
+				taskContent:'',
 				paticipantNum:'',
 				taskWage:''
 			},
@@ -128,11 +129,11 @@
 				"dmoney": this.form.taskWage,
 				"dtype": this.form.taskType
 			}
-			
+
 			console.log(requestForm)
-	
+
 			this.$http.get('/api/test').then(function(response){
-				
+
 			}, function(response){
 				// 响应错误回调
 			});
