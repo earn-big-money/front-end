@@ -58,10 +58,6 @@
 		line-height: 50px
   }
 
-	.el-button{
-		//background-color: rgb(255, 0, 0);
-
-	}
 </style>
 
 <script>
