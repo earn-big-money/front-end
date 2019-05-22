@@ -11,24 +11,27 @@
                     </el-header>
 
                     <el-container class="login_container" direction="vertical">
-                        <el-tabs :stretch = true class="login_tabs" v-model="tabs.activeName"><!-- v-model="activeName" @tab-click="handleClick" -->
-                            <el-tab-pane name="first">
-                                <span slot="label" class="tabs_label_onclick">账号登陆</span>
-                                <el-form> 
+                        <el-tabs :stretch=true class="login_tabs" v-model="tabs.activeName">
+                            <el-tab-pane :name="tabs.firstName">
+                                <span slot="label" :class="{tabs_label_onclick: tabs.activeName== tabs.firstName}">账号登陆</span>
+                                <div  v-if="warn" class="warning">
+                                    用户名或密码不正确
+                                </div>
+                                <el-form ref="form"  :model="form"> 
                                     <el-form-item label="" class="login_form_item">
-                                        <el-input v-model="username" placeholder="请输入账户/手机/邮箱" clearable prefix-icon="el-icon-user-solid"></el-input>
+                                        <el-input v-model="form.username" placeholder="请输入账户/手机/邮箱" clearable prefix-icon="el-icon-user-solid"></el-input>
                                     </el-form-item>
                                     <el-form-item label="" class="login_form_item">
-                                        <el-input style="height: 50px" v-model="password" placeholder="请输入登录密码" clearable show-password prefix-icon="el-icon-lock"></el-input>
+                                        <el-input v-model="form.password" placeholder="请输入登录密码" clearable show-password prefix-icon="el-icon-lock"></el-input>
                                     </el-form-item>
                                     <el-form-item class="login_form_item">
-                                        <el-button type="primary" round>登录</el-button>
+                                        <el-button type="primary" round @click="onLogin">登录</el-button>
                                   </el-form-item>
                                 </el-form>
                             </el-tab-pane>
 
-                            <el-tab-pane name="second">
-                                <span slot="label" class="tabs_label_onclick">短信登陆</span>
+                            <el-tab-pane :name="tabs.secondName">
+                                <span slot="label" :class="{tabs_label_onclick: tabs.activeName== tabs.secondName}">短信登陆</span>
                                 <el-form> 
                                     <el-form-item label="" class="login_form_item">
                                         <el-input model="" placeholder="请输入手机号码" clearable prefix-icon="el-icon-lock"></el-input>
@@ -48,10 +51,10 @@
                                 <el-checkbox v-model="checked">记住登录状态</el-checkbox>
                             </el-col>
                             <el-col :span="10">
-                                <el-link type="primary">注册新用户</el-link>
+                                <router-link to="Register"><el-button type="text">注册新用户</el-button></router-link>
                             </el-col>
                             <el-col :span="10">
-                                <el-link type="primary">忘记密码</el-link>
+                                <router-link to="Register"><el-button type="text">忘记密码</el-button></router-link>
                             </el-col>
                         </el-row>
                         <el-row class="other_login_way" type="flex" justify="space-around">
@@ -76,14 +79,51 @@ export default {
     data () {
         return {
             tabs: {
-                activeName: 'first'
+            	activeName: 'first',
+            	firstName: 'first',
+            	secondName: 'second'
             },
-            username: '',
-            password: '',
-            bool: true,
+            form: {
+                username: '',
+                password: '',
+            },
             checked: false,
+            warn: false,
         }
     },
+
+    methods: {
+    	onLogin: function() {
+    		var url = "/api/users/login";
+    		var type = "post";
+    		var data = { username: this.form.username, password: this.form.password};
+            var path = "/";
+
+            this.$http.post(url, data, {emulateJSON: true}).then(function(res){
+                    console.log(res); 
+                    this.$router.push(path);
+                },function(res){
+                    console.log('请求失败处理' + res);
+                    console.log(res.body)
+                    if (res.status == '400') {
+                        this.warn = true;
+                    }
+                });
+   //  		var statusCode= {
+	  //   		"404": function(){
+	  //               alert("404表示页面没有找到");
+	  //           },
+
+	  //           "500": function(){
+	  //               alert("500表示服务器内部错误");
+	  //           }
+	  //           // "200":function(){
+	  //           //     alert("200表示请求成功");
+	  //           // }
+			// };
+
+    	},
+    }
 };
 </script>
 
