@@ -63,8 +63,8 @@
 
 			<el-form-item>
 				<el-button type="primary" @click="onSubmit">立即创建</el-button>
-				<router-link :to="{name:'Login'}">
-					<el-button>取消</el-button>
+				<router-link :to="{path:'/'}">
+					<el-button>返回</el-button>
 				</router-link>
 			</el-form-item>
 		</el-form>
@@ -98,7 +98,6 @@
 				paticipantNum:'',
 				taskWage:''
 			},
-			user: 'ddghost'
 		}
 	},
 
@@ -119,26 +118,38 @@
 		  return false;
 		},
 
+		getFormatDateTime: function(date){
+			const year = date.getFullYear()
+			const month = date.getMonth() + 1 < 10 ? '0' + date.getMonth() : date.getMonth()
+			const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+			const hour = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
+			const min = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+			const sec = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
 
+			return year + '-' + month + '-' + day + ' ' + hour + ':' + min + ':' + sec
+		},
+		
 		sendForm: function(){
+			starttime = this.getFormatDateTime(this.$refs.taskTime.value[0])
+			endtime = this.getFormatDateTime(this.$refs.taskTime.value[1])
 			var requestForm = {
-				"dtitle": this.form.taskName,
-				"dsponsor": this.user,
-				"daccepters": this.form.paticipantNum,
-				"dcontent": this.form.taskContent,
-				"dstartTime": this.$refs.taskTime.value[0].toString(),
-				"dendTime": this.$refs.taskTime.value[1].toString(),
-				"dmoney": this.form.taskWage,
-				"dtype": this.form.taskType
+				"title": this.form.taskName,
+				"accepters": this.form.paticipantNum,
+				"content": this.form.taskContent,
+				"starttime": starttime,
+				"endtime": endtime,
+				"money": this.form.taskWage,
+				"type": this.form.taskType,
 			}
 
-			console.log(requestForm)
 
-			this.$http.get('/api/test').then(function(response){
 
+			this.$http.post('/api/duties/create',requestForm).then(function(response){
+				console.log(response)
 			}, function(response){
-				// 响应错误回调
+				console.log(response)
 			});
+			
 
 		},
 		onSubmit() {
