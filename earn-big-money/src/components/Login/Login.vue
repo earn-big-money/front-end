@@ -19,7 +19,7 @@
                                 </div>
                                 <el-form ref="form"  :model="form"> 
                                     <el-form-item label="" class="login_form_item">
-                                        <el-input v-model="form.username" placeholder="请输入账户/手机/邮箱" clearable prefix-icon="el-icon-user-solid"></el-input>
+                                        <el-input v-model="form.id" placeholder="请输入账户/手机/邮箱" clearable prefix-icon="el-icon-user-solid"></el-input>
                                     </el-form-item>
                                     <el-form-item label="" class="login_form_item">
                                         <el-input v-model="form.password" placeholder="请输入登录密码" clearable show-password prefix-icon="el-icon-lock"></el-input>
@@ -84,7 +84,7 @@ export default {
             	secondName: 'second'
             },
             form: {
-                username: '',
+                id: '',
                 password: '',
             },
             checked: false,
@@ -96,12 +96,12 @@ export default {
     	onLogin: function() {
     		var url = "/api/users/login";
     		var type = "post";
-    		var data = { username: this.form.username, password: this.form.password};
+    		var data = { id: this.form.id, password: this.form.password};
             var path = "/";
 
             this.$http.post(url, data, {emulateJSON: true}).then(function(res){
-                    console.log(res); 
-                    this.$router.push(path);
+                    console.log(res.body.data.uid); 
+                    this.$router.push(path, {usr: "res.body.data.uid"});
                 },function(res){
                     console.log('请求失败处理' + res);
                     console.log(res.body)
@@ -109,18 +109,6 @@ export default {
                         this.warn = true;
                     }
                 });
-   //  		var statusCode= {
-	  //   		"404": function(){
-	  //               alert("404表示页面没有找到");
-	  //           },
-
-	  //           "500": function(){
-	  //               alert("500表示服务器内部错误");
-	  //           }
-	  //           // "200":function(){
-	  //           //     alert("200表示请求成功");
-	  //           // }
-			// };
 
     	},
     }

@@ -12,14 +12,17 @@
 
                     <el-container class="login_container" direction="vertical">
                         <el-form  ref="form"  :model="form" :rules="rules" label-position='right' label-width="80px"> 
-                            <el-form-item label="用户名" class="login_form_item" prop="username">
-                                <el-input v-model="form.username" placeholder="请输入账用户名称" clearable prefix-icon="el-icon-lock"></el-input>
+                            <el-form-item label="用户名" class="login_form_item" prop="id">
+                                <el-input v-model="form.id" placeholder="请输入用户名称" clearable prefix-icon="el-icon-s-custom"></el-input>
+                            </el-form-item>
+                            <el-form-item label="昵称" class="login_form_item" prop="username">
+                                <el-input v-model="form.username" placeholder="请输入昵称" clearable prefix-icon="el-icon-user-solid"></el-input>
                             </el-form-item>
                             <el-form-item label="手机" class="login_form_item" prop="phone">
-                                <el-input class="register_form_item" v-model="form.phone" placeholder="请输入手机号码" clearable  prefix-icon="el-icon-lock"></el-input>
+                                <el-input class="register_form_item" v-model="form.phone" placeholder="请输入手机号码" clearable  prefix-icon="el-icon-phone"></el-input>
                             </el-form-item>
                             <el-form-item label="邮箱" class="login_form_item" prop="email">
-                                <el-input class="register_form_item" v-model="form.email" placeholder="请输入邮箱" clearable  prefix-icon="el-icon-lock"></el-input>
+                                <el-input class="register_form_item" v-model="form.email" placeholder="请输入邮箱" clearable  prefix-icon="el-icon-message"></el-input>
                             </el-form-item>
                             <el-form-item label="密码" class="login_form_item" prop="password">
                                 <el-input class="register_form_item" v-model="form.password" placeholder="请输入6至20位登录密码" clearable show-password prefix-icon="el-icon-lock"></el-input>
@@ -73,6 +76,7 @@ export default {
 
         return {
             form: {
+                id: '',
                 username: '',
                 password: '',
                 checkPass: '',
@@ -81,6 +85,9 @@ export default {
                 status: '',
             },
             rules: {
+                id: [
+                    { required: true, message: '请输入用户名', trigger: 'blur' },
+                ],
                 username: [
                     { required: true, message: '请输入用户名', trigger: 'blur' },
                 ],
@@ -117,15 +124,15 @@ export default {
                 if (valid) {
                     var url = "/api/users/create";
                     var type = "post";
-                    var data = { username: this.form.username, password: this.form.password, phone: this.form.phone,
+                    var data = { id: this.form.id, username: this.form.username, password: this.form.password, phone: this.form.phone,
                                     email: this.form.email, status: this.form.status};
                     var path = "/RegisterSuccess";
 
                     this.$http.post(url, data, {emulateJSON: true}).then(function(res){
                             console.log(res);
-                            this.$router.push(path);
+                            this.$router.push(path, {id: this.form.id});
                         },function(res){
-                            console.log('请求失败处理' + res);
+                            console.log('请求失败处理');
                             console.log(res.body)
 
                         });
