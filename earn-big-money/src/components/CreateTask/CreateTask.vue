@@ -1,7 +1,7 @@
 <template>
-	<div style="width: 600px; margin: 0 auto;" >
+	<div >
 		<h1>创建任务</h1>
-		<el-form ref="form" :model="form" label-width="80px">
+		<el-form ref="form" :model="form" style="width: 600px; margin: 0 auto;"  label-width="80px">
 			<el-form-item label="任务名称">
 				<el-col :span="18">
 					<el-input  v-model="form.taskName"  type="textarea":autosize="{ minRows: 1, maxRows: 2}"></el-input>
@@ -30,16 +30,6 @@
 				</el-col>
 			</el-form-item>
 
-			<el-form-item label="任务内容">
-				<el-col :span="18">
-					<el-input v-model="form.taskContent" type="textarea":autosize="{ minRows: 4, maxRows: 10}"></el-input>
-				</el-col>
-				<el-col :span="6">
-					<div class="warning">{{warnMsg.taskContent}}</div>
-				</el-col>
-			</el-form-item>
-
-
 			<el-form-item label="参加人数" >
 				<el-col :span="18">
 					<el-input  v-model="form.paticipantNum"></el-input>
@@ -55,19 +45,26 @@
 						<template slot="append">元/每人</template>
 					</el-input>
 				</el-col>
-
 				<el-col :span="6">
 					<div class="warning">{{warnMsg.taskWage}}</div>
 				</el-col>
 			</el-form-item>
 
-			<el-form-item>
-				<el-button type="primary" @click="onSubmit">立即创建</el-button>
-				<router-link :to="{path:'/'}">
-					<el-button>返回</el-button>
-				</router-link>
+			<el-form-item label="任务内容" v-if="this.form.taskType=='其他'">
+				<el-col :span="18">
+					<el-input v-model="form.taskContent" type="textarea":autosize="{ minRows: 4, maxRows: 10}"></el-input>
+				</el-col>
+				<el-col :span="6">
+					<div class="warning">{{warnMsg.taskContent}}</div>
+				</el-col>
 			</el-form-item>
 		</el-form>
+		<v-CreatorMain ref="survey" v-if="this.form.taskType=='问卷'" ></v-CreatorMain>
+
+		<el-button type="primary" @click="onSubmit">立即创建</el-button>
+		<router-link :to="{path:'/'}">
+			<el-button>返回</el-button>
+		</router-link>
 	</div>
 </template>
 
@@ -76,9 +73,11 @@
 
 <script>
 	import DateTimePicker from './DateTimePicker.vue'
+	import CreatorMain from '../Survey/CreatorMain.vue'
 	export default {
 	components: {
-		"v-DateTimePicker":DateTimePicker
+		"v-DateTimePicker":DateTimePicker,
+		"v-CreatorMain":CreatorMain
 	},
 
 	data() {
@@ -128,20 +127,24 @@
 
 			return year + '-' + month + '-' + day + ' ' + hour + ':' + min + ':' + sec
 		},
-		
+
 		sendForm: function(){
 			starttime = this.getFormatDateTime(this.$refs.taskTime.value[0])
 			endtime = this.getFormatDateTime(this.$refs.taskTime.value[1])
 			var requestForm = {
 				"title": this.form.taskName,
 				"accepters": this.form.paticipantNum,
-				"content": this.form.taskContent,
 				"starttime": starttime,
 				"endtime": endtime,
 				"money": this.form.taskWage,
 				"type": this.form.taskType,
 			}
-
+			if(requestForm['type'] == '问卷'){
+				requestForm['content'] = this.$refs.survey.$refs.survey_creator.content
+			}
+			else{
+				requestForm['content'] = this.form.taskContent
+			}
 
 
 			this.$http.post('/api/duties/create',requestForm).then(function(response){
@@ -149,10 +152,12 @@
 			}, function(response){
 				console.log(response)
 			});
-			
+
 
 		},
 		onSubmit() {
+
+
 			if(!this.form.taskName)
 				this.warnMsg.taskName = '请填写任务名字'
 			else

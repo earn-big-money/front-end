@@ -27,12 +27,15 @@ widgets.bootstrapslider(SurveyKo);
 export default {
   name: "survey-creator",
   data() {
-    return {};
+    return {
+      content:''
+    };
   },
   methods: {
-    
+
   },
   mounted() {
+
     let options = {
       // show the embeded survey tab. It is hidden by default
       showEmbededSurveyTab : false,
@@ -40,8 +43,8 @@ export default {
       showTestSurveyTab : true,
       // hide the JSON text editor tab. It is shown by default
       showJSONEditorTab : true,
-      // show the "Options" button menu. It is hidden by default 
-      showOptions: true 
+      // show the "Options" button menu. It is hidden by default
+      showOptions: true
     };
     SurveyCreator.StylesManager.applyTheme("bootstrap");
     this.surveyCreator = new SurveyCreator.SurveyCreator(
@@ -55,14 +58,7 @@ export default {
 
     let sendSurvey = function(parent) {
       return function(){
-        let data = {
-          "survey": JSON.stringify(getText.call(parent.surveyCreator))
-        }
-        parent.$http.post('/api/test/createSurvey', data).then(function(response){
-          console.log(response)
-        }, function(response){
-          console.log(response)
-        });
+        parent.content = JSON.stringify(getText.call(parent.surveyCreator))
       };
     };
 
