@@ -7,6 +7,9 @@ import RegisterSuccess from'@/components/Register/RegisterSuccess'
 import CreateTask from '@/components/CreateTask/CreateTask'
 import TaskDetail from '@/components/TaskDetail/TaskDetail'
 import Information from '@/components/Information/Information'
+import SurveyCreator from '@/components/Survey/CreatorMain'
+import SurveyViewer from '@/components/Survey/ViewerMain'
+import Survey from '@/components/Survey/SurveyViewer'
 Vue.use(Router)
 
 export default new Router({
@@ -49,6 +52,22 @@ export default new Router({
       path: '/TaskDetail',
       name: 'TaskDetail',
       component: TaskDetail
+    },
+	
+	{
+      path: '/CreateSurvey',
+      name: 'SurveyCreator',
+      component: SurveyCreator
+    },
+	{
+      path: '/ViewSurvey',
+      name: 'SurveyViewer',
+      component: SurveyViewer
+    },
+	{
+      path: '/Survey',
+      name: 'Survey',
+      component: Survey
     }
   ]
 })
