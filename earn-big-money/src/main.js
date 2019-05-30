@@ -6,12 +6,14 @@ import 'element-ui/lib/theme-chalk/index.css'
 import App from './App'
 import router from './router'
 import VueResource from 'vue-resource'
+import VueCookies from 'vue-cookies'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 Vue.use(VueResource)
 Vue.use(ElementUI)
+Vue.use(VueCookies)
 library.add(faCoffee)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false

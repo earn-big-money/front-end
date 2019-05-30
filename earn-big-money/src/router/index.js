@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import VueCookies from 'vue-cookies'
 import MainPage from '@/components/MainPage/MainPage'
 import Login from '@/components/Login/Login'
 import Register from '@/components/Register/Register'
@@ -11,8 +12,8 @@ import SurveyCreator from '@/components/Survey/CreatorMain'
 import SurveyViewer from '@/components/Survey/ViewerMain'
 import Survey from '@/components/Survey/SurveyViewer'
 Vue.use(Router)
-
-export default new Router({
+Vue.use(VueCookies)
+var router = new Router({
   routes: [
     {
       path: '/',
@@ -22,13 +23,15 @@ export default new Router({
     {
       path: '/Login',
       name: 'Login',
-      component: Login
+      component: Login,
+      meta: { notNeedAuth: true }
     },
 
     {
       path: '/Register',
       name: 'Register',
-      component: Register
+      component: Register,
+      meta: { notNeedAuth: true }
     },
 
     {
@@ -71,3 +74,25 @@ export default new Router({
     }
   ]
 })
+
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.some(record => record.meta.notNeedAuth)) {
+//     console.log("jump");
+//     // this route requires auth, check if logged in
+//     // if not, redirect to login page.
+
+//     if (Vue.cookies.isKey("id")) {
+//       console.log("is login")
+//       next({
+//         name: 'MainPage',
+//         //params: { id: Vue.cookies.get("id")}
+//       })
+//     } else {
+//       next()
+//     }
+//   } else {
+//     next() // 确保一定要调用 next()
+//   }
+// })
+
+export default router

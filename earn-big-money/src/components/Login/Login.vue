@@ -14,8 +14,8 @@
                         <el-tabs :stretch=true class="login_tabs" v-model="tabs.activeName">
                             <el-tab-pane :name="tabs.firstName">
                                 <span slot="label" :class="{tabs_label_onclick: tabs.activeName== tabs.firstName}">账号登陆</span>
-                                <div  v-if="warn" class="warning">
-                                    用户名或密码不正确
+                                <div  class="warning">
+                                    {{warn}}
                                 </div>
                                 <el-form ref="form"  :model="form"> 
                                     <el-form-item label="" class="login_form_item">
@@ -88,7 +88,7 @@ export default {
                 password: '',
             },
             checked: false,
-            warn: false,
+            warn: '',
         }
     },
 
@@ -100,13 +100,13 @@ export default {
             var path = "/";
 
             this.$http.post(url, data, {emulateJSON: true}).then(function(res){
-                    console.log(res.body.data.uid); 
-                    this.$router.push(path, {usr: "res.body.data.uid"});
+                    console.log(res.body); 
+                    this.$cookies.set("id", this.form.id);
+                    this.$router.push(path)//, {usr: "res.body.data.uid"});
                 },function(res){
-                    console.log('请求失败处理' + res);
                     console.log(res.body)
                     if (res.status == '400') {
-                        this.warn = true;
+                        this.warn = res.body.msg;
                     }
                 });
 

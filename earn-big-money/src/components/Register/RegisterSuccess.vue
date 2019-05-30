@@ -25,8 +25,7 @@ export default {
     methods: {
     	back2mainpage: function() {
     		var path = "/";
-            var id = this.$route.query.id;
-            this.$router.push(path, id);
+            this.$router.push(path)//, id);
     	},
     }
 };
