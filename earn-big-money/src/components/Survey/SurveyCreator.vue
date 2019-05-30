@@ -43,7 +43,7 @@ export default {
       // show the "Options" button menu. It is hidden by default 
       showOptions: true 
     };
-    SurveyCreator.StylesManager.applyTheme("winter");
+    SurveyCreator.StylesManager.applyTheme("bootstrap");
     this.surveyCreator = new SurveyCreator.SurveyCreator(
       "surveyCreatorContainer",
       options
