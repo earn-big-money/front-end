@@ -13,19 +13,6 @@ Survey.cssType = "bootstrap";
 import * as widgets from "surveyjs-widgets";
 import "inputmask/dist/inputmask/phone-codes/phone.js";
 
-widgets.icheck(SurveyVue);
-widgets.select2(SurveyVue);
-widgets.inputmask(SurveyVue);
-widgets.jquerybarrating(SurveyVue);
-widgets.jqueryuidatepicker(SurveyVue);
-widgets.nouislider(SurveyVue);
-widgets.select2tagbox(SurveyVue);
-widgets.signaturepad(SurveyVue);
-widgets.sortablejs(SurveyVue);
-widgets.ckeditor(SurveyVue);
-widgets.autocomplete(SurveyVue);
-widgets.bootstrapslider(SurveyVue);
-
 export default {
   name: "survey-viewer",
   components: {
