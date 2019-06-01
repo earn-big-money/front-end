@@ -217,7 +217,7 @@
             <div id="u74" class="ax_default _默认样式" @mouseenter="showdown" >
               <div id="u74_div" class=""></div>
               <div id="u74_text" class="text ">
-                <p><span id="username"></span></p>
+                <p><span></span></p>
               </div>
             </div>
 
@@ -278,12 +278,12 @@
             <div id="u82" class="ax_default _默认样式">
               <div id="u82_div" class=""></div>
               <div id="u82_text" class="text ">
-                <p><span></span></p>
+                <p><span id="username"></span></p>
               </div>
             </div>
 
             <!-- Unnamed (矩形) -->
-            <div id="u83" class="ax_default _默认样式">
+            <div id="u83" class="ax_default _默认样式" style = "visibility:hidden">
               <div id="u83_div" class=""></div>
               <div id="u83_text" class="text ">
                 <p><span></span></p>
@@ -1051,7 +1051,7 @@ export default {
       var data = {
         pageNumber: 1,
         countPerPage: 7,
-        selectBySponsor: 'False',
+        selectBySponsor: '',
         selectByType: 'survey',
         sortType: 'time',
         sortOrder: 'ascend'
@@ -1083,14 +1083,30 @@ export default {
       $("#u71_state0").css("visibility","hidden");
       $("#u71_state1").css("visibility","visible");
       $("#u84").css("visibility","visible");
+      $("#username").text(this.uid);
       //$("#u75").css("visibility","visible");
       //$("#u75").css("display","inline");
     }
   },
   methods: {
       login: function() {
-        //this.$router.push({ name: 'Login' })
         this.$router.push({ name: 'Login' })
+        // var _self = this
+        // $.ajax({
+        //   type: 'GET',
+        //   url: '/api/users/logout',
+        //   //data: postData,
+        //   //contentType: 'application/json;charset=utf-8',
+        //   dataType: 'json',
+        //   timeout: 3000,
+        //   success: function(result, xhr) {
+        //     _self.$router.push({ name: 'Login' });
+        //   },
+        //   error: function(result, xhr) {
+        //     console.log(result)
+        //   }
+        // })
+        
       },
       logout: function(){
         var _self = this
