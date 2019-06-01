@@ -102,7 +102,15 @@ export default {
             //alert(data.id)
             //alert(data.password)
             this.$http.post(url, data, {emulateJSON: true}).then(function(res){
-
+                    //alert(res.body)
+                    //console.log(res.body.data.uid); 
+                    //alert(res.body.data)
+                    //this.$router.push(path, {usr: "res.body.data.uid"});
+                    //
+                    console.log(res.body); 
+                    this.$cookies.set("id", this.form.id);
+                    //this.$router.push(path), {usr: "res.body.data.uid"});
+                    this.$router.push({path:path,query:{uid:this.form.id}});
                 },function(res){
                     console.log(res.body)
                     alert(res.body)
