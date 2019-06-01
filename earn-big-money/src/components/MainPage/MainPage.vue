@@ -184,7 +184,7 @@
       <div id="u70" class="ax_default _默认样式" data-label="首页" selectiongroup="u60导航栏-1">
         <div id="u70_div" class=""></div>
         <div id="u70_text" class="text ">
-          <p><span>首页</span></p>
+          <p><span id="home">首页</span></p>
         </div>
       </div>
 
@@ -205,24 +205,24 @@
             <div id="u73" class="ax_default _默认样式">
               <div id="u73_div" class=""></div>
               <div id="u73_text" class="text ">
-                <p style="font-size:18px;"><span style="font-family:'FontAwesome';font-weight:400;"></span><span style="font-family:'微软雅黑';font-weight:400;font-size:14px;"> 注册</span></p>
+                <p style="font-size:18px;"><span style="font-family:'FontAwesome';font-weight:400;"></span><span id='regist'style="font-family:'微软雅黑';font-weight:400;font-size:14px;" @click="regist"> 注册</span></p>
               </div>
             </div>
           </div>
         </div>
         <div id="u71_state1" class="panel_state" data-label="已登录" style="visibility: hidden;">
-          <div id="u71_state1_content" class="panel_state_content">
+          <div id="u71_state1_content" class="panel_state_content" @mouseleave="hidedown">
 
             <!-- Unnamed (矩形) -->
-            <div id="u74" class="ax_default _默认样式">
+            <div id="u74" class="ax_default _默认样式" @mouseenter="showdown" >
               <div id="u74_div" class=""></div>
               <div id="u74_text" class="text ">
-                <p><span></span></p>
+                <p><span id="username"></span></p>
               </div>
             </div>
 
             <!-- 下拉菜单 (动态面板) -->
-            <div id="u75" class="ax_default ax_default_hidden" data-label="下拉菜单" style="display:none; visibility: hidden">
+            <div id="u75" class="ax_default ax_default_hidden" data-label="下拉菜单" style="display:none; visibility: hidden" @mouseleave="hidedown">
               <div id="u75_state0" class="panel_state" data-label="State1" style="">
                 <div id="u75_state0_content" class="panel_state_content">
 
@@ -232,7 +232,7 @@
                   </div>
 
                   <!-- Unnamed (矩形) -->
-                  <div id="u77" class="ax_default _默认样式">
+                  <div id="u77" class="ax_default _默认样式" @click="toInformation">
                     <div id="u77_div" class=""></div>
                     <div id="u77_text" class="text ">
                       <p><span>用户中心</span></p>
@@ -264,7 +264,7 @@
                   </div>
 
                   <!-- Unnamed (矩形) -->
-                  <div id="u81" class="ax_default _默认样式">
+                  <div id="u81" class="ax_default _默认样式" @click="logout">
                     <div id="u81_div" class=""></div>
                     <div id="u81_text" class="text ">
                       <p><span>退出登录</span></p>
@@ -294,7 +294,7 @@
       </div>
 
       <!-- 上传按钮 -->
-      <div id="u84" class="ax_default _默认样式">
+      <div id="u84" class="ax_default _默认样式" style="visibility:hidden" @click="uploadDuty">
         <div id="u84_div" class=""></div>
         <div id="u84_text" class="text ">
           <p><span></span></p>
@@ -316,7 +316,7 @@
       <div id="u126" class="ax_default _默认样式">
         <div id="u126_div" class=""></div>
         <div id="u126_text" class="text ">
-          <p><span>推荐活动</span></p>
+          <p><span>时间排序</span></p>
         </div>
       </div>
 
@@ -324,7 +324,7 @@
       <div id="u127" class="ax_default _默认样式">
         <div id="u127_div" class=""></div>
         <div id="u127_text" class="text ">
-          <p><span>最新活动</span></p>
+          <p><span>薪酬排序</span></p>
         </div>
       </div>
 
@@ -1019,23 +1019,122 @@
   </body>
 </template>
 
-
+<!--script src="resources/scripts/jquery-1.7.1.min.js"></script>
+<script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+<script src="resources/scripts/prototypePre.js"></script>
+<script src="data/document.js"></script>
+<script src="resources/scripts/prototypePost.js"></script>
+<script src="files/网站首页/data.js"></script>
+<script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+</script-->
 <script>
 export default {
   data: function() {
     return {
-      
+      //保存当前的登录者的id
+      uid: null,
+      //保存当前页面的活动内容
+      nowduty: null,
+      //保存当前页面的活动展示页数
+      nowpage: 0,
+      nowdutynum: 0
+    }
+  },
+  created: function() {
+    this.uid = this.$route.query.uid
+    //alert(this.uid)
+    console.log(this.uid)
+    if(this.nowduty==null){
+      var data = {
+        pageNumber: 1,
+        countPerPage: 7,
+        selectBySponsor: 'False',
+        selectByType: 'survey',
+        sortType: 'time',
+        sortOrder: 'ascend'
+      }
+      var postData = JSON.stringify(data)
+      console.log('请求全部信息的data： ' + postData)
+      var _self = this
+      $.ajax({
+        type: 'GET',
+        url: '/api/duties/screen',
+        data: postData,
+        contentType: 'application/json;charset=utf-8',
+        dataType: 'json',
+        timeout: 3000,
+        success: function(result, xhr) {
+          console.log(result)
+        },
+        error: function(result, xhr) {
+          console.log(result)
+          alert('服务器连接错误: ' + xhr)
+        }
+      })
+    }
+  },
+  mounted: function() {
+    if(this.uid!=null){
+      //alert($("#home").text())
+      //alert("change");
+      $("#u71_state0").css("visibility","hidden");
+      $("#u71_state1").css("visibility","visible");
+      $("#u84").css("visibility","visible");
+      //$("#u75").css("visibility","visible");
+      //$("#u75").css("display","inline");
     }
   },
   methods: {
-    login: function() {
-          this.$router.push({ name: 'Login' })
+      login: function() {
+        //this.$router.push({ name: 'Login' })
+        this.$router.push({ name: 'Login' })
+      },
+      logout: function(){
+        var _self = this
+        $.ajax({
+          type: 'GET',
+          url: '/api/users/logout',
+          //data: postData,
+          //contentType: 'application/json;charset=utf-8',
+          dataType: 'json',
+          timeout: 3000,
+          success: function(result, xhr) {
+            $("#u71_state0").css("visibility","visible");
+            $("#u71_state1").css("visibility","hidden");
+            $("#u84").css("visibility","hidden");
+            this.uid = null;
+          },
+          error: function(result, xhr) {
+            console.log(result)
+          }
+        })
+      },
+      toInformation: function() {
+        var path="Information"
+        this.$router.push({name:'Information',query:{uid:this.uid}});
+      },
+      regist: function() {
+          this.$router.push({name: 'Register'})
+      },
+      showdown: function() {
+        $("#u75").css("visibility","visible");
+        $("#u75").css("display","inline");
+      },
+      hidedown: function() {
+        $("#u75").css("visibility","hidden");
+        $("#u75").css("display","none");
+      },
+      uploadDuty: function() {
+        this.$router.push({name:'CreateTask',query:{uid:this.uid}});
       }
-      //this.$router.push({ name: 'main'})
     }
-    
 }
-</script>>
+
+//@import "http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css";
+</script>
 
 <style>
 
@@ -1043,6 +1142,6 @@ export default {
 @import "resources/css/axure_rp_page.css";
 @import "data/styles.css";
 @import "files/网站首页/styles.css";
-@import "http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css";
+
 
 </style>

@@ -1160,7 +1160,7 @@
   word-wrap:break-word;
 }
 #u71_state1 {
-  position:relative;
+  /*position:relative;*/
   left:0px;
   top:0px;
   width:140px;
@@ -1210,7 +1210,7 @@
   left:80px;
   top:0px;
   width:60px;
-  height:80px;
+  height:120px;
   font-family:'FontAwesome';
   font-weight:400;
   font-style:normal;
@@ -1228,8 +1228,8 @@
 }
 #u75 {
   position:absolute;
-  left:40px;
-  top:80px;
+  left:60px;
+  top:70px;
   visibility:hidden;
 }
 #u75_state0 {

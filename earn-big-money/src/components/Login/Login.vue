@@ -95,16 +95,22 @@ export default {
     methods: {
     	onLogin: function() {
     		var url = "/api/users/login";
+            //var url= "http://127.0.0.1:3000/users/login"
     		var type = "post";
-    		var data = { id: this.form.id, password: this.form.password};
+    		var data = { id: ""+this.form.id, password: ""+this.form.password};
             var path = "/";
-
+            //alert(data.id)
+            //alert(data.password)
             this.$http.post(url, data, {emulateJSON: true}).then(function(res){
-                    console.log(res.body.data.uid); 
-                    this.$router.push(path, {usr: "res.body.data.uid"});
+                    //alert(res.body)
+                    //console.log(res.body.data.uid); 
+                    //alert(res.body.data)
+                    //this.$router.push(path, {usr: "res.body.data.uid"});
+                    this.$router.push({path:path,query:{uid:this.form.id}});
                 },function(res){
                     console.log('请求失败处理' + res);
                     console.log(res.body)
+                    alert(res.body)
                     if (res.status == '400') {
                         this.warn = true;
                     }

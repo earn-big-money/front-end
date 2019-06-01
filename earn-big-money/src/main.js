@@ -9,6 +9,7 @@ import VueResource from 'vue-resource'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import $ from 'jquery'
 
 Vue.use(VueResource)
 Vue.use(ElementUI)

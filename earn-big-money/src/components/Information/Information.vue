@@ -179,8 +179,13 @@
         url: './../../../static/head.jpeg',
         activeName: 'first',
         currentDate: 'Sun May 19 2019',
-        acceptDuties : 10
+        acceptDuties : 10,
+        uid: null
       };
+    },
+    created: function() {
+      alert(this.$route.query.uid);
+      console.log(this.$route.query.uid);
     },
     methods: {
       handleClick(tab, event) {

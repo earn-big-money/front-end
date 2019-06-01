@@ -26,7 +26,7 @@ export default {
     	back2mainpage: function() {
     		var path = "/";
             var id = this.$route.query.id;
-            this.$router.push(path, id);
+            this.$router.push({path:path, query:{uid:id}});
     	},
     }
 };
