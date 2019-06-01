@@ -1,6 +1,6 @@
 <template>
   <div id="surveyCreator">
-    <survey-creator></survey-creator>
+    <survey-creator ref='survey_creator'></survey-creator>
   </div>
 </template>
 

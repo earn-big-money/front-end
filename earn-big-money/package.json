@@ -23,6 +23,7 @@
     "survey-vue": "^1.0.88",
     "surveyjs-widgets": "^1.0.88",
     "vue": "^2.5.2",
+    "vue-cookies": "^1.5.13",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1"
   },
@@ -48,7 +49,7 @@
     "html-webpack-plugin": "^2.30.1",
     "jest": "^22.0.4",
     "jest-serializer-vue": "^0.3.0",
-    "jquery": "^3.4.1",
+    
     "node-notifier": "^5.1.2",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.2.0",
