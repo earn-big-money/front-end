@@ -401,7 +401,7 @@
             </div>
           </div>
         </script>
-        <div id="u128-1" class="preeval" style="width: 840px; height: 154px;">
+        <div id="u128-1" class="preeval" style="width: 840px; height: 154px;" @click="dutyclick" index='0'>
 
           <!-- Unnamed (矩形) -->
           <div id="u129-1" class="ax_default _默认样式 u129" style="width: 840px; height: 154px; left: 0px; top: 0px;visibility: inherit">
@@ -420,7 +420,7 @@
           <div id="u131-1" class="ax_default _默认样式 u131" style="width: 662px; height: 62px; left: 178px; top: 52px;visibility: inherit">
             <div id="u131-1_div" class="u131_div" style="width: 662px; height: 62px;visibility: inherit"></div>
             <div id="u131-1_text" class="text u131_text" style="position: absolute;left: 0px;top: 0px;width: 662px;visibility: inherit">
-              <p><span>这个活动主要是……………………………………………………………………………………………………………………</span></p>
+              <p><span id="dcontent1">dcontent1</span></p>
             </div>
           </div>
 
@@ -428,7 +428,7 @@
           <div id="u132-1" class="ax_default _默认样式 u132" style="width: 448px; height: 30px; left: 257px; top: 18px;visibility: inherit">
             <div id="u132-1_div" class="u132_div" style="width: 448px; height: 30px;visibility: inherit"></div>
             <div id="u132-1_text" class="text u132_text" style="position: absolute;left: 0px;top: 5px;width: 448px;visibility: inherit">
-              <p><span>敬老院公益活动</span></p>
+              <p><span id="dtitle1">dtitle1</span></p>
             </div>
           </div>
 
@@ -444,7 +444,7 @@
           <div id="u134-1" class="ax_default _默认样式 u134" style="width: 90px; height: 25px; left: 203px; top: 114px;visibility: inherit">
             <div id="u134-1_div" class="u134_div" style="width: 90px; height: 25px;visibility: inherit"></div>
             <div id="u134-1_text" class="text u134_text" style="position: absolute;left: 10px;top: 0px;width: 80px;visibility: inherit">
-              <p><span>院学生会</span></p>
+              <p><span id="dsponsor1">dsponsor1</span></p>
             </div>
           </div>
 
@@ -460,7 +460,7 @@
           <div id="u136-1" class="ax_default _默认样式 u136" style="width: 69px; height: 25px; left: 178px; top: 20px;visibility: inherit">
             <div id="u136-1_div" class="u136_div" style="width: 69px; height: 25px;visibility: inherit"></div>
             <div id="u136-1_text" class="text u136_text" style="position: absolute;left: 2px;top: 4px;width: 65px;visibility: inherit">
-              <p><span>学生会</span></p>
+              <p><span id="dtype1">dtype1</span></p>
             </div>
           </div>
 
@@ -468,11 +468,11 @@
           <div id="u137-1" class="ax_default _默认样式 u137" style="width: 195px; height: 30px; left: 645px; top: 18px;visibility: inherit">
             <div id="u137-1_div" class="u137_div" style="width: 195px; height: 30px;visibility: inherit"></div>
             <div id="u137-1_text" class="text u137_text" style="position: absolute;left: 0px;top: -3px;width: 195px;visibility: inherit">
-              <p><span style="font-family:'FontAwesome';"> </span><span style="font-family:'微软雅黑';">07-07 12:00</span></p>
+              <p><span style="font-family:'FontAwesome';"> </span><span style="font-family:'微软雅黑';" id="dmodifyTime1">dmodifyTime1</span></p>
             </div>
           </div>
         </div>
-        <div id="u128-2" class="preeval" style="width: 840px; height: 154px;">
+        <div id="u128-2" class="preeval" style="width: 840px; height: 154px;" @click="dutyclick" index='1'>
 
           <!-- Unnamed (矩形) -->
           <div id="u129-2" class="ax_default _默认样式 u129" style="width: 840px; height: 154px; left: 0px; top: 0px;visibility: inherit">
@@ -491,7 +491,7 @@
           <div id="u131-2" class="ax_default _默认样式 u131" style="width: 662px; height: 62px; left: 178px; top: 52px;visibility: inherit">
             <div id="u131-2_div" class="u131_div" style="width: 662px; height: 62px;visibility: inherit"></div>
             <div id="u131-2_text" class="text u131_text" style="position: absolute;left: 0px;top: 0px;width: 662px;visibility: inherit">
-              <p><span>这个活动主要是……………………………………………………………………………………………………………………</span></p>
+              <p><span id="dcontent2">dcontent2</span></p>
             </div>
           </div>
 
@@ -499,7 +499,7 @@
           <div id="u132-2" class="ax_default _默认样式 u132" style="width: 448px; height: 30px; left: 257px; top: 18px;visibility: inherit">
             <div id="u132-2_div" class="u132_div" style="width: 448px; height: 30px;visibility: inherit"></div>
             <div id="u132-2_text" class="text u132_text" style="position: absolute;left: 0px;top: 5px;width: 448px;visibility: inherit">
-              <p><span>敬老院公益活动</span></p>
+              <p><span id="dtitle2">dtitle2</span></p>
             </div>
           </div>
 
@@ -515,7 +515,7 @@
           <div id="u134-2" class="ax_default _默认样式 u134" style="width: 90px; height: 25px; left: 203px; top: 114px;visibility: inherit">
             <div id="u134-2_div" class="u134_div" style="width: 90px; height: 25px;visibility: inherit"></div>
             <div id="u134-2_text" class="text u134_text" style="position: absolute;left: 10px;top: 0px;width: 80px;visibility: inherit">
-              <p><span>院学生会</span></p>
+              <p><span id="dsponsor2">dsponsor2</span></p>
             </div>
           </div>
 
@@ -531,7 +531,7 @@
           <div id="u136-2" class="ax_default _默认样式 u136" style="width: 69px; height: 25px; left: 178px; top: 20px;visibility: inherit">
             <div id="u136-2_div" class="u136_div" style="width: 69px; height: 25px;visibility: inherit"></div>
             <div id="u136-2_text" class="text u136_text" style="position: absolute;left: 2px;top: 4px;width: 65px;visibility: inherit">
-              <p><span>学生会</span></p>
+              <p><span id="dtype2">dtype2</span></p>
             </div>
           </div>
 
@@ -539,11 +539,11 @@
           <div id="u137-2" class="ax_default _默认样式 u137" style="width: 195px; height: 30px; left: 645px; top: 18px;visibility: inherit">
             <div id="u137-2_div" class="u137_div" style="width: 195px; height: 30px;visibility: inherit"></div>
             <div id="u137-2_text" class="text u137_text" style="position: absolute;left: 0px;top: -3px;width: 195px;visibility: inherit">
-              <p><span style="font-family:'FontAwesome';"> </span><span style="font-family:'微软雅黑';">07-07 12:00</span></p>
+              <p><span style="font-family:'FontAwesome';"> </span><span style="font-family:'微软雅黑';" id="dmodifyTime2">dmodifyTime2</span></p>
             </div>
           </div>
         </div>
-        <div id="u128-3" class="preeval" style="width: 840px; height: 154px;">
+        <div id="u128-3" class="preeval" style="width: 840px; height: 154px;" @click="dutyclick" index='2'>
 
           <!-- Unnamed (矩形) -->
           <div id="u129-3" class="ax_default _默认样式 u129" style="width: 840px; height: 154px; left: 0px; top: 0px;visibility: inherit">
@@ -562,7 +562,7 @@
           <div id="u131-3" class="ax_default _默认样式 u131" style="width: 662px; height: 62px; left: 178px; top: 52px;visibility: inherit">
             <div id="u131-3_div" class="u131_div" style="width: 662px; height: 62px;visibility: inherit"></div>
             <div id="u131-3_text" class="text u131_text" style="position: absolute;left: 0px;top: 0px;width: 662px;visibility: inherit">
-              <p><span>这个活动主要是……………………………………………………………………………………………………………………</span></p>
+              <p><span id="dcontent3">dcontent3</span></p>
             </div>
           </div>
 
@@ -570,7 +570,7 @@
           <div id="u132-3" class="ax_default _默认样式 u132" style="width: 448px; height: 30px; left: 257px; top: 18px;visibility: inherit">
             <div id="u132-3_div" class="u132_div" style="width: 448px; height: 30px;visibility: inherit"></div>
             <div id="u132-3_text" class="text u132_text" style="position: absolute;left: 0px;top: 5px;width: 448px;visibility: inherit">
-              <p><span>敬老院公益活动</span></p>
+              <p><span id="dtitle3">dtitle3</span></p>
             </div>
           </div>
 
@@ -586,7 +586,7 @@
           <div id="u134-3" class="ax_default _默认样式 u134" style="width: 90px; height: 25px; left: 203px; top: 114px;visibility: inherit">
             <div id="u134-3_div" class="u134_div" style="width: 90px; height: 25px;visibility: inherit"></div>
             <div id="u134-3_text" class="text u134_text" style="position: absolute;left: 10px;top: 0px;width: 80px;visibility: inherit">
-              <p><span>院学生会</span></p>
+              <p><span id="dsponsor3">dsponsor3</span></p>
             </div>
           </div>
 
@@ -602,7 +602,7 @@
           <div id="u136-3" class="ax_default _默认样式 u136" style="width: 69px; height: 25px; left: 178px; top: 20px;visibility: inherit">
             <div id="u136-3_div" class="u136_div" style="width: 69px; height: 25px;visibility: inherit"></div>
             <div id="u136-3_text" class="text u136_text" style="position: absolute;left: 2px;top: 4px;width: 65px;visibility: inherit">
-              <p><span>学生会</span></p>
+              <p><span id="dtype3">dtype3</span></p>
             </div>
           </div>
 
@@ -610,11 +610,11 @@
           <div id="u137-3" class="ax_default _默认样式 u137" style="width: 195px; height: 30px; left: 645px; top: 18px;visibility: inherit">
             <div id="u137-3_div" class="u137_div" style="width: 195px; height: 30px;visibility: inherit"></div>
             <div id="u137-3_text" class="text u137_text" style="position: absolute;left: 0px;top: -3px;width: 195px;visibility: inherit">
-              <p><span style="font-family:'FontAwesome';"> </span><span style="font-family:'微软雅黑';">07-07 12:00</span></p>
+              <p><span style="font-family:'FontAwesome';"> </span><span style="font-family:'微软雅黑';" id="dmodifyTime3">dmodifyTime3</span></p>
             </div>
           </div>
         </div>
-        <div id="u128-4" class="preeval" style="width: 840px; height: 154px;">
+        <div id="u128-4" class="preeval" style="width: 840px; height: 154px;" @click="dutyclick" index='3'>
 
           <!-- Unnamed (矩形) -->
           <div id="u129-4" class="ax_default _默认样式 u129" style="width: 840px; height: 154px; left: 0px; top: 0px;visibility: inherit">
@@ -633,7 +633,7 @@
           <div id="u131-4" class="ax_default _默认样式 u131" style="width: 662px; height: 62px; left: 178px; top: 52px;visibility: inherit">
             <div id="u131-4_div" class="u131_div" style="width: 662px; height: 62px;visibility: inherit"></div>
             <div id="u131-4_text" class="text u131_text" style="position: absolute;left: 0px;top: 0px;width: 662px;visibility: inherit">
-              <p><span>这个活动主要是……………………………………………………………………………………………………………………</span></p>
+              <p><span id="dcontent4">dcontent4</span></p>
             </div>
           </div>
 
@@ -641,7 +641,7 @@
           <div id="u132-4" class="ax_default _默认样式 u132" style="width: 448px; height: 30px; left: 257px; top: 18px;visibility: inherit">
             <div id="u132-4_div" class="u132_div" style="width: 448px; height: 30px;visibility: inherit"></div>
             <div id="u132-4_text" class="text u132_text" style="position: absolute;left: 0px;top: 5px;width: 448px;visibility: inherit">
-              <p><span>敬老院公益活动</span></p>
+              <p><span id="dtitle4">dtitle4</span></p>
             </div>
           </div>
 
@@ -657,7 +657,7 @@
           <div id="u134-4" class="ax_default _默认样式 u134" style="width: 90px; height: 25px; left: 203px; top: 114px;visibility: inherit">
             <div id="u134-4_div" class="u134_div" style="width: 90px; height: 25px;visibility: inherit"></div>
             <div id="u134-4_text" class="text u134_text" style="position: absolute;left: 10px;top: 0px;width: 80px;visibility: inherit">
-              <p><span>院学生会</span></p>
+              <p><span id="dsponsor4">dsponsor4</span></p>
             </div>
           </div>
 
@@ -673,7 +673,7 @@
           <div id="u136-4" class="ax_default _默认样式 u136" style="width: 69px; height: 25px; left: 178px; top: 20px;visibility: inherit">
             <div id="u136-4_div" class="u136_div" style="width: 69px; height: 25px;visibility: inherit"></div>
             <div id="u136-4_text" class="text u136_text" style="position: absolute;left: 2px;top: 4px;width: 65px;visibility: inherit">
-              <p><span>学生会</span></p>
+              <p><span id='dtype4'>dtype4</span></p>
             </div>
           </div>
 
@@ -681,11 +681,11 @@
           <div id="u137-4" class="ax_default _默认样式 u137" style="width: 195px; height: 30px; left: 645px; top: 18px;visibility: inherit">
             <div id="u137-4_div" class="u137_div" style="width: 195px; height: 30px;visibility: inherit"></div>
             <div id="u137-4_text" class="text u137_text" style="position: absolute;left: 0px;top: -3px;width: 195px;visibility: inherit">
-              <p><span style="font-family:'FontAwesome';"> </span><span style="font-family:'微软雅黑';">07-07 12:00</span></p>
+              <p><span style="font-family:'FontAwesome';"> </span><span style="font-family:'微软雅黑';" id='dmodifyTime4'>dmodifyTime4</span></p>
             </div>
           </div>
         </div>
-        <div id="u128-5" class="preeval" style="width: 840px; height: 154px;">
+        <div id="u128-5" class="preeval" style="width: 840px; height: 154px;" @click="dutyclick" index='4'>
 
           <!-- Unnamed (矩形) -->
           <div id="u129-5" class="ax_default _默认样式 u129" style="width: 840px; height: 154px; left: 0px; top: 0px;visibility: inherit">
@@ -704,7 +704,7 @@
           <div id="u131-5" class="ax_default _默认样式 u131" style="width: 662px; height: 62px; left: 178px; top: 52px;visibility: inherit">
             <div id="u131-5_div" class="u131_div" style="width: 662px; height: 62px;visibility: inherit"></div>
             <div id="u131-5_text" class="text u131_text" style="position: absolute;left: 0px;top: 0px;width: 662px;visibility: inherit">
-              <p><span>这个活动主要是……………………………………………………………………………………………………………………</span></p>
+              <p><span id='dcontent5'>dcontent5</span></p>
             </div>
           </div>
 
@@ -712,7 +712,7 @@
           <div id="u132-5" class="ax_default _默认样式 u132" style="width: 448px; height: 30px; left: 257px; top: 18px;visibility: inherit">
             <div id="u132-5_div" class="u132_div" style="width: 448px; height: 30px;visibility: inherit"></div>
             <div id="u132-5_text" class="text u132_text" style="position: absolute;left: 0px;top: 5px;width: 448px;visibility: inherit">
-              <p><span>敬老院公益活动</span></p>
+              <p><span id='dtitle5'>dtitle5</span></p>
             </div>
           </div>
 
@@ -728,7 +728,7 @@
           <div id="u134-5" class="ax_default _默认样式 u134" style="width: 90px; height: 25px; left: 203px; top: 114px;visibility: inherit">
             <div id="u134-5_div" class="u134_div" style="width: 90px; height: 25px;visibility: inherit"></div>
             <div id="u134-5_text" class="text u134_text" style="position: absolute;left: 10px;top: 0px;width: 80px;visibility: inherit">
-              <p><span>院学生会</span></p>
+              <p><span id='dsponsor5'>dsponsor5</span></p>
             </div>
           </div>
 
@@ -744,7 +744,7 @@
           <div id="u136-5" class="ax_default _默认样式 u136" style="width: 69px; height: 25px; left: 178px; top: 20px;visibility: inherit">
             <div id="u136-5_div" class="u136_div" style="width: 69px; height: 25px;visibility: inherit"></div>
             <div id="u136-5_text" class="text u136_text" style="position: absolute;left: 2px;top: 4px;width: 65px;visibility: inherit">
-              <p><span>学生会</span></p>
+              <p><span id='dtype5'>dtype5</span></p>
             </div>
           </div>
 
@@ -752,11 +752,11 @@
           <div id="u137-5" class="ax_default _默认样式 u137" style="width: 195px; height: 30px; left: 645px; top: 18px;visibility: inherit">
             <div id="u137-5_div" class="u137_div" style="width: 195px; height: 30px;visibility: inherit"></div>
             <div id="u137-5_text" class="text u137_text" style="position: absolute;left: 0px;top: -3px;width: 195px;visibility: inherit">
-              <p><span style="font-family:'FontAwesome';"> </span><span style="font-family:'微软雅黑';">07-07 12:00</span></p>
+              <p><span style="font-family:'FontAwesome';"> </span><span style="font-family:'微软雅黑';" id='dmodifyTime5'>dmodifyTime5</span></p>
             </div>
           </div>
         </div>
-        <div id="u128-6" class="preeval" style="width: 840px; height: 154px;">
+        <div id="u128-6" class="preeval" style="width: 840px; height: 154px;" @click="dutyclick" index='5'>
 
           <!-- Unnamed (矩形) -->
           <div id="u129-6" class="ax_default _默认样式 u129" style="width: 840px; height: 154px; left: 0px; top: 0px;visibility: inherit">
@@ -775,7 +775,7 @@
           <div id="u131-6" class="ax_default _默认样式 u131" style="width: 662px; height: 62px; left: 178px; top: 52px;visibility: inherit">
             <div id="u131-6_div" class="u131_div" style="width: 662px; height: 62px;visibility: inherit"></div>
             <div id="u131-6_text" class="text u131_text" style="position: absolute;left: 0px;top: 0px;width: 662px;visibility: inherit">
-              <p><span>这个活动主要是……………………………………………………………………………………………………………………</span></p>
+              <p><span id='dcontent6'>dcontent6</span></p>
             </div>
           </div>
 
@@ -783,7 +783,7 @@
           <div id="u132-6" class="ax_default _默认样式 u132" style="width: 448px; height: 30px; left: 257px; top: 18px;visibility: inherit">
             <div id="u132-6_div" class="u132_div" style="width: 448px; height: 30px;visibility: inherit"></div>
             <div id="u132-6_text" class="text u132_text" style="position: absolute;left: 0px;top: 5px;width: 448px;visibility: inherit">
-              <p><span>敬老院公益活动</span></p>
+              <p><span id='dtitle6'>dtitle6</span></p>
             </div>
           </div>
 
@@ -799,7 +799,7 @@
           <div id="u134-6" class="ax_default _默认样式 u134" style="width: 90px; height: 25px; left: 203px; top: 114px;visibility: inherit">
             <div id="u134-6_div" class="u134_div" style="width: 90px; height: 25px;visibility: inherit"></div>
             <div id="u134-6_text" class="text u134_text" style="position: absolute;left: 10px;top: 0px;width: 80px;visibility: inherit">
-              <p><span>院学生会</span></p>
+              <p><span id='dsponsor6'>dsponsor6</span></p>
             </div>
           </div>
 
@@ -815,7 +815,7 @@
           <div id="u136-6" class="ax_default _默认样式 u136" style="width: 69px; height: 25px; left: 178px; top: 20px;visibility: inherit">
             <div id="u136-6_div" class="u136_div" style="width: 69px; height: 25px;visibility: inherit"></div>
             <div id="u136-6_text" class="text u136_text" style="position: absolute;left: 2px;top: 4px;width: 65px;visibility: inherit">
-              <p><span>学生会</span></p>
+              <p><span id='dtype6'>dtpye6</span></p>
             </div>
           </div>
 
@@ -823,11 +823,11 @@
           <div id="u137-6" class="ax_default _默认样式 u137" style="width: 195px; height: 30px; left: 645px; top: 18px;visibility: inherit">
             <div id="u137-6_div" class="u137_div" style="width: 195px; height: 30px;visibility: inherit"></div>
             <div id="u137-6_text" class="text u137_text" style="position: absolute;left: 0px;top: -3px;width: 195px;visibility: inherit">
-              <p><span style="font-family:'FontAwesome';"> </span><span style="font-family:'微软雅黑';">07-07 12:00</span></p>
+              <p><span style="font-family:'FontAwesome';"> </span><span style="font-family:'微软雅黑';" id='dmodifyTime6'>dmodifyTime6</span></p>
             </div>
           </div>
         </div>
-        <div id="u128-7" class="preeval" style="width: 840px; height: 154px;">
+        <div id="u128-7" class="preeval" style="width: 840px; height: 154px;" @click="dutyclick" index='6'>
 
           <!-- Unnamed (矩形) -->
           <div id="u129-7" class="ax_default _默认样式 u129" style="width: 840px; height: 154px; left: 0px; top: 0px;visibility: inherit">
@@ -846,7 +846,7 @@
           <div id="u131-7" class="ax_default _默认样式 u131" style="width: 662px; height: 62px; left: 178px; top: 52px;visibility: inherit">
             <div id="u131-7_div" class="u131_div" style="width: 662px; height: 62px;visibility: inherit"></div>
             <div id="u131-7_text" class="text u131_text" style="position: absolute;left: 0px;top: 0px;width: 662px;visibility: inherit">
-              <p><span>这个活动主要是……………………………………………………………………………………………………………………</span></p>
+              <p><span id='dcontent7'>dcontent7</span></p>
             </div>
           </div>
 
@@ -854,7 +854,7 @@
           <div id="u132-7" class="ax_default _默认样式 u132" style="width: 448px; height: 30px; left: 257px; top: 18px;visibility: inherit">
             <div id="u132-7_div" class="u132_div" style="width: 448px; height: 30px;visibility: inherit"></div>
             <div id="u132-7_text" class="text u132_text" style="position: absolute;left: 0px;top: 5px;width: 448px;visibility: inherit">
-              <p><span>敬老院公益活动</span></p>
+              <p><span id='dtitle7'>dtitle7</span></p>
             </div>
           </div>
 
@@ -870,7 +870,7 @@
           <div id="u134-7" class="ax_default _默认样式 u134" style="width: 90px; height: 25px; left: 203px; top: 114px;visibility: inherit">
             <div id="u134-7_div" class="u134_div" style="width: 90px; height: 25px;visibility: inherit"></div>
             <div id="u134-7_text" class="text u134_text" style="position: absolute;left: 10px;top: 0px;width: 80px;visibility: inherit">
-              <p><span>院学生会</span></p>
+              <p><span id='dsponsor7'>dsponsor7</span></p>
             </div>
           </div>
 
@@ -886,7 +886,7 @@
           <div id="u136-7" class="ax_default _默认样式 u136" style="width: 69px; height: 25px; left: 178px; top: 20px;visibility: inherit">
             <div id="u136-7_div" class="u136_div" style="width: 69px; height: 25px;visibility: inherit"></div>
             <div id="u136-7_text" class="text u136_text" style="position: absolute;left: 2px;top: 4px;width: 65px;visibility: inherit">
-              <p><span>学生会</span></p>
+              <p><span id='dtype7'>dtype7</span></p>
             </div>
           </div>
 
@@ -894,7 +894,7 @@
           <div id="u137-7" class="ax_default _默认样式 u137" style="width: 195px; height: 30px; left: 645px; top: 18px;visibility: inherit">
             <div id="u137-7_div" class="u137_div" style="width: 195px; height: 30px;visibility: inherit"></div>
             <div id="u137-7_text" class="text u137_text" style="position: absolute;left: 0px;top: -3px;width: 195px;visibility: inherit">
-              <p><span style="font-family:'FontAwesome';"> </span><span style="font-family:'微软雅黑';">07-07 12:00</span></p>
+              <p><span style="font-family:'FontAwesome';"> </span><span style="font-family:'微软雅黑';" id='dmodifyTime7'>dmodifyTime7</span></p>
             </div>
           </div>
         </div>
@@ -1051,8 +1051,6 @@ export default {
       var data = {
         pageNumber: 1,
         countPerPage: 7,
-        selectBySponsor: '',
-        selectByType: 'survey',
         sortType: 'time',
         sortOrder: 'ascend'
       }
@@ -1061,13 +1059,39 @@ export default {
       var _self = this
       $.ajax({
         type: 'GET',
-        url: '/api/duties/screen',
-        data: postData,
-        contentType: 'application/json;charset=utf-8',
+        url: '/api/duties/screen?pageNumber=1&countPerPage=7&sortType=time&sortOrder=ascend',
+        //data: postData,
+        //contentType: 'application/json;charset=utf-8',
         dataType: 'json',
         timeout: 3000,
         success: function(result, xhr) {
           console.log(result)
+          //console.log(result['count'])
+          _self.nowduty = result['content']
+          _self.nowpage = 1
+          _self.nowdutynum = result['count']
+          if(_self.nowdutynum<7){
+            for(var i=_self.nowdutynum;i<7;i++){
+              _self.nowduty.push(0);
+            }
+          }
+          for(var i=0;i<7;i++){
+            if(_self.nowduty[i]!=0){
+              var content="#dcontent"+(i+1).toString();
+              $(content).text(_self.nowduty[i].dcontent);
+              var type = "#dtype"+(i+1).toString();
+              $(type).text(_self.nowduty[i].dtype);
+              var title = "#dtitle"+(i+1).toString();
+              $(title).text(_self.nowduty[i].dtitle);
+              var sponsor = "#dsponsor"+(i+1).toString();
+              $(sponsor).text(_self.nowduty[i].dsponsor);
+              var modifyTime = "#dmodifyTime"+(i+1).toString();
+              $(modifyTime).text(_self.nowduty[i].dmodifyTime);
+            } else {
+              var id="u128-"+(i+1).toString();
+              $(id).css("visibility","hidden");
+            }
+          }
         },
         error: function(result, xhr) {
           console.log(result)
@@ -1087,6 +1111,9 @@ export default {
       //$("#u75").css("visibility","visible");
       //$("#u75").css("display","inline");
     }
+    //alert(this.nowpage)
+    //alert(this.nowdutynum)
+    //console.log(this.nowduty)
   },
   methods: {
       login: function() {
@@ -1145,6 +1172,12 @@ export default {
       },
       uploadDuty: function() {
         this.$router.push({name:'CreateTask',query:{uid:this.uid}});
+      },
+      dutyclick: function() {
+        //alert('您点击的元素：' +  event.currentTarget.getAttribute('index'))
+        var index = parseInt(event.currentTarget.getAttribute('index'))
+        //alert(this.nowduty[index].did)
+        this.$router.push({name:'TaskDetail',query:{duty:this.nowduty[index]}});
       }
     }
 }
