@@ -85,6 +85,7 @@
 	},
 	mounted: function () {
 		console.log(this.$route.query.duty)
+		console.log(this.$route.query.uid)
 		//console.log(this.$route.params)
 	},
 

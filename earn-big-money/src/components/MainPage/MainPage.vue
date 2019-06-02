@@ -1177,7 +1177,7 @@ export default {
         //alert('您点击的元素：' +  event.currentTarget.getAttribute('index'))
         var index = parseInt(event.currentTarget.getAttribute('index'))
         //alert(this.nowduty[index].did)
-        this.$router.push({name:'TaskDetail',query:{duty:this.nowduty[index]}});
+        this.$router.push({name:'TaskDetail',query:{duty:this.nowduty[index]},uid:this.uid});
       }
     }
 }
