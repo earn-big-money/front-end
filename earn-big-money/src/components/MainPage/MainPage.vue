@@ -1047,8 +1047,14 @@ export default {
     this.uid = this.$route.query.uid
     if(this.uid==null){
       this.uid=$("#username").text();
+      //alert(this.uid)
     }
-    //alert(this.uid)
+    if(this.id==null){
+      this.uid = this.$cookies.get('id')
+      //alert(this.uid)
+    }
+
+    alert(this.uid)
     console.log(this.uid)
     if(this.nowduty==null){
       var data = {
@@ -1106,11 +1112,12 @@ export default {
   mounted: function() {
     if(this.uid!=null){
       //alert($("#home").text())
-      //alert("change");
+      alert("change");
       $("#u71_state0").css("visibility","hidden");
       $("#u71_state1").css("visibility","visible");
       $("#u84").css("visibility","visible");
       $("#username").text(this.uid);
+      console.log(this.uid);
       //$("#u75").css("visibility","visible");
       //$("#u75").css("display","inline");
     }
@@ -1180,7 +1187,8 @@ export default {
         //alert('您点击的元素：' +  event.currentTarget.getAttribute('index'))
         var index = parseInt(event.currentTarget.getAttribute('index'))
         //alert(this.nowduty[index].did)
-        this.$router.push({name:'TaskDetail',params:{duty:this.nowduty[index]},uid:this.uid});
+        this.$router.push({name:'TaskDetail',params:{duty:this.nowduty[index],uid:this.uid}});
+        alert(this.uid);
       }
     }
 }
