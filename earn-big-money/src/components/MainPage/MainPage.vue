@@ -1045,6 +1045,9 @@ export default {
   },
   created: function() {
     this.uid = this.$route.query.uid
+    if(this.uid==null){
+      this.uid=$("#username").text();
+    }
     //alert(this.uid)
     console.log(this.uid)
     if(this.nowduty==null){
@@ -1177,7 +1180,7 @@ export default {
         //alert('您点击的元素：' +  event.currentTarget.getAttribute('index'))
         var index = parseInt(event.currentTarget.getAttribute('index'))
         //alert(this.nowduty[index].did)
-        this.$router.push({name:'TaskDetail',query:{duty:this.nowduty[index]},uid:this.uid});
+        this.$router.push({name:'TaskDetail',params:{duty:this.nowduty[index]},uid:this.uid});
       }
     }
 }
