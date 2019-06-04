@@ -39,15 +39,17 @@ export default {
     		var data = { amount: m };
             this.$http.post("/api/trades/topup", data, {emulateJSON: true}).then(function(res){
                 console.log(res.body); 
+                alert("充值成功！");
                 this.$router.push({
                     path: '/Information',
                     name: 'Information'
                 });
             },function(res){
-                console.log(res.body)
-                if (res.status == '400') {
-                    this.warn = res.body.msg;
-                }
+                alert("充值失败，请稍后重试！");
+                this.$router.push({
+                    path: '/Information',
+                    name: 'Information'
+                });
             });
     	},
     }
