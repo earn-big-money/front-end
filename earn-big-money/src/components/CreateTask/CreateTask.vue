@@ -87,7 +87,7 @@
 				taskContent:'',
 				paticipantNum:'',
 				taskWage:'',
-				taskType:'问卷',
+				taskType:'其他',
 			},
 
 			warnMsg:{
@@ -97,7 +97,18 @@
 				paticipantNum:'',
 				taskWage:''
 			},
+			userId:''
+
 		}
+	},
+	mounted: function () {
+		if(this.$cookies.get('id') ){
+			this.userId = this.$cookies.get('id')
+		}
+		else{
+			this.$router.push({path:'/'});
+		}
+
 	},
 
 	methods: {
@@ -129,35 +140,36 @@
 		},
 
 		sendForm: function(){
-			starttime = this.getFormatDateTime(this.$refs.taskTime.value[0])
-			endtime = this.getFormatDateTime(this.$refs.taskTime.value[1])
+			var starttime = this.getFormatDateTime(this.$refs.taskTime.value[0])
+			var endtime = this.getFormatDateTime(this.$refs.taskTime.value[1])
+
 			var requestForm = {
-				"title": this.form.taskName,
-				"accepters": this.form.paticipantNum,
-				"starttime": starttime,
-				"endtime": endtime,
-				"money": this.form.taskWage,
-				"type": this.form.taskType,
+				title: this.form.taskName,
+				accepters: this.form.paticipantNum,
+				starttime: starttime,
+				endtime: endtime,
+				money: this.form.taskWage,
+				type: this.form.taskType,
 			}
+
 			if(requestForm['type'] == '问卷'){
 				requestForm['content'] = this.$refs.survey.$refs.survey_creator.content
 			}
-			else{
+			else if(requestForm['type'] == '其他'){
 				requestForm['content'] = this.form.taskContent
 			}
 
 
 			this.$http.post('/api/duties/create',requestForm).then(function(response){
-				console.log(response)
+				alert('创建成功')
+				this.$router.push({path:'/'});
 			}, function(response){
-				console.log(response)
+				alert(response.body)
 			});
 
 
 		},
 		onSubmit() {
-
-
 			if(!this.form.taskName)
 				this.warnMsg.taskName = '请填写任务名字'
 			else
