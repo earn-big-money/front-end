@@ -1,5 +1,5 @@
 <template>
-	<div style="width: 600px; margin: 0 auto;" >
+	<div style="width: 100%; margin: 0 auto;" >
 		<el-container>
 		  <el-header>{{task.taskName}}</el-header>
 		  <el-container style="height:50px">
@@ -92,11 +92,14 @@
 			},
 			userId: '',
 			userStatus:'',
-			isShowPaticipateButton: false
+			isShowPaticipateButton: false,
+			doneUsers:[],
+			unDoneUsers:[]
 		}
 	},
+
 	mounted: function () {
-		console.log(this.$route.params)
+
 
 		//检查是否有用户
 		if(this.$cookies.get('id') ){
@@ -104,34 +107,42 @@
 			var queryStr = {did:this.task.id}
 			//若用户不是发起者，检查用户是否参加活动
 			//若用户是发起者
-			
-			if(this.userId == this.task.creater){
-				this.userStatus = '发布者'
-			}
-			else{
-				this.$http.get('/api/duties/getAccepters', {params:queryStr}).then(function(response){
-					var taskAccepters = response.body.accepters
-					var isUserParticipate = false
-					//todo
-					for( let taskAccepter of taskAccepters){
-						if(taskAccepter.uid == this.userId && taskAccepter.status=='accepted'){
-							isUserParticipate = true
-						}
-					}
-					//用户参加活动
-					if(isUserParticipate){
-						this.userStatus = '已参加'
-					}
-					else{
-						this.isShowPaticipateButton = true
-						this.userStatus = '未参加'
-					}
-					console.log(response.body)
-				}, function(response){
-					console.log(response.body)
-				});
 
-			}
+			this.$http.get('/api/duties/getAccepters', {params:queryStr}).then(function(response){
+				var taskAccepters = response.body.accepters
+				var isUserParticipate = false
+				//todo
+				for( let taskAccepter of taskAccepters){
+					if(taskAccepter.status=='accepted'){
+						this.unDoneUsers.push(taskAccepter.uid)
+					}
+					else if(taskAccepter.status=='done'){
+						this.doneUsers.push(taskAccepter.uid)
+					}
+
+					if(taskAccepter.uid == this.userId && taskAccepter.status=='accepted'){
+						isUserParticipate = true
+					}
+				}
+
+
+				if(this.userId == this.task.creater){
+					this.userStatus = '发布者'
+				}
+				else if(isUserParticipate){
+					this.userStatus = '已参加'
+				}
+				else{
+					this.isShowPaticipateButton = true
+					this.userStatus = '未参加'
+				}
+				//console.log(response.body)
+			}, function(response){
+				console.log(response.body)
+				alert('error')
+			});
+
+
 		}
 
 
