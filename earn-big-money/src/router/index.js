@@ -11,6 +11,7 @@ import Information from '@/components/Information/Information'
 import SurveyCreator from '@/components/Survey/CreatorMain'
 import SurveyViewer from '@/components/Survey/ViewerMain'
 import Survey from '@/components/Survey/SurveyViewer'
+import Topup from '@/components/Topup/Topup'
 Vue.use(Router)
 Vue.use(VueCookies)
 var router = new Router({
@@ -51,27 +52,32 @@ var router = new Router({
       name: 'CreateTask',
       component: CreateTask
     },
-	{
+    {
       path: '/TaskDetail',
       name: 'TaskDetail',
       component: TaskDetail
     },
-	
-	{
+
+    {
       path: '/CreateSurvey',
       name: 'SurveyCreator',
       component: SurveyCreator
     },
-	{
+    {
       path: '/ViewSurvey',
       name: 'SurveyViewer',
       component: SurveyViewer
     },
-	{
+    {
       path: '/Survey',
       name: 'Survey',
       component: Survey
-    }
+    },
+    {
+      path: '/Topup',
+      name: 'Topup',
+      component: Topup
+    },
   ]
 })
 
