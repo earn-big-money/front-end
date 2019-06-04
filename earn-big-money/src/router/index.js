@@ -12,6 +12,7 @@ import SurveyCreator from '@/components/Survey/CreatorMain'
 import SurveyViewer from '@/components/Survey/ViewerMain'
 import Survey from '@/components/Survey/SurveyViewer'
 import Topup from '@/components/Topup/Topup'
+import userPhoto from '@/components/Photo/userPhoto'
 Vue.use(Router)
 Vue.use(VueCookies)
 var router = new Router({
@@ -77,6 +78,11 @@ var router = new Router({
       path: '/Topup',
       name: 'Topup',
       component: Topup
+    },
+    {
+      path: '/UploadUserPhoto',
+      name: 'UploadUserPhoto',
+      component: userPhoto
     },
   ]
 })
