@@ -2,13 +2,13 @@
     <div class="topup_page">
         <el-container>
             <el-header>充值页面</el-header>
-            <el-body>
+            <el-main>
                 <el-form ref="form" :model="form" :rules="rules" label-position='right' label-width="80px"> 
                     <el-form-item label="充值金额" class="form_item" prop="money">
                         <el-input v-model="form.money" placeholder="请输入充值金额" clearable></el-input>
                     </el-form-item>
                 </el-form>
-            </el-body>
+            </el-main>
             <el-footer>
                 <el-button type="primary" round style="margin: 40px 0"  @click="onSubmit('form')">确认</el-button>
             </el-footer>
