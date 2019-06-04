@@ -1097,7 +1097,8 @@ export default {
               var modifyTime = "#dmodifyTime"+(i+1).toString();
               $(modifyTime).text(_self.nowduty[i].dmodifyTime);
             } else {
-              var id="u128-"+(i+1).toString();
+              //alert("hidden");
+              var id="#u128-"+(i+1).toString();
               $(id).css("visibility","hidden");
             }
           }
