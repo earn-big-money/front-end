@@ -33,7 +33,14 @@
           <p style="font-size:16px;"><span style="font-family:'FontAwesome';font-weight:400;">&nbsp; </span><span style="font-family:'微软雅黑';font-weight:400;font-size:14px;">24小时客服热线 </span></p><p style="font-size:16px;"><span style="font-family:'微软雅黑';font-weight:400;font-size:14px;">&nbsp;&nbsp; &nbsp;&nbsp; 400-000-0000</span><span style="font-family:'微软雅黑';font-weight:400;"> </span></p>
         </div>
       </div-->
-
+      <!--div class="block">
+        <span class="demonstration">默认 Hover 指示器触发</span>
+        <el-carousel height="150px">
+          <el-carousel-item v-for="item in 4" :key="item">
+            <h3 class="small">{{ item }}</h3>
+          </el-carousel-item>
+        </el-carousel>
+      </div-->
       <!-- 轮播组件 (动态面板) -->
       <div id="u25" class="ax_default" data-label="轮播组件">
         <div id="u25_state0" class="panel_state" data-label="State1" style="">
@@ -41,104 +48,35 @@
 
             <!-- 轮播 (动态面板) -->
             <div id="u26" class="ax_default" data-label="轮播">
-              <div id="u26_state0" class="panel_state" data-label="1" style="">
-                <div id="u26_state0_content" class="panel_state_content">
-
-                  <!-- Unnamed (矩形) -->
-                  <div id="u27" class="ax_default _默认样式">
-                    <div id="u27_div" class=""></div>
-                    <div id="u27_text" class="text ">
-                      <p><span></span></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div id="u26_state1" class="panel_state" data-label="2" style="visibility: hidden;">
-                <div id="u26_state1_content" class="panel_state_content">
-
-                  <!-- Unnamed (矩形) -->
-                  <div id="u28" class="ax_default _默认样式">
-                    <div id="u28_div" class=""></div>
-                    <div id="u28_text" class="text ">
-                      <p><span></span></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div id="u26_state2" class="panel_state" data-label="3" style="visibility: hidden;">
-                <div id="u26_state2_content" class="panel_state_content">
-
-                  <!-- Unnamed (矩形) -->
-                  <div id="u29" class="ax_default _默认样式">
-                    <div id="u29_div" class=""></div>
-                    <div id="u29_text" class="text ">
-                      <p><span></span></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div id="u26_state3" class="panel_state" data-label="4" style="visibility: hidden;">
-                <div id="u26_state3_content" class="panel_state_content">
-
-                  <!-- Unnamed (矩形) -->
-                  <div id="u30" class="ax_default _默认样式">
-                    <div id="u30_div" class=""></div>
-                    <div id="u30_text" class="text ">
-                      <p><span></span></p>
-                    </div>
-                  </div>
-                </div>
+              <div class="block" id="u26_state0">
+                <el-carousel height="350px">
+                  <!--el-carousel-item v-for="item in 4" :key="item">
+                    <h3 class="small">{{ item }}</h3>
+                  </el-carousel-item-->
+                  <el-carousel-item>
+                    <img src="../../assets/1.png" alt="Smiley face">
+                  </el-carousel-item>
+                  <el-carousel-item>
+                    <img src="../../assets/2.jpg" alt="Smiley face">
+                  </el-carousel-item>
+                  <el-carousel-item>
+                    <img src="../../assets/3.jpg" alt="Smiley face" height="350px" width="1200px">
+                  </el-carousel-item>
+                  <el-carousel-item>
+                    <img src="../../assets/4.jpg" alt="Smiley face" height="350px" width="1200px">
+                  </el-carousel-item>
+                </el-carousel>
               </div>
             </div>
 
-            <!-- 控制按纽 (组 合) -->
-            <div id="u31" class="ax_default ax_default_hidden" data-label="控制按纽" style="display:none; visibility: hidden" data-left="0" data-top="0" data-width="0" data-height="0">
-
-              <!-- 向前 (矩形) -->
-              <div id="u32" class="ax_default _默认样式" data-label="向前">
-                <div id="u32_div" class=""></div>
-                <div id="u32_text" class="text ">
-                  <p><span></span></p>
-                </div>
-              </div>
-
-              <!-- 向后 (矩形) -->
-              <div id="u33" class="ax_default _默认样式" data-label="向后">
-                <div id="u33_div" class=""></div>
-                <div id="u33_text" class="text ">
-                  <p><span></span></p>
-                </div>
-              </div>
-            </div>
+            
 
             <!-- Unnamed (矩形) -->
             <div id="u34" class="ax_default _默认样式">
               <div id="u34_div" class=""></div>
             </div>
 
-            <!-- 选择按纽 (组 合) -->
-            <div id="u35" class="ax_default" data-label="选择按纽" data-left="616" data-top="309" data-width="70" data-height="10">
-
-              <!-- 圆点-1 (椭圆形) -->
-              <div id="u36" class="ax_default _默认样式 selected" data-label="圆点-1" selectiongroup="按纽组-7">
-                <img id="u36_img" class="img " src="images/网站首页/圆点-1_u36_selected.png"/>
-              </div>
-
-              <!-- 圆点-2 (椭圆形) -->
-              <div id="u37" class="ax_default _默认样式" data-label="圆点-2" selectiongroup="按纽组-7">
-                <img id="u37_img" class="img " src="images/网站首页/圆点-1_u36.png"/>
-              </div>
-
-              <!-- 圆点-3 (椭圆形) -->
-              <div id="u38" class="ax_default _默认样式" data-label="圆点-3" selectiongroup="按纽组-7">
-                <img id="u38_img" class="img " src="images/网站首页/圆点-1_u36.png"/>
-              </div>
-
-              <!-- 圆点-4 (椭圆形) -->
-              <div id="u39" class="ax_default _默认样式" data-label="圆点-4" selectiongroup="按纽组-7">
-                <img id="u39_img" class="img " src="images/网站首页/圆点-1_u36.png"/>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -217,7 +155,7 @@
             <div id="u74" class="ax_default _默认样式" @mouseenter="showdown" >
               <div id="u74_div" class=""></div>
               <div id="u74_text" class="text ">
-                <p><span></span></p>
+                <p><span style="cursor:pointer"></span></p>
               </div>
             </div>
 
@@ -235,7 +173,7 @@
                   <div id="u77" class="ax_default _默认样式" @click="toInformation">
                     <div id="u77_div" class=""></div>
                     <div id="u77_text" class="text ">
-                      <p><span>用户中心</span></p>
+                      <p><span style="cursor:pointer">用户中心</span></p>
                     </div>
                   </div>
 
@@ -267,7 +205,7 @@
                   <div id="u81" class="ax_default _默认样式" @click="logout">
                     <div id="u81_div" class=""></div>
                     <div id="u81_text" class="text ">
-                      <p><span>退出登录</span></p>
+                      <p><span style="cursor:pointer">退出登录</span></p>
                     </div>
                   </div>
                 </div>
@@ -297,7 +235,7 @@
       <div id="u84" class="ax_default _默认样式" style="visibility:hidden" @click="uploadDuty">
         <div id="u84_div" class=""></div>
         <div id="u84_text" class="text ">
-          <p><span></span></p>
+          <p><span style="cursor:pointer"></span></p>
         </div>
       </div>
 
@@ -316,7 +254,7 @@
       <div id="u126" class="ax_default _默认样式">
         <div id="u126_div" class=""></div>
         <div id="u126_text" class="text ">
-          <p><span>时间排序</span></p>
+          <p><span style="cursor:pointer">时间排序</span></p>
         </div>
       </div>
 
@@ -324,7 +262,7 @@
       <div id="u127" class="ax_default _默认样式">
         <div id="u127_div" class=""></div>
         <div id="u127_text" class="text ">
-          <p><span>薪酬排序</span></p>
+          <p><span style="cursor:pointer">薪酬排序</span></p>
         </div>
       </div>
 
@@ -401,7 +339,7 @@
             </div>
           </div>
         </script>
-        <div id="u128-1" class="preeval" style="width: 840px; height: 154px;" @click="dutyclick" index='0'>
+        <div id="u128-1" class="preeval" style="width: 840px; height: 154px; cursor:pointer" @click="dutyclick" index='0'>
 
           <!-- Unnamed (矩形) -->
           <div id="u129-1" class="ax_default _默认样式 u129" style="width: 840px; height: 154px; left: 0px; top: 0px;visibility: inherit">
@@ -452,7 +390,7 @@
           <div id="u135-1" class="ax_default _默认样式 u135" style="width: 267px; height: 30px; left: 573px; top: 112px;visibility: inherit">
             <div id="u135-1_div" class="u135_div" style="width: 267px; height: 30px;visibility: inherit"></div>
             <div id="u135-1_text" class="text u135_text" style="position: absolute;left: 0px;top: -3px;width: 267px;visibility: inherit">
-              <p><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">77</span><span style="font-family:'微软雅黑 Light', '微软雅黑';font-weight:250;font-style:normal;">77</span><span style="font-family:'Roboto Regular', 'Roboto';font-weight:200;">&nbsp;&nbsp; </span><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">7777&nbsp; </span><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">33333</span></p>
+              <p><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;" id="dcuraccepters1">33333</span></p>
             </div>
           </div>
 
@@ -472,7 +410,7 @@
             </div>
           </div>
         </div>
-        <div id="u128-2" class="preeval" style="width: 840px; height: 154px;" @click="dutyclick" index='1'>
+        <div id="u128-2" class="preeval" style="width: 840px; height: 154px; cursor:pointer" @click="dutyclick" index='1'>
 
           <!-- Unnamed (矩形) -->
           <div id="u129-2" class="ax_default _默认样式 u129" style="width: 840px; height: 154px; left: 0px; top: 0px;visibility: inherit">
@@ -523,7 +461,7 @@
           <div id="u135-2" class="ax_default _默认样式 u135" style="width: 267px; height: 30px; left: 573px; top: 112px;visibility: inherit">
             <div id="u135-2_div" class="u135_div" style="width: 267px; height: 30px;visibility: inherit"></div>
             <div id="u135-2_text" class="text u135_text" style="position: absolute;left: 0px;top: -3px;width: 267px;visibility: inherit">
-              <p><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">77</span><span style="font-family:'微软雅黑 Light', '微软雅黑';font-weight:250;font-style:normal;">77</span><span style="font-family:'Roboto Regular', 'Roboto';font-weight:200;">&nbsp;&nbsp; </span><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">7777&nbsp; </span><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">33333</span></p>
+              <p><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;" id="dcuraccepters2">33333</span></p>
             </div>
           </div>
 
@@ -543,7 +481,7 @@
             </div>
           </div>
         </div>
-        <div id="u128-3" class="preeval" style="width: 840px; height: 154px;" @click="dutyclick" index='2'>
+        <div id="u128-3" class="preeval" style="width: 840px; height: 154px; cursor:pointer" @click="dutyclick" index='2'>
 
           <!-- Unnamed (矩形) -->
           <div id="u129-3" class="ax_default _默认样式 u129" style="width: 840px; height: 154px; left: 0px; top: 0px;visibility: inherit">
@@ -594,7 +532,7 @@
           <div id="u135-3" class="ax_default _默认样式 u135" style="width: 267px; height: 30px; left: 573px; top: 112px;visibility: inherit">
             <div id="u135-3_div" class="u135_div" style="width: 267px; height: 30px;visibility: inherit"></div>
             <div id="u135-3_text" class="text u135_text" style="position: absolute;left: 0px;top: -3px;width: 267px;visibility: inherit">
-              <p><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">77</span><span style="font-family:'微软雅黑 Light', '微软雅黑';font-weight:250;font-style:normal;">77</span><span style="font-family:'Roboto Regular', 'Roboto';font-weight:200;">&nbsp;&nbsp; </span><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">7777&nbsp; </span><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">33333</span></p>
+              <p><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;" id="dcuraccepters3">33333</span></p>
             </div>
           </div>
 
@@ -614,7 +552,7 @@
             </div>
           </div>
         </div>
-        <div id="u128-4" class="preeval" style="width: 840px; height: 154px;" @click="dutyclick" index='3'>
+        <div id="u128-4" class="preeval" style="width: 840px; height: 154px; cursor:pointer" @click="dutyclick" index='3'>
 
           <!-- Unnamed (矩形) -->
           <div id="u129-4" class="ax_default _默认样式 u129" style="width: 840px; height: 154px; left: 0px; top: 0px;visibility: inherit">
@@ -665,7 +603,7 @@
           <div id="u135-4" class="ax_default _默认样式 u135" style="width: 267px; height: 30px; left: 573px; top: 112px;visibility: inherit">
             <div id="u135-4_div" class="u135_div" style="width: 267px; height: 30px;visibility: inherit"></div>
             <div id="u135-4_text" class="text u135_text" style="position: absolute;left: 0px;top: -3px;width: 267px;visibility: inherit">
-              <p><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">77</span><span style="font-family:'微软雅黑 Light', '微软雅黑';font-weight:250;font-style:normal;">77</span><span style="font-family:'Roboto Regular', 'Roboto';font-weight:200;">&nbsp;&nbsp; </span><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">7777&nbsp; </span><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">33333</span></p>
+              <p><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;" id="dcuraccepters4">33333</span></p>
             </div>
           </div>
 
@@ -685,7 +623,7 @@
             </div>
           </div>
         </div>
-        <div id="u128-5" class="preeval" style="width: 840px; height: 154px;" @click="dutyclick" index='4'>
+        <div id="u128-5" class="preeval" style="width: 840px; height: 154px; cursor:pointer" @click="dutyclick" index='4'>
 
           <!-- Unnamed (矩形) -->
           <div id="u129-5" class="ax_default _默认样式 u129" style="width: 840px; height: 154px; left: 0px; top: 0px;visibility: inherit">
@@ -736,7 +674,7 @@
           <div id="u135-5" class="ax_default _默认样式 u135" style="width: 267px; height: 30px; left: 573px; top: 112px;visibility: inherit">
             <div id="u135-5_div" class="u135_div" style="width: 267px; height: 30px;visibility: inherit"></div>
             <div id="u135-5_text" class="text u135_text" style="position: absolute;left: 0px;top: -3px;width: 267px;visibility: inherit">
-              <p><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">77</span><span style="font-family:'微软雅黑 Light', '微软雅黑';font-weight:250;font-style:normal;">77</span><span style="font-family:'Roboto Regular', 'Roboto';font-weight:200;">&nbsp;&nbsp; </span><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">7777&nbsp; </span><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">33333</span></p>
+              <p><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;" id="dcuraccepters5">33333</span></p>
             </div>
           </div>
 
@@ -756,7 +694,7 @@
             </div>
           </div>
         </div>
-        <div id="u128-6" class="preeval" style="width: 840px; height: 154px;" @click="dutyclick" index='5'>
+        <div id="u128-6" class="preeval" style="width: 840px; height: 154px; cursor:pointer" @click="dutyclick" index='5'>
 
           <!-- Unnamed (矩形) -->
           <div id="u129-6" class="ax_default _默认样式 u129" style="width: 840px; height: 154px; left: 0px; top: 0px;visibility: inherit">
@@ -807,7 +745,7 @@
           <div id="u135-6" class="ax_default _默认样式 u135" style="width: 267px; height: 30px; left: 573px; top: 112px;visibility: inherit">
             <div id="u135-6_div" class="u135_div" style="width: 267px; height: 30px;visibility: inherit"></div>
             <div id="u135-6_text" class="text u135_text" style="position: absolute;left: 0px;top: -3px;width: 267px;visibility: inherit">
-              <p><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">77</span><span style="font-family:'微软雅黑 Light', '微软雅黑';font-weight:250;font-style:normal;">77</span><span style="font-family:'Roboto Regular', 'Roboto';font-weight:200;">&nbsp;&nbsp; </span><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">7777&nbsp; </span><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">33333</span></p>
+              <p><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;" id="dcuraccepters6">33333</span></p>
             </div>
           </div>
 
@@ -827,7 +765,7 @@
             </div>
           </div>
         </div>
-        <div id="u128-7" class="preeval" style="width: 840px; height: 154px;" @click="dutyclick" index='6'>
+        <div id="u128-7" class="preeval" style="width: 840px; height: 154px; cursor:pointer" @click="dutyclick" index='6'>
 
           <!-- Unnamed (矩形) -->
           <div id="u129-7" class="ax_default _默认样式 u129" style="width: 840px; height: 154px; left: 0px; top: 0px;visibility: inherit">
@@ -878,7 +816,7 @@
           <div id="u135-7" class="ax_default _默认样式 u135" style="width: 267px; height: 30px; left: 573px; top: 112px;visibility: inherit">
             <div id="u135-7_div" class="u135_div" style="width: 267px; height: 30px;visibility: inherit"></div>
             <div id="u135-7_text" class="text u135_text" style="position: absolute;left: 0px;top: -3px;width: 267px;visibility: inherit">
-              <p><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">77</span><span style="font-family:'微软雅黑 Light', '微软雅黑';font-weight:250;font-style:normal;">77</span><span style="font-family:'Roboto Regular', 'Roboto';font-weight:200;">&nbsp;&nbsp; </span><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">7777&nbsp; </span><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">33333</span></p>
+              <p><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;" id="dcuraccepters7">33333</span></p>
             </div>
           </div>
 
@@ -1054,7 +992,7 @@ export default {
       //alert(this.uid)
     }
 
-    alert(this.uid)
+    //alert(this.uid)
     console.log(this.uid)
     if(this.nowduty==null){
       var data = {
@@ -1096,6 +1034,8 @@ export default {
               $(sponsor).text(_self.nowduty[i].dsponsor);
               var modifyTime = "#dmodifyTime"+(i+1).toString();
               $(modifyTime).text(_self.nowduty[i].dmodifyTime);
+              var curaccepters = "#dcuraccepters"+(i+1).toString();
+              $(curaccepters).text(_self.nowduty[i].curaccepters);
             } else {
               //alert("hidden");
               var id="#u128-"+(i+1).toString();
@@ -1113,7 +1053,7 @@ export default {
   mounted: function() {
     if(this.uid!=null){
       //alert($("#home").text())
-      alert("change");
+      //alert("change");
       $("#u71_state0").css("visibility","hidden");
       $("#u71_state1").css("visibility","visible");
       $("#u84").css("visibility","visible");
@@ -1188,8 +1128,8 @@ export default {
         //alert('您点击的元素：' +  event.currentTarget.getAttribute('index'))
         var index = parseInt(event.currentTarget.getAttribute('index'))
         //alert(this.nowduty[index].did)
-        this.$router.push({name:'TaskDetail',params:{duty:this.nowduty[index],uid:this.uid}});
-        alert(this.uid);
+        this.$router.push({name:'TaskDetail',params:{dutyid:this.nowduty[index].did}});
+        alert(this.nowduty[index].did);
       }
     }
 }

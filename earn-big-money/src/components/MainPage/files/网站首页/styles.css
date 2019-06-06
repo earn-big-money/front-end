@@ -457,8 +457,8 @@
   position:absolute;
   left:0px;
   top:0px;
-  width:123px;
-  height:30px;
+  width:160px;
+  height:26px;
   background:inherit;
   background-color:rgba(153, 153, 153, 0.8);
   border:none;
@@ -475,8 +475,8 @@
 #u34 {
   border-width:0px;
   position:absolute;
-  left:590px;
-  top:299px;
+  left:570px;
+  top:325px;
   width:123px;
   height:30px;
   font-family:'微软雅黑';
@@ -1732,7 +1732,7 @@
   position:absolute;
   left:0px;
   top:0px;
-  width:40px;
+  width:80px;
   height:80px;
   font-family:'FontAwesome';
   font-weight:400;
@@ -3583,3 +3583,22 @@
   width:300px;
   word-wrap:break-word;
 }
+/*
+#u76_div:hover {
+  background-color: blue;
+}
+#u77_div:hover {
+  background-color: blue;
+}
+#u78_div:hover {
+  background-color: blue;
+}
+#u79_div:hover {
+  background-color: blue;
+}
+#u80_div:hover {
+  background-color: blue;
+}
+#u81_div:hover {
+  background-color: blue;
+}*/
