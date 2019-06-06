@@ -113,7 +113,6 @@ export default {
                     this.$router.push({path:path,query:{uid:this.form.id}});
                 },function(res){
                     console.log(res.body)
-                    alert(res.body)
                     if (res.status == '400') {
                         this.warn = res.body.msg;
                     }

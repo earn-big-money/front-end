@@ -122,16 +122,24 @@ export default {
         onSubmit: function(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    var url = "/api/users/create";
+                    var register_url = "/api/users/create";
                     var type = "post";
                     var data = { id: this.form.id, username: this.form.username, password: this.form.password, phone: this.form.phone,
                                     email: this.form.email, status: this.form.status};
                     var name = "RegisterSuccess";
 
-                    this.$http.post(url, data, {emulateJSON: true}).then(function(res){
+                    this.$http.post(register_url, data, {emulateJSON: true}).then(function(res){
                             console.log(res);
-                            this.$cookies.set("id", this.form.id);
-                            this.$router.push(name);//, params: {id: this.form.id}});
+
+                            var login_url = "/api/users/login";
+                            this.$http.post(url, data, {emulateJSON: true}).then(function(res){
+			                    console.log(res.body); 
+			                    this.$cookies.set("id", this.form.id);
+			                    this.$router.push(name);//, params: {id: this.form.id}});
+			                },function(res){
+			                    console.log(res.body)
+			                });
+
                         },function(res){
                             console.log('请求失败处理');
                             console.log(res.body)
