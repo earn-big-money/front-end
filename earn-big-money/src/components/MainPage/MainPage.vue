@@ -69,12 +69,6 @@
               </div>
             </div>
 
-            
-
-            <!-- Unnamed (矩形) -->
-            <div id="u34" class="ax_default _默认样式">
-              <div id="u34_div" class=""></div>
-            </div>
 
             
           </div>
@@ -135,7 +129,7 @@
             <div id="u72" class="ax_default _默认样式">
               <div id="u72_div" class=""></div>
               <div id="u72_text" class="text ">
-                <p style="font-size:18px;"><span style="font-family:'FontAwesome';font-weight:400;"></span><span id='login' style="font-family:'微软雅黑';font-weight:400;font-size:14px;" @click="login"> 登录</span></p>
+                <p style="font-size:18px; cursor:pointer;"><span style="font-family:'FontAwesome';font-weight:400;"></span><span id='login' style="font-family:'微软雅黑';font-weight:400;font-size:14px;" @click="login"> 登录</span></p>
               </div>
             </div>
 
@@ -143,76 +137,28 @@
             <div id="u73" class="ax_default _默认样式">
               <div id="u73_div" class=""></div>
               <div id="u73_text" class="text ">
-                <p style="font-size:18px;"><span style="font-family:'FontAwesome';font-weight:400;"></span><span id='regist'style="font-family:'微软雅黑';font-weight:400;font-size:14px;" @click="regist"> 注册</span></p>
+                <p style="font-size:18px; cursor:pointer"><span style="font-family:'FontAwesome';font-weight:400;"></span><span id='regist'style="font-family:'微软雅黑';font-weight:400;font-size:14px;" @click="regist"> 注册</span></p>
               </div>
             </div>
           </div>
         </div>
         <div id="u71_state1" class="panel_state" data-label="已登录" style="visibility: hidden;">
-          <div id="u71_state1_content" class="panel_state_content" @mouseleave="hidedown">
-
-            <!-- Unnamed (矩形) -->
-            <div id="u74" class="ax_default _默认样式" @mouseenter="showdown" >
+          <div id="u71_state1_content" class="panel_state_content">
+            <div id="u74" class="ax_default _默认样式">
               <div id="u74_div" class=""></div>
               <div id="u74_text" class="text ">
-                <p><span style="cursor:pointer"></span></p>
+                <el-dropdown style="font-size:30px" @command="handleCommand">
+                  <p><span style="cursor:pointer"></span></p>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item command = "toInformation">个人中心</el-dropdown-item>
+                    <el-dropdown-item command = "logout">退出登录</el-dropdown-item>
+                  </el-dropdown-menu>
+                </el-dropdown>
               </div>
             </div>
 
-            <!-- 下拉菜单 (动态面板) -->
-            <div id="u75" class="ax_default ax_default_hidden" data-label="下拉菜单" style="display:none; visibility: hidden" @mouseleave="hidedown">
-              <div id="u75_state0" class="panel_state" data-label="State1" style="">
-                <div id="u75_state0_content" class="panel_state_content">
 
-                  <!-- Unnamed (矩形) -->
-                  <div id="u76" class="ax_default _默认样式">
-                    <div id="u76_div" class=""></div>
-                  </div>
-
-                  <!-- Unnamed (矩形) -->
-                  <div id="u77" class="ax_default _默认样式" @click="toInformation">
-                    <div id="u77_div" class=""></div>
-                    <div id="u77_text" class="text ">
-                      <p><span style="cursor:pointer">用户中心</span></p>
-                    </div>
-                  </div>
-
-                  <!-- Unnamed (矩形) -->
-                  <div id="u78" class="ax_default _默认样式">
-                    <div id="u78_div" class=""></div>
-                    <div id="u78_text" class="text ">
-                      <p><span>我的收藏</span></p>
-                    </div>
-                  </div>
-
-                  <!-- Unnamed (矩形) -->
-                  <div id="u79" class="ax_default _默认样式">
-                    <div id="u79_div" class=""></div>
-                    <div id="u79_text" class="text ">
-                      <p><span>我的简历</span></p>
-                    </div>
-                  </div>
-
-                  <!-- Unnamed (矩形) -->
-                  <div id="u80" class="ax_default _默认样式">
-                    <div id="u80_div" class=""></div>
-                    <div id="u80_text" class="text ">
-                      <p><span>修改资料</span></p>
-                    </div>
-                  </div>
-
-                  <!-- Unnamed (矩形) -->
-                  <div id="u81" class="ax_default _默认样式" @click="logout">
-                    <div id="u81_div" class=""></div>
-                    <div id="u81_text" class="text ">
-                      <p><span style="cursor:pointer">退出登录</span></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Unnamed (矩形) -->
+            
             <div id="u82" class="ax_default _默认样式">
               <div id="u82_div" class=""></div>
               <div id="u82_text" class="text ">
@@ -1067,6 +1013,33 @@ export default {
     //console.log(this.nowduty)
   },
   methods: {
+      handleCommand(command) {
+        if(command=="toInformation"){
+          var path="Information"
+          this.$router.push({name:'Information',query:{uid:this.uid}});
+        }
+        if(command=="logout"){
+          var _self = this
+          $.ajax({
+            type: 'GET',
+            url: '/api/users/logout',
+            //data: postData,
+            //contentType: 'application/json;charset=utf-8',
+            dataType: 'json',
+            timeout: 3000,
+            success: function(result, xhr) {
+              $("#u71_state0").css("visibility","visible");
+              $("#u71_state1").css("visibility","hidden");
+              $("#u84").css("visibility","hidden");
+              _self.uid = null;
+              _self.$cookies.remove('id');
+            },
+            error: function(result, xhr) {
+              console.log(result)
+            }
+          })
+        }
+      },
       login: function() {
         this.$router.push({ name: 'Login' })
         // var _self = this
@@ -1086,40 +1059,8 @@ export default {
         // })
         
       },
-      logout: function(){
-        var _self = this
-        $.ajax({
-          type: 'GET',
-          url: '/api/users/logout',
-          //data: postData,
-          //contentType: 'application/json;charset=utf-8',
-          dataType: 'json',
-          timeout: 3000,
-          success: function(result, xhr) {
-            $("#u71_state0").css("visibility","visible");
-            $("#u71_state1").css("visibility","hidden");
-            $("#u84").css("visibility","hidden");
-            this.uid = null;
-          },
-          error: function(result, xhr) {
-            console.log(result)
-          }
-        })
-      },
-      toInformation: function() {
-        var path="Information"
-        this.$router.push({name:'Information',query:{uid:this.uid}});
-      },
       regist: function() {
           this.$router.push({name: 'Register'})
-      },
-      showdown: function() {
-        $("#u75").css("visibility","visible");
-        $("#u75").css("display","inline");
-      },
-      hidedown: function() {
-        $("#u75").css("visibility","hidden");
-        $("#u75").css("display","none");
       },
       uploadDuty: function() {
         this.$router.push({name:'CreateTask',query:{uid:this.uid}});
@@ -1130,7 +1071,8 @@ export default {
         //alert(this.nowduty[index].did)
         this.$router.push({name:'TaskDetail',params:{dutyid:this.nowduty[index].did}});
         alert(this.nowduty[index].did);
-      }
+      },
+      
     }
 }
 
