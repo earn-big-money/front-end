@@ -3287,6 +3287,10 @@
   height:169px;
   background:inherit;
   background-color:rgba(228, 228, 228, 1);
+  background-image: url("./ad.gif");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
   border:none;
   border-radius:0px;
   -moz-box-shadow:none;
@@ -3331,6 +3335,10 @@
   height:169px;
   background:inherit;
   background-color:rgba(228, 228, 228, 1);
+  background-image: url("./ad.gif");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
   border:none;
   border-radius:0px;
   -moz-box-shadow:none;
@@ -3375,6 +3383,10 @@
   height:169px;
   background:inherit;
   background-color:rgba(228, 228, 228, 1);
+  background-image: url("./ad.gif");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
   border:none;
   border-radius:0px;
   -moz-box-shadow:none;
@@ -3461,6 +3473,10 @@
   height:169px;
   background:inherit;
   background-color:rgba(228, 228, 228, 1);
+  background-image: url("./ad2.gif");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
   border:none;
   border-radius:0px;
   -moz-box-shadow:none;
@@ -3505,6 +3521,10 @@
   height:169px;
   background:inherit;
   background-color:rgba(228, 228, 228, 1);
+  background-image: url("./ad2.gif");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
   border:none;
   border-radius:0px;
   -moz-box-shadow:none;
@@ -3549,6 +3569,10 @@
   height:169px;
   background:inherit;
   background-color:rgba(228, 228, 228, 1);
+  background-image: url("./ad2.gif");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
   border:none;
   border-radius:0px;
   -moz-box-shadow:none;

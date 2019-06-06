@@ -751,57 +751,39 @@
       <!-- Unnamed (矩形) -->
       <div id="u144" class="ax_default _默认样式">
         <div id="u144_div" class=""></div>
-        <div id="u144_text" class="text ">
-          <p><span></span></p>
-        </div>
       </div>
 
       <!-- Unnamed (矩形) -->
       <div id="u145" class="ax_default _默认样式">
         <div id="u145_div" class=""></div>
-        <div id="u145_text" class="text ">
-          <p><span></span></p>
-        </div>
       </div>
 
       <!-- Unnamed (矩形) -->
       <div id="u146" class="ax_default _默认样式">
         <div id="u146_div" class=""></div>
-        <div id="u146_text" class="text ">
-          <p><span></span></p>
-        </div>
       </div>
 
       <!-- Unnamed (矩形) -->
       <div id="u147" class="ax_default _默认样式">
         <div id="u147_div" class=""></div>
         <div id="u147_text" class="text ">
-          <p><span>热门课程</span></p>
+          <p><span>广告范例</span></p>
         </div>
       </div>
 
       <!-- Unnamed (矩形) -->
       <div id="u148" class="ax_default _默认样式">
         <div id="u148_div" class=""></div>
-        <div id="u148_text" class="text ">
-          <p><span></span></p>
-        </div>
       </div>
 
       <!-- Unnamed (矩形) -->
       <div id="u149" class="ax_default _默认样式">
         <div id="u149_div" class=""></div>
-        <div id="u149_text" class="text ">
-          <p><span></span></p>
-        </div>
       </div>
 
       <!-- Unnamed (矩形) -->
       <div id="u150" class="ax_default _默认样式">
         <div id="u150_div" class=""></div>
-        <div id="u150_text" class="text ">
-          <p><span></span></p>
-        </div>
       </div>
 
       <!-- Unnamed (矩形) -->
