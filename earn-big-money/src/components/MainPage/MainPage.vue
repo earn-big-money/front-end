@@ -195,96 +195,16 @@
 
 
     
+      <el-row id="u126">
+        <el-button :type="timeButton" round @click="timeClick">时间排序</el-button>
+        <el-button :type="moneyButton" round @click="moneyClick">薪酬排序</el-button>
+      </el-row>
+          
+      
 
-      <!-- Unnamed (矩形) -->
-      <div id="u126" class="ax_default _默认样式">
-        <div id="u126_div" class=""></div>
-        <div id="u126_text" class="text ">
-          <p><span style="cursor:pointer">时间排序</span></p>
-        </div>
-      </div>
-
-      <!-- Unnamed (矩形) -->
-      <div id="u127" class="ax_default _默认样式">
-        <div id="u127_div" class=""></div>
-        <div id="u127_text" class="text ">
-          <p><span style="cursor:pointer">薪酬排序</span></p>
-        </div>
-      </div>
-
-      <!-- 列表 (中继器) -->
+      
       <div id="u128" class="ax_default" data-label="列表">
-        <script id="u128_script" type="axure-repeater-template" data-label="列表">
-
-          <!-- Unnamed (矩形) -->
-          <div id="u129" class="ax_default _默认样式 u129">
-            <div id="u129_div" class="u129_div"></div>
-          </div>
-
-          <!-- Unnamed (矩形) -->
-          <div id="u130" class="ax_default _默认样式 u130">
-            <div id="u130_div" class="u130_div"></div>
-            <div id="u130_text" class="text u130_text">
-              <p><span></span></p>
-            </div>
-          </div>
-
-          <!-- Unnamed (矩形) -->
-          <div id="u131" class="ax_default _默认样式 u131">
-            <div id="u131_div" class="u131_div"></div>
-            <div id="u131_text" class="text u131_text">
-              <p><span>这个活动主要是……………………………………………………………………………………………………………………</span></p>
-            </div>
-          </div>
-
-          <!-- Unnamed (矩形) -->
-          <div id="u132" class="ax_default _默认样式 u132">
-            <div id="u132_div" class="u132_div"></div>
-            <div id="u132_text" class="text u132_text">
-              <p><span>敬老院公益活动</span></p>
-            </div>
-          </div>
-
-          <!-- Unnamed (矩形) -->
-          <div id="u133" class="ax_default _默认样式 u133">
-            <div id="u133_div" class="u133_div"></div>
-            <div id="u133_text" class="text u133_text">
-              <p><span></span></p>
-            </div>
-          </div>
-
-          <!-- Unnamed (矩形) -->
-          <div id="u134" class="ax_default _默认样式 u134">
-            <div id="u134_div" class="u134_div"></div>
-            <div id="u134_text" class="text u134_text">
-              <p><span>院学生会</span></p>
-            </div>
-          </div>
-
-          <!-- Unnamed (矩形) -->
-          <div id="u135" class="ax_default _默认样式 u135">
-            <div id="u135_div" class="u135_div"></div>
-            <div id="u135_text" class="text u135_text">
-              <p><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">77</span><span style="font-family:'微软雅黑 Light', '微软雅黑';font-weight:250;font-style:normal;">77</span><span style="font-family:'Roboto Regular', 'Roboto';font-weight:200;">&nbsp;&nbsp; </span><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">7777&nbsp; </span><span style="font-family:'FontAwesome';font-weight:400;"> </span><span style="font-family:'微软雅黑';font-weight:400;">33333</span></p>
-            </div>
-          </div>
-
-          <!-- Unnamed (矩形) -->
-          <div id="u136" class="ax_default _默认样式 u136">
-            <div id="u136_div" class="u136_div"></div>
-            <div id="u136_text" class="text u136_text">
-              <p><span>学生会</span></p>
-            </div>
-          </div>
-
-          <!-- Unnamed (矩形) -->
-          <div id="u137" class="ax_default _默认样式 u137">
-            <div id="u137_div" class="u137_div"></div>
-            <div id="u137_text" class="text u137_text">
-              <p><span style="font-family:'FontAwesome';"> </span><span style="font-family:'微软雅黑';">07-07 12:00</span></p>
-            </div>
-          </div>
-        </script>
+        
         <div id="u128-1" class="preeval" style="width: 840px; height: 154px; cursor:pointer" @click="dutyclick" index='0'>
 
           <!-- Unnamed (矩形) -->
@@ -924,7 +844,9 @@ export default {
       nowduty: null,
       //保存当前页面的活动展示页数
       nowpage: 0,
-      nowdutynum: 0
+      nowdutynum: 0,
+      timeButton: 'primary',
+      moneyButton: ''
     }
   },
   created: function() {
@@ -1039,6 +961,14 @@ export default {
             }
           })
         }
+      },
+      timeClick: function() {
+        this.timeButton = 'primary';
+        this.moneyButton = '';
+      },
+      moneyClick: function() {
+        this.timeButton = '';
+        this.moneyButton = 'primary';
       },
       login: function() {
         this.$router.push({ name: 'Login' })
