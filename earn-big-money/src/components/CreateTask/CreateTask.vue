@@ -1,67 +1,18 @@
 <template>
 	<div >
 		<h1>创建任务</h1>
-		<el-form ref="form" :model="form" style="width: 600px; margin: 0 auto;"  label-width="80px">
-			<el-form-item label="任务名称">
-				<el-col :span="18">
-					<el-input  v-model="form.taskName"  type="textarea":autosize="{ minRows: 1, maxRows: 2}"></el-input>
-				</el-col>
-
-				<el-col :span="6">
-					<div class="warning">{{warnMsg.taskName}}</div>
-				</el-col>
-			</el-form-item>
-
-			<el-form-item label="任务类型">
-				<el-col :span="18">
-					<el-radio-group v-model="form.taskType">
-						<el-radio label='问卷'>问卷</el-radio>
-						<el-radio label='其他'>其他</el-radio>
-					</el-radio-group v-model="radio">
-				</el-col>
-			</el-form-item>
-
-			<el-form-item label="任务时间">
-				<el-col :span="18">
-					<v-DateTimePicker ref="taskTime"></v-DateTimePicker>
-				</el-col>
-				<el-col :span="6">
-					<div class="warning">{{warnMsg.taskTime}}</div>
-				</el-col>
-			</el-form-item>
-
-			<el-form-item label="参加人数" >
-				<el-col :span="18">
-					<el-input  v-model="form.paticipantNum"></el-input>
-				</el-col>
-				<el-col :span="6">
-					<div class="warning">{{warnMsg.paticipantNum}}</div>
-				</el-col>
-			</el-form-item>
-
-			<el-form-item label="薪酬">
-				<el-col :span="18">
-					<el-input v-model="form.taskWage" >
-						<template slot="append">元/每人</template>
-					</el-input>
-				</el-col>
-				<el-col :span="6">
-					<div class="warning">{{warnMsg.taskWage}}</div>
-				</el-col>
-			</el-form-item>
-
-			<el-form-item label="任务内容" v-if="this.form.taskType=='其他'">
-				<el-col :span="18">
-					<el-input v-model="form.taskContent" type="textarea":autosize="{ minRows: 4, maxRows: 10}"></el-input>
-				</el-col>
-				<el-col :span="6">
-					<div class="warning">{{warnMsg.taskContent}}</div>
-				</el-col>
-			</el-form-item>
-		</el-form>
-		<v-CreatorMain ref="survey" v-if="this.form.taskType=='问卷'" ></v-CreatorMain>
-
-		<el-button type="primary" @click="onSubmit">立即创建</el-button>
+		<v-CreatorMain ref="survey" v-show="createStep==2&&this.$refs.CreateTaskBasicInfo.taskType=='问卷'" ></v-CreatorMain>
+		<div style="width: 600px; margin: 0 auto;"  >
+			<v-CreateTaskBasicInfo ref="CreateTaskBasicInfo" v-show="createStep==1"></v-CreateTaskBasicInfo>
+			<v-CreateTaskContent ref="CreateTaskContent" v-show="createStep==2"></v-CreateTaskContent>
+			<el-steps :active="createStep" style="text-align: left">
+				<el-step title="填写任务基本信息"></el-step>
+				<el-step title="填写任务或问卷的内容"></el-step>
+				<el-step title="完成"></el-step>
+			</el-steps>
+		</div>
+		<el-button style="margin-top: 12px;" v-if="createStep > 1" @click="toLastStep">上一步</el-button>
+		<el-button style="margin-top: 12px;" @click="checkNextStep">下一步</el-button>
 		<router-link :to="{path:'/'}">
 			<el-button>返回</el-button>
 		</router-link>
@@ -69,35 +20,21 @@
 </template>
 
 
-
-
 <script>
-	import DateTimePicker from './DateTimePicker.vue'
-	import CreatorMain from '../Survey/CreatorMain.vue'
-	export default {
+import CreatorMain from '../Survey/CreatorMain.vue'
+import CreateTaskBasicInfo from './CreateTaskBasicInfo.vue'
+import CreateTaskContent from './CreateTaskContent.vue'
+export default {
 	components: {
-		"v-DateTimePicker":DateTimePicker,
-		"v-CreatorMain":CreatorMain
+		"v-CreatorMain":CreatorMain,
+		"v-CreateTaskBasicInfo":CreateTaskBasicInfo,
+		"v-CreateTaskContent":CreateTaskContent
 	},
 
 	data() {
 	  return {
-			form: {
-				taskName:'',
-				taskContent:'',
-				paticipantNum:'',
-				taskWage:'',
-				taskType:'其他',
-			},
-
-			warnMsg:{
-				taskName:'',
-				taskTime:'',
-				taskContent:'',
-				paticipantNum:'',
-				taskWage:''
-			},
-			userId:''
+			userId:'',
+			createStep:1
 
 		}
 	},
@@ -112,21 +49,6 @@
 	},
 
 	methods: {
-		isNumber: function(obj) {
-			var reg = /^(-?[0-9]+)$/;
-			if (reg.test(obj)) {
-				return true;
-			}
-			return false;
-		},
-
-		isFloat: function(obj) {
-		  var reg = /^(-?[0-9]+)(\.[0-9]+)?$/;
-		  if (reg.test(obj)) {
-		    return true;
-		  }
-		  return false;
-		},
 
 		getFormatDateTime: function(date){
 			const year = date.getFullYear()
@@ -138,88 +60,60 @@
 
 			return year + '-' + month + '-' + day + ' ' + hour + ':' + min + ':' + sec
 		},
+		toLastStep(){
+			this.createStep --
+		},
+		checkNextStep(){
+			switch (this.createStep) {
+				case 1:
+					if(this.$refs.CreateTaskBasicInfo.checkBasicInfoValid()){
+						this.createStep ++
+					}
+					else{
+						alert('信息尚未填写正确')
+					}
+					break;
+				case 2:
+					if(this.$refs.CreateTaskContent.checkTaskContentValid()){
+						this.createStep ++
+						this.sendForm()
+					}
+					else{
+						alert('信息尚未填写正确')
+					}
+					break
+				default:
+
+			}
+		},
 
 		sendForm: function(){
-			var starttime = this.getFormatDateTime(this.$refs.taskTime.value[0])
-			var endtime = this.getFormatDateTime(this.$refs.taskTime.value[1])
+			var starttime = this.getFormatDateTime(this.$refs.CreateTaskBasicInfo.$refs.taskTime.value[0])
+			var endtime = this.getFormatDateTime(this.$refs.CreateTaskBasicInfo.$refs.taskTime.value[0])
 
 			var requestForm = {
-				title: this.form.taskName,
-				accepters: this.form.paticipantNum,
+				title: this.$refs.CreateTaskBasicInfo.basicInfo.taskName,
+				accepters: this.$refs.CreateTaskBasicInfo.basicInfo.paticipantNum,
 				starttime: starttime,
 				endtime: endtime,
-				money: this.form.taskWage,
-				type: this.form.taskType,
+				money: this.$refs.CreateTaskBasicInfo.basicInfo.taskWage,
+				type: this.$refs.CreateTaskBasicInfo.basicInfo.taskType,
 			}
 
 			if(requestForm['type'] == '问卷'){
 				requestForm['content'] = this.$refs.survey.$refs.survey_creator.content
 			}
 			else if(requestForm['type'] == '其他'){
-				requestForm['content'] = this.form.taskContent
+				requestForm['content'] = this.$refs.CreateTaskContent.taskContent.content
 			}
-
-
 			this.$http.post('/api/duties/create',requestForm).then(function(response){
 				alert('创建成功')
 				this.$router.push({path:'/'});
 			}, function(response){
 				alert(response.body)
 			});
-
-
 		},
-		onSubmit() {
-			if(!this.form.taskName)
-				this.warnMsg.taskName = '请填写任务名字'
-			else
-				this.warnMsg.taskName = ''
 
-			if(!this.form.taskContent)
-				this.warnMsg.taskContent = '请填写任务内容'
-			else
-				this.warnMsg.taskContent = ''
-
-			if(!this.$refs.taskTime.value )
-				this.warnMsg.taskTime = '请填写任务时间'
-			else
-				this.warnMsg.taskTime = ''
-
-
-			if(this.isNumber(this.form.paticipantNum) ){
-				this.form.paticipantNum = parseInt(this.form.paticipantNum)
-				if(this.form.paticipantNum <= 0)
-					this.warnMsg.paticipantNum = '参加人数必须大于0'
-				else
-					this.warnMsg.paticipantNum = ''
-			}
-			else{
-				this.warnMsg.paticipantNum ='参加人数必须为整数';
-			}
-
-			if(this.isFloat(this.form.taskWage) ){
-				this.form.taskWage = parseFloat(this.form.taskWage)
-				if(this.form.taskWage <= 0)
-					this.warnMsg.taskWage = '薪酬必须大于0'
-				else
-					this.warnMsg.taskWage = ''
-			}
-			else{
-				this.warnMsg.taskWage = '薪酬必须为数字'
-			}
-
-			var validate = true
-			for(var key in this.warnMsg){
-				if(this.warnMsg[key] != '')
-					validate = false
-			}
-			if(validate){
-				this.sendForm()
-			}
-			else {
-				alert('提交失败，请将任务信息填写正确!')
-			}
-		}
 	}
 }
 </script>

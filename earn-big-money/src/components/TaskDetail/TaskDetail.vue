@@ -47,7 +47,7 @@
     };
   },
 	mounted: function () {
-		if(!this.$route.params.duty){
+		if(!this.$route.params.dutyid){
 			this.$router.push({path:'/'});
 		}
 		this.initPage()
@@ -65,10 +65,10 @@
 			if(this.$cookies.get('id') ){
 				this.userId = this.$cookies.get('id')
 			}
-			this.$http.get('/api/duties/duty/'+this.$route.params.duty.did).then(function(response){
+			this.$http.get('/api/duties/duty/'+this.$route.params.dutyid).then(function(response){
 				this.duty = response.body
 				this.$refs.taskInfo.task = {
-					id: this.duty.id,
+					id: this.dutyid,
 					taskName:this.duty.title,
 					taskType:this.duty.type,
 					creater:this.duty.sponsor,
