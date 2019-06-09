@@ -2820,6 +2820,7 @@
   box-shadow:none;
   font-size:20px;
   color:#CCCCCC;
+  z-index: 9999;
 }
 /*change*/
 #u139 {
@@ -2925,6 +2926,7 @@
   box-shadow:none;
   font-size:20px;
   color:#CCCCCC;
+  z-index: 9999;
 }
 /*change*/
 #u140 {
@@ -3030,6 +3032,7 @@
   box-shadow:none;
   font-size:20px;
   color:#CCCCCC;
+  z-index: 9999;
 }
 /*change*/
 #u141 {
@@ -3138,6 +3141,7 @@
   font-style:normal;
   font-size:20px;
   color:#CCCCCC;
+  z-index: 9999;
 }
 /*change*/
 #u142 {

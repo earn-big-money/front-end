@@ -709,7 +709,7 @@
 
         <!-- Unnamed (矩形) -->
         <div id="u139" class="ax_default _默认样式 selected">
-          <div id="u139_div" class="selected"></div>
+          <div id="u139_div" class="selected" @click="pageClick" index="1"></div>
           <div id="u139_text" class="text ">
             <p><span>1</span></p>
           </div>
@@ -717,7 +717,7 @@
 
         <!-- Unnamed (矩形) -->
         <div id="u140" class="ax_default _默认样式">
-          <div id="u140_div" class=""></div>
+          <div id="u140_div" class="" @click="pageClick" index="2"></div>
           <div id="u140_text" class="text ">
             <p><span>2</span></p>
           </div>
@@ -725,7 +725,7 @@
 
         <!-- Unnamed (矩形) -->
         <div id="u141" class="ax_default _默认样式">
-          <div id="u141_div" class=""></div>
+          <div id="u141_div" class="" @click="pageClick" index="3"></div>
           <div id="u141_text" class="text ">
             <p><span>3</span></p>
           </div>
@@ -733,9 +733,9 @@
 
         <!-- Unnamed (矩形) -->
         <div id="u142" class="ax_default _默认样式">
-          <div id="u142_div" class=""></div>
+          <div id="u142_div" class="" @click="pageClick" index="4"></div>
           <div id="u142_text" class="text ">
-            <p><span></span></p>
+            <p><span>…</span></p>
           </div>
         </div>
       </div>
@@ -954,22 +954,6 @@ export default {
       },
       login: function() {
         this.$router.push({ name: 'Login' })
-        // var _self = this
-        // $.ajax({
-        //   type: 'GET',
-        //   url: '/api/users/logout',
-        //   //data: postData,
-        //   //contentType: 'application/json;charset=utf-8',
-        //   dataType: 'json',
-        //   timeout: 3000,
-        //   success: function(result, xhr) {
-        //     _self.$router.push({ name: 'Login' });
-        //   },
-        //   error: function(result, xhr) {
-        //     console.log(result)
-        //   }
-        // })
-        
       },
       regist: function() {
           this.$router.push({name: 'Register'})
@@ -984,6 +968,10 @@ export default {
         this.$router.push({name:'TaskDetail',params:{dutyid:this.nowduty[index].did}});
         alert(this.nowduty[index].did);
       },
+      pageClick: function() {
+        var index = parseInt(event.currentTarget.getAttribute('index'));
+        alert(index);
+      }
       
     }
 }
