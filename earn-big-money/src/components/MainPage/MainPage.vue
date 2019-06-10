@@ -711,7 +711,7 @@
         <div id="u139" class="ax_default _默认样式 selected">
           <div id="u139_div" class="selected" @click="pageClick" index="1"></div>
           <div id="u139_text" class="text ">
-            <p><span>1</span></p>
+            <p><span id="page1">1</span></p>
           </div>
         </div>
 
@@ -719,7 +719,7 @@
         <div id="u140" class="ax_default _默认样式">
           <div id="u140_div" class="" @click="pageClick" index="2"></div>
           <div id="u140_text" class="text ">
-            <p><span>2</span></p>
+            <p><span id="page2">2</span></p>
           </div>
         </div>
 
@@ -727,7 +727,7 @@
         <div id="u141" class="ax_default _默认样式">
           <div id="u141_div" class="" @click="pageClick" index="3"></div>
           <div id="u141_text" class="text ">
-            <p><span>3</span></p>
+            <p><span id="page3">3</span></p>
           </div>
         </div>
 
@@ -735,7 +735,7 @@
         <div id="u142" class="ax_default _默认样式">
           <div id="u142_div" class="" @click="pageClick" index="4"></div>
           <div id="u142_text" class="text ">
-            <p><span>…</span></p>
+            <p><span id="page4">…</span></p>
           </div>
         </div>
       </div>
@@ -828,7 +828,8 @@ export default {
       nowpage: 0,
       nowdutynum: 0,
       timeButton: 'primary',
-      moneyButton: ''
+      moneyButton: '',
+      sortBy: 'time'
     }
   },
   created: function() {
@@ -845,15 +846,7 @@ export default {
     //alert(this.uid)
     console.log(this.uid)
     if(this.nowduty==null){
-      var data = {
-        pageNumber: 1,
-        countPerPage: 7,
-        sortType: 'time',
-        sortOrder: 'ascend'
-      }
-      var postData = JSON.stringify(data)
-      console.log('请求全部信息的data： ' + postData)
-      var _self = this
+      var _self = this;
       $.ajax({
         type: 'GET',
         url: '/api/duties/screen?pageNumber=1&countPerPage=7&sortType=time&sortOrder=ascend',
@@ -945,12 +938,124 @@ export default {
         }
       },
       timeClick: function() {
+        //if(this.sortBy=='time') return;
         this.timeButton = 'primary';
         this.moneyButton = '';
+        this.sortBy = 'time';
+        $("#u139_div").addClass("");
+        $("#u140_div").addClass("");
+        $("#u141_div").addClass("");
+        $("#u139_div").removeClass("selected");
+        $("#u140_div").removeClass("selected");
+        $("#u141_div").removeClass("selected");
+        $("#u139_div").addClass("selected");
+        var _self = this;
+        $.ajax({
+          type: 'GET',
+          url: '/api/duties/screen?pageNumber=1&countPerPage=7&sortType=time&sortOrder=ascend',
+          //data: postData,
+          //contentType: 'application/json;charset=utf-8',
+          dataType: 'json',
+          timeout: 3000,
+          success: function(result, xhr) {
+            console.log(result)
+            //console.log(result['count'])
+            _self.nowduty = result['content']
+            _self.nowpage = 1
+            _self.nowdutynum = result['count']
+            if(_self.nowdutynum<7){
+              for(var i=_self.nowdutynum;i<7;i++){
+                _self.nowduty.push(0);
+              }
+            }
+            for(var i=0;i<7;i++){
+              if(_self.nowduty[i]!=0){
+                var id="#u128-"+(i+1).toString();
+                $(id).css("visibility","visible");
+                var content="#dcontent"+(i+1).toString();
+                $(content).text(_self.nowduty[i].dcontent);
+                var type = "#dtype"+(i+1).toString();
+                $(type).text(_self.nowduty[i].dtype);
+                var title = "#dtitle"+(i+1).toString();
+                $(title).text(_self.nowduty[i].dtitle);
+                var sponsor = "#dsponsor"+(i+1).toString();
+                $(sponsor).text(_self.nowduty[i].dsponsor);
+                var modifyTime = "#dmodifyTime"+(i+1).toString();
+                $(modifyTime).text(_self.nowduty[i].dmodifyTime);
+                var curaccepters = "#dcuraccepters"+(i+1).toString();
+                $(curaccepters).text(_self.nowduty[i].curaccepters);
+              } else {
+                //alert("hidden");
+                var id="#u128-"+(i+1).toString();
+                $(id).css("visibility","hidden");
+              }
+            }
+          },
+          error: function(result, xhr) {
+            console.log(result)
+            alert('服务器连接错误: ' + xhr)
+          }
+        })
       },
       moneyClick: function() {
+        //if(this.sortBy=='money') return;
         this.timeButton = '';
         this.moneyButton = 'primary';
+        this.sortBy = 'money';
+        $("#u139_div").addClass("");
+        $("#u140_div").addClass("");
+        $("#u141_div").addClass("");
+        $("#u139_div").removeClass("selected");
+        $("#u140_div").removeClass("selected");
+        $("#u141_div").removeClass("selected");
+        $("#u139_div").addClass("selected");
+        var _self = this;
+        $.ajax({
+          type: 'GET',
+          url: '/api/duties/screen?pageNumber=1&countPerPage=7&sortType=money&sortOrder=ascend',
+          //data: postData,
+          //contentType: 'application/json;charset=utf-8',
+          dataType: 'json',
+          timeout: 3000,
+          success: function(result, xhr) {
+            console.log(result)
+            //console.log(result['count'])
+            _self.nowduty = result['content']
+            _self.nowpage = 1
+            _self.nowdutynum = result['count']
+            if(_self.nowdutynum<7){
+              for(var i=_self.nowdutynum;i<7;i++){
+                _self.nowduty.push(0);
+              }
+            }
+            for(var i=0;i<7;i++){
+              if(_self.nowduty[i]!=0){
+                var id="#u128-"+(i+1).toString();
+                $(id).css("visibility","visible");
+                var content="#dcontent"+(i+1).toString();
+                $(content).text(_self.nowduty[i].dcontent);
+                var type = "#dtype"+(i+1).toString();
+                $(type).text(_self.nowduty[i].dtype);
+                var title = "#dtitle"+(i+1).toString();
+                $(title).text(_self.nowduty[i].dtitle);
+                var sponsor = "#dsponsor"+(i+1).toString();
+                $(sponsor).text(_self.nowduty[i].dsponsor);
+                var modifyTime = "#dmodifyTime"+(i+1).toString();
+                $(modifyTime).text(_self.nowduty[i].dmodifyTime);
+                var curaccepters = "#dcuraccepters"+(i+1).toString();
+                $(curaccepters).text(_self.nowduty[i].curaccepters);
+              } else {
+                //alert("hidden");
+                var id="#u128-"+(i+1).toString();
+                $(id).css("visibility","hidden");
+              }
+            }
+          },
+          error: function(result, xhr) {
+            console.log(result)
+            alert('服务器连接错误: ' + xhr)
+          }
+        })
       },
       login: function() {
         this.$router.push({ name: 'Login' })
@@ -970,7 +1075,66 @@ export default {
       },
       pageClick: function() {
         var index = parseInt(event.currentTarget.getAttribute('index'));
-        alert(index);
+        if(index==4) return;
+        var _self = this;
+        var page = $('#page'+index.toString()).text();
+        if(this.nowpage.toString()==page) return;
+        var url = '/api/duties/screen?pageNumber=' + page +'&countPerPage=7&sortType='+this.sortBy+'&sortOrder=ascend';
+        alert(url);
+        $.ajax({
+          type: 'GET',
+          url: url,
+          //data: postData,
+          //contentType: 'application/json;charset=utf-8',
+          dataType: 'json',
+          timeout: 3000,
+          success: function(result, xhr) {
+            console.log(result);
+            if(result['count'] == 0) return;
+            _self.nowduty = result['content'];
+            _self.nowpage = page;
+            _self.nowdutynum = result['count'];
+            if(_self.nowdutynum<7){
+              for(var i=_self.nowdutynum;i<7;i++){
+                _self.nowduty.push(0);
+              }
+            }
+            for(var i=0;i<7;i++){
+              if(_self.nowduty[i]!=0){
+                var id="#u128-"+(i+1).toString();
+                $(id).css("visibility","visible");
+                var content="#dcontent"+(i+1).toString();
+                $(content).text(_self.nowduty[i].dcontent);
+                var type = "#dtype"+(i+1).toString();
+                $(type).text(_self.nowduty[i].dtype);
+                var title = "#dtitle"+(i+1).toString();
+                $(title).text(_self.nowduty[i].dtitle);
+                var sponsor = "#dsponsor"+(i+1).toString();
+                $(sponsor).text(_self.nowduty[i].dsponsor);
+                var modifyTime = "#dmodifyTime"+(i+1).toString();
+                $(modifyTime).text(_self.nowduty[i].dmodifyTime);
+                var curaccepters = "#dcuraccepters"+(i+1).toString();
+                $(curaccepters).text(_self.nowduty[i].curaccepters);
+              } else {
+                //alert("hidden");
+                var id="#u128-"+(i+1).toString();
+                $(id).css("visibility","hidden");
+              }
+            }
+            //修改被选中按钮
+            $("#u139_div").addClass("");
+            $("#u140_div").addClass("");
+            $("#u141_div").addClass("");
+            $("#u139_div").removeClass("selected");
+            $("#u140_div").removeClass("selected");
+            $("#u141_div").removeClass("selected");
+            $("#u"+(138+index).toString()+"_div").addClass("selected");
+          },
+          error: function(result, xhr) {
+            console.log(result)
+            alert('服务器连接错误: ' + xhr)
+          }
+        })
       }
       
     }
