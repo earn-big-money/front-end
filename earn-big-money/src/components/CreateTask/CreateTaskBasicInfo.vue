@@ -2,7 +2,7 @@
   <el-form :model="basicInfo" label-width="80px">
     <el-form-item label="任务名称">
       <el-col :span="18">
-        <el-input  v-model="basicInfo.taskName"  type="textarea" :autosize="{ minRows: 1, maxRows: 2}"></el-input>
+        <el-input  v-model="basicInfo.taskName" type="textarea" :autosize="{ minRows: 1, maxRows: 2}"></el-input>
       </el-col>
 
       <el-col :span="6">
@@ -15,7 +15,7 @@
         <el-radio-group v-model="basicInfo.taskType">
           <el-radio label='问卷'>问卷</el-radio>
           <el-radio label='其他'>其他</el-radio>
-        </el-radio-group v-model="radio">
+        </el-radio-group>
       </el-col>
     </el-form-item>
 
