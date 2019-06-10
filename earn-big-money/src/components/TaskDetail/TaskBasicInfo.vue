@@ -30,13 +30,6 @@
 		    <el-aside width="200px">当前状态</el-aside>
 		    <el-main>{{userStatus}}</el-main>
 		  </el-container>
-
-			<el-container v-if="task.taskType=='其他' ">
-		    <el-header style="text-align:left">任务内容:</el-header>
-		    <el-main style="text-align:left">
-					{{task.taskContent}}
-				</el-main>
-		  </el-container>
 		</el-container>
 
 		<el-button type="primary" @click="participate" v-if="userStatus=='未参加' ">
@@ -48,7 +41,6 @@
 
 	</div>
 </template>
-
 
 <style>
   .el-header, .el-footer {
@@ -88,7 +80,6 @@
 					creater:'',
 					startTime:'',
 					endTime:'',
-					taskContent:'',
 					paticipantNum:0,
 					taskWage:0
 				},

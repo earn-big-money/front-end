@@ -8,31 +8,35 @@
 		  active-text-color="#ffd04b"
 			@select="handleSelect">
 		  <el-menu-item index="checkInfo">任务信息</el-menu-item>
+			<el-menu-item index="checkContent">任务内容</el-menu-item>
 		</el-menu>
 		<el-row>
 		  <el-col :span="12":offset="6" >
-				<v-taskInfo :initPage="initPage" v-show="cleckStatus=='checkInfo' " ref='taskInfo'></v-taskInfo>
+				<v-TaskBasicInfo :initPage="initPage" v-show="cleckStatus=='checkInfo' " ref='TaskBasicInfo'></v-TaskBasicInfo>
+				<v-TaskContent v-show="cleckStatus=='checkContent' " ref='TaskContent'></v-TaskContent>
 			</el-col>
 			<el-col :span="6">
-				<v-taskPaticipantInfo :taskId="duty.id"
+				<v-TaskPaticipantInfo :taskId="duty.id"
 					:doneUsers="doneUsers"
 					:unDoneUsers="unDoneUsers"
 					:initPage="initPage"
-					ref='taskPaticipantInfo'
-					v-show="userId==duty.sponsor">
-				</v-taskPaticipantInfo>
+					ref='TaskPaticipantInfo'
+					v-if="userId==duty.sponsor">
+				</v-TaskPaticipantInfo>
 			</el-col>
 		</el-row>
 	</div>
 </template>
 
 <script>
-	import taskInfo from './taskInfo.vue'
-	import taskPaticipantInfo from './taskPaticipantInfo.vue'
+	import TaskBasicInfo from './TaskBasicInfo.vue'
+	import TaskPaticipantInfo from './TaskPaticipantInfo.vue'
+	import TaskContent from './TaskContent.vue'
 	export default {
 	components: {
-		"v-taskInfo":taskInfo,
-		"v-taskPaticipantInfo":taskPaticipantInfo,
+		"v-TaskBasicInfo":TaskBasicInfo,
+		"v-TaskPaticipantInfo":TaskPaticipantInfo,
+		"v-TaskContent":TaskContent
 	},
 
 
@@ -62,51 +66,52 @@
 			this.unDoneUsers=[]
 			this.doneUsers=[]
 
+			//有用户登陆
 			if(this.$cookies.get('id') ){
 				this.userId = this.$cookies.get('id')
+				if(this.userId == this.duty.sponsor){
+					this.$refs.TaskBasicInfo.userStatus = '发布者'
+				}
+				else{
+					this.$refs.TaskBasicInfo.userStatus  = '未参加'
+				}
 			}
+			else{
+				this.$refs.TaskBasicInfo.userStatus  = '无'
+			}
+
 			this.$http.get('/api/duties/duty/'+this.$route.params.dutyid).then(function(response){
 				this.duty = response.body
-				this.$refs.taskInfo.task = {
+				var task =  {
 					id: this.dutyid,
 					taskName:this.duty.title,
 					taskType:this.duty.type,
 					creater:this.duty.sponsor,
 					startTime:this.duty.startTime,
 					endTime:this.duty.endTime,
-					taskContent:this.duty.conotent,
+					taskContent:this.duty.content,
 					paticipantNum:this.duty.maxAccepters-this.duty.curAccepters,
 					taskWage:this.duty.money
 				}
+				this.$refs.TaskBasicInfo.task = task
+				this.$refs.TaskContent.task = task
 
 				var isUserParticipate = false
 
 				for( let taskAccepter of this.duty.accepters){
 					if(taskAccepter.status=='accepted'){
 						this.unDoneUsers.push(taskAccepter.uid)
+						if(taskAccepter.uid == this.userId ){
+							this.$refs.TaskBasicInfo.userStatus  = '已参加'
+						}
 					}
 					else if(taskAccepter.status=='finish'){
 						this.doneUsers.push(taskAccepter.uid)
+						if(taskAccepter.uid == this.userId ){
+							this.$refs.TaskBasicInfo.userStatus  = '已完成'
+						}
 					}
 
-					if(taskAccepter.uid == this.userId ){
-						isUserParticipate = true
-					}
-				}
-				//有用户登陆
-				if(this.$cookies.get('id') ){
-					if(this.userId == this.duty.sponsor){
-						this.$refs.taskInfo.userStatus = '发布者'
-					}
-					else if(isUserParticipate){
-						this.$refs.taskInfo.userStatus  = '已参加'
-					}
-					else{
-						this.$refs.taskInfo.userStatus  = '未参加'
-					}
-				}
-				else{
-					this.$refs.taskInfo.userStatus  = '无'
 				}
 
 			}, function(response){
