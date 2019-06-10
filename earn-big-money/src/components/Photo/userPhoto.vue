@@ -1,37 +1,140 @@
 <template>
-    <el-container class="uploadPhoto">
-        <el-upload
-            class="upload-demo"
-            drag
-            action="/api/photo/UploadUserPhoto"
-            :show-file-list="true"
-            :on-change="handleChange"
-            :file-list="fileList"
-            accept=".png"
-            list-type="picture">
-            <i class="el-icon-upload"></i>
-            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-            <div class="el-upload__tip" slot="tip">只能上传png文件，且不超过1Mb</div>
-        </el-upload>
-    </el-container>
+    <div>
+        <el-container>
+            <el-form style="margin:0px auto;" ref="form"  :model="form" :rules="rules" label-position='right' label-width="80px"> 
+                <el-form-item label="用户名" class="login_form_item" prop="id">
+                    <el-input v-model="form.id" placeholder="请输入用户名称" clearable prefix-icon="el-icon-s-custom"></el-input>
+                </el-form-item>
+                <el-form-item label="昵称" class="login_form_item" prop="username">
+                    <el-input v-model="form.username" placeholder="请输入昵称" clearable prefix-icon="el-icon-user-solid"></el-input>
+                </el-form-item>
+                <el-form-item label="手机" class="login_form_item" prop="phone">
+                    <el-input class="register_form_item" v-model="form.phone" placeholder="请输入手机号码" clearable  prefix-icon="el-icon-phone"></el-input>
+                </el-form-item>
+                <el-form-item label="邮箱" class="login_form_item" prop="email">
+                    <el-input class="register_form_item" v-model="form.email" placeholder="请输入邮箱" clearable  prefix-icon="el-icon-message"></el-input>
+                </el-form-item>
+                <el-form-item label="密码" class="login_form_item" prop="password">
+                    <el-input class="register_form_item" v-model="form.password" placeholder="请输入6至20位登录密码" clearable show-password prefix-icon="el-icon-lock"></el-input>
+                </el-form-item>
+                <el-form-item label="确认密码" class="login_form_item" prop="checkPass">
+                    <el-input class="register_form_item" v-model="form.checkPass" placeholder="请再次输入登录密码" clearable show-password prefix-icon="el-icon-lock"></el-input>
+                </el-form-item>
+                <el-form-item label="身份" prop="status">
+                    <el-radio-group v-model="form.status">
+                        <el-radio label="student"></el-radio>
+                        <el-radio label="organization"></el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                
+            </el-form>
+            
+        </el-container>
+        <el-button >取 消</el-button>
+        <el-button type="primary" >确 定</el-button>
+    </div>
 </template>
 
 <script>
 
 export default {
     data () {
+        var validatePass = (rule, value, callback) => {
+            if (value === '') {
+                 callback();
+            } else {
+                if (this.form.checkPass !== '') {
+                 this.$refs.form.validateField('checkPass');
+                }
+              callback();
+            }
+          };
+        var validatePass2 = (rule, value, callback) => {
+            if (value === '') {
+                callback();
+            } else if (value !== this.form.password) {
+                 callback(new Error('两次输入密码不一致!'));
+            } else {
+                 callback();
+            }
+        };
+
         return {
-            fileList: []
+            form: {
+                id: '',
+                username: '',
+                password: '',
+                checkPass: '',
+                email: '',
+                phone: '',
+                status: '',
+            },
+            rules: {
+                id: [
+                    { required: true, message: '请输入用户名', trigger: 'blur' },
+                ],
+                username: [
+                    { required: true, message: '请输入用户名', trigger: 'blur' },
+                ],
+                password: [
+                    { required: true, message: '请输入密码', trigger: 'blur' },
+                    { min: 6, max: 20, message: '长度在 6 到 20 个字符', trigger: 'blur'},
+                    { validator: validatePass, trigger: 'blur' },
+                ],
+                checkPass: [
+                    { required: true, message: '请再次输入密码', trigger: 'blur' },
+                    { validator: validatePass2, trigger: 'blur'}
+                ],
+                email: [
+                    { required: true, message: '请输入邮箱', trigger: 'blur' },
+                    { pattern: /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/, message: '邮箱格式不正确', trigger: 'blur' },
+                ],
+                phone: [
+                    { required: true, message: '请输入手机号码', trigger: 'blur' },
+                    { pattern: /^[0-9-_]{11}$/, message: '手机号码格式不正确', trigger: 'blur' },
+                ],
+                status: [
+                    { required: true, message: '请输入身份', trigger: 'blur' },
+                ],
+            },
+
+            checked: true,
+            
         }
     },
+
     methods: {
-        handleChange(file, fileList) {
-            this.fileList = fileList.slice(-1);
-        }
+        onSubmit: function(formName) {
+            this.$refs[formName].validate((valid) => {
+                if (valid) {
+                    var url = "/api/users/create";
+                    var type = "post";
+                    var data = { id: this.form.id, username: this.form.username, password: this.form.password, phone: this.form.phone,
+                                    email: this.form.email, status: this.form.status};
+                    var name = "RegisterSuccess";
+
+                    this.$http.post(url, data, {emulateJSON: true}).then(function(res){
+                            console.log(res);
+                            this.$cookies.set("id", this.form.id);
+                            this.$router.push(name);//, params: {id: this.form.id}});
+                        },function(res){
+                            console.log('请求失败处理');
+                            console.log(res.body)
+
+                        });
+
+                    
+                } else {
+                    console.log('error submit!!');
+                     return false;
+                }
+            });
+        },
     }
 };
 </script>
 
-<style scoped>
+<style>
+@import "../../assets/css/LoginAndRegister.css" 
 
 </style>
