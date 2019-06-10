@@ -717,7 +717,7 @@
         <div id="u142" class="ax_default _默认样式">
           <div id="u142_div" class="" @click="pageClick" index="4"></div>
           <div id="u142_text" class="text ">
-            <p><span id="page4">…</span></p>
+            <p><span id="page4">></span></p>
           </div>
         </div>
       </div>
@@ -1057,7 +1057,34 @@ export default {
       },
       pageClick: function() {
         var index = parseInt(event.currentTarget.getAttribute('index'));
-        if(index==4) return;
+        if(index==4){
+          var nowmax = parseInt($('#page3').text());
+          $("#page1").text('<');
+          $("#page2").text(nowmax+1);
+          $("#page3").text(nowmax+2);
+          $("#u139_div").addClass("");
+          $("#u140_div").addClass("");
+          $("#u141_div").addClass("");
+          $("#u139_div").removeClass("selected");
+          $("#u140_div").removeClass("selected");
+          $("#u141_div").removeClass("selected");
+          return; 
+        }
+        if(index==1){
+          var flag = $("#page1").text();
+          if(flag=='<'){
+            var nowmin = parseInt($('#page2').text());
+            $('#page3').text(nowmin-1);
+            $('#page2').text(nowmin-2);
+            if(nowmin==4){
+              $("#page1").text('1');
+            }
+            if(this.nowpage.toString()==$("#page1").text()) $("#u139_div").addClass("selected");
+            if(this.nowpage.toString()==$("#page2").text()) $("#u140_div").addClass("selected");
+            if(this.nowpage.toString()==$("#page3").text()) $("#u141_div").addClass("selected");
+            return;
+          }
+        }
         var _self = this;
         var page = $('#page'+index.toString()).text();
         if(this.nowpage.toString()==page) return;
