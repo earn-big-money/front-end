@@ -2316,6 +2316,11 @@
   font-style:normal;
   font-size:48px;
   color:#FFFFFF;
+  background-image: url("./ad3.gif");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+
 }
 .u130 {
   border-width:0px;

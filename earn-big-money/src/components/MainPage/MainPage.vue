@@ -215,9 +215,9 @@
           <!-- Unnamed (矩形) -->
           <div id="u130-1" class="ax_default _默认样式 u130" style="width: 159px; height: 119px; left: 0px; top: 20px;visibility: inherit">
             <div id="u130-1_div" class="u130_div" style="width: 159px; height: 119px;visibility: inherit"></div>
-            <div id="u130-1_text" class="text u130_text" style="position: absolute;left: 0px;top: 30px;width: 159px;visibility: inherit">
+            <!--div id="u130-1_text" class="text u130_text" style="position: absolute;left: 0px;top: 30px;width: 159px;visibility: inherit">
               <p><span></span></p>
-            </div>
+            </div-->
           </div>
 
           <!-- Unnamed (矩形) -->
@@ -286,9 +286,6 @@
           <!-- Unnamed (矩形) -->
           <div id="u130-2" class="ax_default _默认样式 u130" style="width: 159px; height: 119px; left: 0px; top: 20px;visibility: inherit">
             <div id="u130-2_div" class="u130_div" style="width: 159px; height: 119px;visibility: inherit"></div>
-            <div id="u130-2_text" class="text u130_text" style="position: absolute;left: 0px;top: 30px;width: 159px;visibility: inherit">
-              <p><span></span></p>
-            </div>
           </div>
 
           <!-- Unnamed (矩形) -->
@@ -357,9 +354,6 @@
           <!-- Unnamed (矩形) -->
           <div id="u130-3" class="ax_default _默认样式 u130" style="width: 159px; height: 119px; left: 0px; top: 20px;visibility: inherit">
             <div id="u130-3_div" class="u130_div" style="width: 159px; height: 119px;visibility: inherit"></div>
-            <div id="u130-3_text" class="text u130_text" style="position: absolute;left: 0px;top: 30px;width: 159px;visibility: inherit">
-              <p><span></span></p>
-            </div>
           </div>
 
           <!-- Unnamed (矩形) -->
@@ -428,9 +422,6 @@
           <!-- Unnamed (矩形) -->
           <div id="u130-4" class="ax_default _默认样式 u130" style="width: 159px; height: 119px; left: 0px; top: 20px;visibility: inherit">
             <div id="u130-4_div" class="u130_div" style="width: 159px; height: 119px;visibility: inherit"></div>
-            <div id="u130-4_text" class="text u130_text" style="position: absolute;left: 0px;top: 30px;width: 159px;visibility: inherit">
-              <p><span></span></p>
-            </div>
           </div>
 
           <!-- Unnamed (矩形) -->
@@ -499,9 +490,6 @@
           <!-- Unnamed (矩形) -->
           <div id="u130-5" class="ax_default _默认样式 u130" style="width: 159px; height: 119px; left: 0px; top: 20px;visibility: inherit">
             <div id="u130-5_div" class="u130_div" style="width: 159px; height: 119px;visibility: inherit"></div>
-            <div id="u130-5_text" class="text u130_text" style="position: absolute;left: 0px;top: 30px;width: 159px;visibility: inherit">
-              <p><span></span></p>
-            </div>
           </div>
 
           <!-- Unnamed (矩形) -->
@@ -570,9 +558,6 @@
           <!-- Unnamed (矩形) -->
           <div id="u130-6" class="ax_default _默认样式 u130" style="width: 159px; height: 119px; left: 0px; top: 20px;visibility: inherit">
             <div id="u130-6_div" class="u130_div" style="width: 159px; height: 119px;visibility: inherit"></div>
-            <div id="u130-6_text" class="text u130_text" style="position: absolute;left: 0px;top: 30px;width: 159px;visibility: inherit">
-              <p><span></span></p>
-            </div>
           </div>
 
           <!-- Unnamed (矩形) -->
@@ -641,9 +626,6 @@
           <!-- Unnamed (矩形) -->
           <div id="u130-7" class="ax_default _默认样式 u130" style="width: 159px; height: 119px; left: 0px; top: 20px;visibility: inherit">
             <div id="u130-7_div" class="u130_div" style="width: 159px; height: 119px;visibility: inherit"></div>
-            <div id="u130-7_text" class="text u130_text" style="position: absolute;left: 0px;top: 30px;width: 159px;visibility: inherit">
-              <p><span></span></p>
-            </div>
           </div>
 
           <!-- Unnamed (矩形) -->
