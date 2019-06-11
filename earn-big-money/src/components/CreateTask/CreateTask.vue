@@ -1,7 +1,7 @@
 <template>
 	<div >
 		<h1>创建任务</h1>
-		<div style="width: 600px; margin: 0 auto;"  >
+		<div style="width: 640px; margin: 0 auto;"  >
 			<el-steps :active="createStep" style="text-align: left">
 				<el-step title="填写任务基本信息"></el-step>
 				<el-step title="填写任务或问卷的内容"></el-step>

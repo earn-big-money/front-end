@@ -1,27 +1,26 @@
 <template>
   <el-form :model="basicInfo" label-width="80px">
     <el-form-item label="任务名称">
-      <el-col :span="18">
+      <el-col :span="16">
         <el-input  v-model="basicInfo.taskName" type="textarea" :autosize="{ minRows: 1, maxRows: 2}"></el-input>
       </el-col>
-
-      <el-col :span="6">
+      <el-col :span="8">
         <div class="warning">{{warnMsg.taskName}}</div>
       </el-col>
     </el-form-item>
 
     <el-form-item label="任务简介">
-      <el-col :span="18">
+      <el-col :span="16">
         <el-input  v-model="basicInfo.introduction" type="textarea" :autosize="{ minRows: 2, maxRows: 4}"></el-input>
       </el-col>
 
-      <el-col :span="6">
+      <el-col :span="8">
         <div class="warning">{{warnMsg.introduction}}</div>
       </el-col>
     </el-form-item>
 
     <el-form-item label="任务类型">
-      <el-col :span="18">
+      <el-col :span="16">
         <el-radio-group v-model="basicInfo.taskType">
           <el-radio label='问卷'>问卷</el-radio>
           <el-radio label='其他'>其他</el-radio>
@@ -30,30 +29,30 @@
     </el-form-item>
 
     <el-form-item label="任务时间">
-      <el-col :span="18">
+      <el-col :span="16">
         <v-DateTimePicker ref="taskTime"></v-DateTimePicker>
       </el-col>
-      <el-col :span="6">
+      <el-col :span="8">
         <div class="warning">{{warnMsg.taskTime}}</div>
       </el-col>
     </el-form-item>
 
     <el-form-item label="参加人数" >
-      <el-col :span="18">
+      <el-col :span="16">
         <el-input  v-model="basicInfo.paticipantNum"></el-input>
       </el-col>
-      <el-col :span="6">
+      <el-col :span="8">
         <div class="warning">{{warnMsg.paticipantNum}}</div>
       </el-col>
     </el-form-item>
 
     <el-form-item label="薪酬">
-      <el-col :span="18">
+      <el-col :span="16">
         <el-input v-model="basicInfo.taskWage" >
           <template slot="append">元/每人</template>
         </el-input>
       </el-col>
-      <el-col :span="6">
+      <el-col :span="8">
         <div class="warning">{{warnMsg.taskWage}}</div>
       </el-col>
     </el-form-item>
@@ -79,7 +78,7 @@
           paticipantNum:'',
           taskWage:'',
           taskType:'其他',
-          
+
         },
 
         warnMsg:{
@@ -121,6 +120,8 @@
 
   			if(!this.$refs.taskTime.value )
   				this.warnMsg.taskTime = '请填写任务时间'
+        else if(this.$refs.taskTime.value[1].getTime() < new Date().getTime() )
+          this.warnMsg.taskTime = '结束时间在当前时间之前'
   			else
   				this.warnMsg.taskTime = ''
 
