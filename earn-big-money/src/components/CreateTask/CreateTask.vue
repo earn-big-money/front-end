@@ -53,7 +53,7 @@ export default {
 		//格式化Date
 		getFormatDateTime: function(date){
 			const year = date.getFullYear()
-			const month = date.getMonth() + 1 < 10 ? '0' + date.getMonth() : date.getMonth()
+			const month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)
 			const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
 			const hour = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
 			const min = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
@@ -92,8 +92,7 @@ export default {
 
 		sendForm: function(){
 			var starttime = this.getFormatDateTime(this.$refs.CreateTaskBasicInfo.$refs.taskTime.value[0])
-			var endtime = this.getFormatDateTime(this.$refs.CreateTaskBasicInfo.$refs.taskTime.value[0])
-
+			var endtime = this.getFormatDateTime(this.$refs.CreateTaskBasicInfo.$refs.taskTime.value[1])
 			var requestForm = {
 				title: this.$refs.CreateTaskBasicInfo.basicInfo.taskName,
 				introduction: this.$refs.CreateTaskBasicInfo.basicInfo.introduction,

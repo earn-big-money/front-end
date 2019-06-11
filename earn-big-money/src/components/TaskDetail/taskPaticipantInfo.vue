@@ -17,9 +17,16 @@
 
 			<el-collapse-item title="完成活动的用户" name="2">
 				<el-checkbox-group v-model="newFinishUsers" v-for="user in doneUsers":key="user" >
-					<el-checkbox  :label="user" >
-						{{user}}
-					</el-checkbox>
+					<el-col :span="16" >
+						<el-checkbox  :label="user" >
+							{{user}}
+						</el-checkbox>
+					</el-col>
+					<el-col :span="8">
+						<el-button type="primary" v-if="taskType=='问卷'" @click="checkSurvey(user,true)" >
+							查看问卷
+						</el-button>
+					</el-col>
 				</el-checkbox-group>
 				<el-button type="primary" @click="submitNewDoneUser" >
 					提交新的活动完成用户
