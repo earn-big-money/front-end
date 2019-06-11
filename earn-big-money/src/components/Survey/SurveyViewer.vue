@@ -15,18 +15,27 @@ import "inputmask/dist/inputmask/phone-codes/phone.js";
 
 export default {
   name: "survey-viewer",
+  props:['writable','initPage', 'taskId','answer'],
   components: {
     Survey
   },
   beforeCreate() {
-      this.surveyData = this.$route.params.data
+      this.surveyData = this.$route.params.surveyData
   },
   data(){
     var _this = this;
+    SurveyVue.StylesManager.applyTheme("bootstrapmaterial");
     this.model = new SurveyVue.Model(JSON.parse(this.surveyData));
+    if(this.writable){
+      this.model.mode = "";
+    }
+    else{
+      this.model.mode = "display";
+    }
     this.model.onComplete.add(function(survey){
-      console.log(survey.data);
-      _this.$http.post('/api/test/submitSurvey', survey.data).then(function(response){
+      var requestForm = {did:_this.taskId, answer:JSON.stringify(survey.data)};
+      _this.$http.post('/api/survey/data', requestForm).then(function(response){
+          _this.initPage()
           console.log(response)
         }, function(response){
           console.log(response)

@@ -2,6 +2,10 @@
 	<div style="width: 100%; margin: 0 auto;" >
 		<el-container>
 		  <el-header>{{task.taskName}}</el-header>
+			<el-container style="height:50px">
+		    <el-aside width="200px">任务简介:</el-aside>
+		    <el-main>{{task.introduction}}</el-main>
+		  </el-container>
 		  <el-container style="height:50px">
 		    <el-aside width="200px">任务类型:</el-aside>
 		    <el-main>{{task.taskType}}</el-main>
@@ -31,14 +35,6 @@
 		    <el-main>{{userStatus}}</el-main>
 		  </el-container>
 		</el-container>
-
-		<el-button type="primary" @click="participate" v-if="userStatus=='未参加' ">
-			我要报名
-		</el-button>
-		<router-link :to="{path:'/'}">
-			<el-button type="primary">返回</el-button>
-		</router-link>
-
 	</div>
 </template>
 
@@ -76,6 +72,7 @@
 				task: {
 					id:'',
 					taskName:'',
+					introduction:'',
 					taskType:'',
 					creater:'',
 					startTime:'',
@@ -84,21 +81,12 @@
 					taskWage:0
 				},
 				userId: '',
-				userStatus:'',
+				userStatus:''
 			}
 		},
 
 		methods: {
-			participate(){
-				var commitForm = {did:this.task.id}
-				this.$http.post('/api/duties/take', commitForm).then(function(response){
-					console.log(response.body)
-					this.initPage()
-					alert('报名成功')
-				}, function(response){
-					console.log(response.body)
-				});
-			}
+
 
 		}
 	}

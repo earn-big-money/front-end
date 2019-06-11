@@ -10,6 +10,16 @@
       </el-col>
     </el-form-item>
 
+    <el-form-item label="任务简介">
+      <el-col :span="18">
+        <el-input  v-model="basicInfo.introduction" type="textarea" :autosize="{ minRows: 2, maxRows: 4}"></el-input>
+      </el-col>
+
+      <el-col :span="6">
+        <div class="warning">{{warnMsg.introduction}}</div>
+      </el-col>
+    </el-form-item>
+
     <el-form-item label="任务类型">
       <el-col :span="18">
         <el-radio-group v-model="basicInfo.taskType">
@@ -65,13 +75,16 @@
       return {
         basicInfo: {
           taskName:'',
+          introduction:'',
           paticipantNum:'',
           taskWage:'',
-          taskType:'其他'
+          taskType:'其他',
+          
         },
 
         warnMsg:{
           taskName:'',
+          introduction:'',
           taskTime:'',
           paticipantNum:'',
           taskWage:''
@@ -100,6 +113,11 @@
   				this.warnMsg.taskName = '请填写任务名字'
   			else
   				this.warnMsg.taskName = ''
+
+        if(!this.basicInfo.introduction)
+  				this.warnMsg.introduction = '请填写任务简介'
+  			else
+  				this.warnMsg.introduction = ''
 
   			if(!this.$refs.taskTime.value )
   				this.warnMsg.taskTime = '请填写任务时间'

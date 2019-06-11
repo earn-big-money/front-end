@@ -1,16 +1,18 @@
 <template>
 	<div >
 		<h1>创建任务</h1>
-		<v-CreatorMain ref="survey" v-show="createStep==2&&this.$refs.CreateTaskBasicInfo.taskType=='问卷'" ></v-CreatorMain>
 		<div style="width: 600px; margin: 0 auto;"  >
-			<v-CreateTaskBasicInfo ref="CreateTaskBasicInfo" v-show="createStep==1"></v-CreateTaskBasicInfo>
-			<v-CreateTaskContent ref="CreateTaskContent" v-show="createStep==2"></v-CreateTaskContent>
 			<el-steps :active="createStep" style="text-align: left">
 				<el-step title="填写任务基本信息"></el-step>
 				<el-step title="填写任务或问卷的内容"></el-step>
 				<el-step title="完成"></el-step>
 			</el-steps>
+			<v-CreateTaskBasicInfo ref="CreateTaskBasicInfo" v-show="createStep==1"></v-CreateTaskBasicInfo>
+			<v-CreateTaskContent ref="CreateTaskContent" v-show="createStep==2&&this.$refs.CreateTaskBasicInfo.basicInfo.taskType=='其他'">
+			</v-CreateTaskContent>
 		</div>
+		<v-CreatorMain ref="survey" v-show="createStep==2&&this.$refs.CreateTaskBasicInfo.basicInfo.taskType=='问卷'" >
+		</v-CreatorMain>
 		<el-button style="margin-top: 12px;" v-if="createStep > 1" @click="toLastStep">上一步</el-button>
 		<el-button style="margin-top: 12px;" @click="checkNextStep">下一步</el-button>
 		<router-link :to="{path:'/'}">
@@ -18,7 +20,6 @@
 		</router-link>
 	</div>
 </template>
-
 
 <script>
 import CreatorMain from '../Survey/CreatorMain.vue'
@@ -49,7 +50,7 @@ export default {
 	},
 
 	methods: {
-
+		//格式化Date
 		getFormatDateTime: function(date){
 			const year = date.getFullYear()
 			const month = date.getMonth() + 1 < 10 ? '0' + date.getMonth() : date.getMonth()
@@ -64,7 +65,9 @@ export default {
 			this.createStep --
 		},
 		checkNextStep(){
+
 			switch (this.createStep) {
+				//检查是否能跳转到创建任务的下一步
 				case 1:
 					if(this.$refs.CreateTaskBasicInfo.checkBasicInfoValid()){
 						this.createStep ++
@@ -93,6 +96,7 @@ export default {
 
 			var requestForm = {
 				title: this.$refs.CreateTaskBasicInfo.basicInfo.taskName,
+				introduction: this.$refs.CreateTaskBasicInfo.basicInfo.introduction,
 				accepters: this.$refs.CreateTaskBasicInfo.basicInfo.paticipantNum,
 				starttime: starttime,
 				endtime: endtime,
@@ -101,16 +105,18 @@ export default {
 			}
 
 			if(requestForm['type'] == '问卷'){
+				this.$refs.survey.$refs.survey_creator.surveyCreator.saveSurveyFunc()
 				requestForm['content'] = this.$refs.survey.$refs.survey_creator.content
 			}
 			else if(requestForm['type'] == '其他'){
 				requestForm['content'] = this.$refs.CreateTaskContent.taskContent.content
 			}
+
 			this.$http.post('/api/duties/create',requestForm).then(function(response){
 				alert('创建成功')
 				this.$router.push({path:'/'});
 			}, function(response){
-				alert(response.body)
+				console.log(response.body)
 			});
 		},
 
