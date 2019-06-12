@@ -226,7 +226,7 @@
 					this.checkStatus = 'checkContent'
 				})
 			}, function(response){
-				console.log(response.body)
+				alert(response.body)
 			});
 		},
 
@@ -237,7 +237,7 @@
 				this.initPage()
 				alert('确认完成任务成功')
 			}, function(response){
-				console.log(response.body)
+				alert(response.body)
 			});
 		},
 		//dangerous todo
@@ -255,7 +255,7 @@
 					}
 				}
 			}, function(response){
-				console.log(response.body)
+				alert(response.body)
 			});
 		}
 
