@@ -26,6 +26,7 @@
 						<v-SurveyViewer :writable='surveyWritable'
 							:initPage='initPage'
 							:taskId='dutyId'
+							v-if="loadSurvey"
 							ref='SurveyViewer'>
 						</v-SurveyViewer>
 					</div>
@@ -87,7 +88,8 @@
 			finishUsers: [],
 			userStatus:'',
 			surveyWritable:false,
-			checkUser:''
+			checkUser:'',
+			loadSurvey:true
     };
   },
 
@@ -183,6 +185,7 @@
 
 		participate(){
 			//检查是否能参加
+
 			if(this.duty.maxAccepters==this.duty.curAccepters){
 				alert('参加人数已满')
 				return
@@ -211,9 +214,17 @@
 					successMsg = '报名成功，完成任务后请点击确认按钮确认完成'
 				}
 				else if(this.duty.type == '问卷'){
-					successMsg = '报名成功，请点击任务内容完成问卷'
+					successMsg = '报名成功，请完成问卷'
 				}
+
 				alert(successMsg)
+				//重载问卷并跳转到问卷
+				this.surveyWritable = true
+				this.loadSurvey = false
+				this.$nextTick(()=>{
+					this.loadSurvey = true
+					this.checkStatus = 'checkContent'
+				})
 			}, function(response){
 				console.log(response.body)
 			});

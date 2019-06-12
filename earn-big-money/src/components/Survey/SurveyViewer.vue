@@ -26,6 +26,7 @@ export default {
     var _this = this;
     SurveyVue.StylesManager.applyTheme("bootstrapmaterial");
     this.model = new SurveyVue.Model(JSON.parse(this.surveyData));
+
     if(this.writable){
       this.model.mode = "";
     }
