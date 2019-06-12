@@ -115,7 +115,7 @@ export default {
 				alert('创建成功')
 				this.$router.push({path:'/'});
 			}, function(response){
-				console.log(response.body)
+				alert(response.body)
 			});
 		},
 
