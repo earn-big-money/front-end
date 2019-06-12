@@ -850,7 +850,7 @@ export default {
           for(var i=0;i<7;i++){
             if(_self.nowduty[i]!=0){
               var content="#dcontent"+(i+1).toString();
-              $(content).text(_self.nowduty[i].dcontent);
+              $(content).text(_self.nowduty[i].dintroduction);
               var type = "#dtype"+(i+1).toString();
               $(type).text(_self.nowduty[i].dtype);
               var title = "#dtitle"+(i+1).toString();
@@ -955,7 +955,7 @@ export default {
                 var id="#u128-"+(i+1).toString();
                 $(id).css("visibility","visible");
                 var content="#dcontent"+(i+1).toString();
-                $(content).text(_self.nowduty[i].dcontent);
+                $(content).text(_self.nowduty[i].dintroduction);
                 var type = "#dtype"+(i+1).toString();
                 $(type).text(_self.nowduty[i].dtype);
                 var title = "#dtitle"+(i+1).toString();
@@ -1015,7 +1015,7 @@ export default {
                 var id="#u128-"+(i+1).toString();
                 $(id).css("visibility","visible");
                 var content="#dcontent"+(i+1).toString();
-                $(content).text(_self.nowduty[i].dcontent);
+                $(content).text(_self.nowduty[i].dintroduction);
                 var type = "#dtype"+(i+1).toString();
                 $(type).text(_self.nowduty[i].dtype);
                 var title = "#dtitle"+(i+1).toString();
@@ -1113,7 +1113,7 @@ export default {
                 var id="#u128-"+(i+1).toString();
                 $(id).css("visibility","visible");
                 var content="#dcontent"+(i+1).toString();
-                $(content).text(_self.nowduty[i].dcontent);
+                $(content).text(_self.nowduty[i].dintroduction);
                 var type = "#dtype"+(i+1).toString();
                 $(type).text(_self.nowduty[i].dtype);
                 var title = "#dtitle"+(i+1).toString();
