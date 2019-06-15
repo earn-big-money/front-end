@@ -7,34 +7,38 @@
               <el-image class="headimage" :src="url"></el-image>
             </div>
             <div style="margin-top: 25px; text-align: left; width: 190px; height: 40px; float: right; border: 0px solid yellow;">
-              <p style="display: inline-block; font-weight: bolder; font-size: 15pt;">{{infor.username}}</p>
+              <p style="margin-bottom: 3px; display: inline-block; font-weight: bolder; font-size: 15pt;">昵称：{{infor.username}}</p>
               <i @click="dialogInforVisible = true" class="el-icon-setting seticon"></i>
-              <p style="margin-top: 0px;">ID: {{infor.id}}</p>
+              <p style="font-size: 13pt; margin-top: 0px;">ID: {{infor.id}}</p>
             </div>
+          </div>
+          <div style="border: 0px solid yellow; overflow: hidden">
+            <p style="float: left; margin-bottom: 3px; margin-left: 15px; display: inline-block; font-size: 12pt;">账户余额： {{money}}</p>
+            <el-button style="padding: 3px 4px; float: right; margin-right: 12px;" size="mini" round>充值</el-button>
           </div>
           <div style="margin-top:10px; width:300px; height: 55px;border: 0px solid yellow;">
             <div class="part">
-              <div class="number">{{acceptDuties}}</div>
+              <div class="number">{{acceptDutiesNum}}</div>
               <span>已接收任务</span>
             </div>
             <div class="part">
-              <div class="number">166</div>
+              <div class="number">{{sponsorDuitesNum}}</div>
               <span>已发布任务</span>
             </div>
             <div class="part">
-              <div class="number">16</div>
+              <div class="number">{{finishedDuitesNum}}</div>
               <span>已完成任务</span>
             </div>
             <div class="part">
-              <div class="number">16</div>
-              <span>待完成任务</span>
+              <div class="number">{{doneDuitesNum}}</div>
+              <span>已确认任务</span>
             </div>
           </div>
-          <div style="text-align: left; padding: 10px; margin-top: 20px; border: 1px solid red;">
-            <p style="display: inline-block; border: 1px solid red; font-weight: bolder; font-size: 15pt;">组织</p>
-            <i style="margin: 5px; border: 1px solid red; float: right" class="el-icon-plus"></i>
-            <hr style="background-color:black; height:1px; opacity: 0.4; border:none;">
-            <p style="border: 1px solid red; padding: 2px"><span>中山大学团委</span><span style="float: right">管理员</span></p>
+          <div style="text-align: left; padding: 10px; margin-top: 20px;">
+            <p style="display: inline-block; margin-bottom: 0px; font-weight: bolder; font-size: 15pt;">组织</p>
+            <i style="margin: 5px; float: right" class="el-icon-plus"></i>
+            <hr style="background-color:black; height:1px; opacity: 0.4; border:none; margin: 5px 5px;">
+            <p style="padding: 2px"><span>中山大学团委</span><span style="float: right">管理员</span></p>
             <p style="padding: 2px"><span>中山大学团委</span><span style="float: right">管理员</span></p>
           </div>
         </el-aside>
@@ -51,10 +55,10 @@
             <el-tab-pane label="已接收任务" name="second">
               <div>
                 <el-row>
-                  <el-col :span="7" v-for="(o, index) in 6" :key="o" :offset="index % 2 == 0 ? 1 : 1">
+                  <el-col :span="6" v-for="(o, index) in num" :key="o" :offset="index % 2 == 0 ? 1 : 1">
                     <el-card :body-style="{ padding: '0px' }" style="margin: 10px 0px;">
                       <img :src="url" class="image">
-                      <div style="padding: 14px;">
+                      <div style="padding: 10px;">
                         <span>任务标题</span>
                         <div class="bottom clearfix">
                           <time class="time">{{ currentDate }}</time>
@@ -64,20 +68,20 @@
                   </el-col>
                 </el-row>
               </div>
-              <el-pagination style="margin-top: 10px;"
+              <!--<el-pagination style="margin-top: 10px;"
                 :page-size="13"
                 :pager-count="8"
                 layout="prev, pager, next"
                 :total="100">
-              </el-pagination>
+              </el-pagination>-->
             </el-tab-pane>
             <el-tab-pane label="已发布任务" name="third">
               <div>
                 <el-row>
-                  <el-col :span="7" v-for="(o, index) in 6" :key="o" :offset="index % 2 == 0 ? 1 : 1">
-                    <el-card :body-style="{ padding: '0px' }" style="margin: 14px 0px;">
+                  <el-col :span="6" v-for="(o, index) in 6" :key="o" :offset="index % 2 == 0 ? 1 : 1">
+                    <el-card :body-style="{ padding: '0px' }" style="margin: 10px 0px;">
                       <img :src="url" class="image">
-                      <div style="padding: 14px;">
+                      <div style="padding: 10px;">
                         <span>任务标题</span>
                         <div class="bottom clearfix">
                           <time class="time">{{ currentDate }}</time>
@@ -87,20 +91,27 @@
                   </el-col>
                 </el-row>
               </div>
-              <el-pagination style="margin-top: 10px;"
+              <!--<el-pagination style="margin-top: 10px;"
                 :page-size="13"
                 :pager-count="8"
                 layout="prev, pager, next"
                 :total="100">
-              </el-pagination>
+              </el-pagination>-->
             </el-tab-pane>
           </el-tabs>
         </el-main>
-        <el-dialog title="修改头像" :visible.sync="dialogHeadImageVisible">
+        <el-dialog title="修改头像" :visible.sync="dialogHeadImageVisible" :before-close="refreshPhoto" width="400px">
           <v-userPhoto></v-userPhoto>
         </el-dialog>
         <el-dialog title="修改个人信息" :visible.sync="dialogInforVisible">
-          <v-auserPhoto></v-auserPhoto>
+          <v-reviseInfor 
+            :id="uid"
+            :username="infor.username"
+            :email="infor.email"
+            :phone="infor.phone"
+            :status="infor.status"
+            ref='reviseInfor'
+          ></v-reviseInfor>
         </el-dialog>
     </el-container>
 </template>
@@ -214,18 +225,20 @@
 
 <script>
   import userPhoto from './userPhoto.vue'
-  import auserPhoto from '../Photo/userPhoto.vue'
+  import reviseInfor from './reviseInfor.vue'
   
   export default {
     components: {
       "v-userPhoto":userPhoto,
-      "v-auserPhoto":auserPhoto
+      "v-reviseInfor":reviseInfor
     },
     beforeCreate() {
       
     },
     mounted: function () {
-      this.$http.get('api/users/user/test1').then(function(response){
+    
+
+      this.$http.get('api/users/user/'+this.uid).then(function(response){
         this.infor.id = response.data.id;
         this.infor.username = response.data.username;
         this.infor.phone = response.data.phone;
@@ -236,34 +249,67 @@
       }, function(response){
 
       });
+
+      this.$http.get('api/duties/screen?pageNumber=1&countPerPage=7&selectBySponsor='+this.uid).then(function(response){
+        this.sponsorDuitesNum = response.data.count;
+      }, function(response){
+
+      });
+
+      this.$http.get('api/duties/screen?pageNumber=1&countPerPage=7&selectByAccepter='+this.uid).then(function(response){
+        this.acceptDutiesNum = response.data.count;
+      }, function(response){
+
+      });
+
+      this.$http.get('api/trades').then(function(response){
+        this.money = response.data.balance;
+      }, function(response){
+
+      });
+
     },
     data() {
       return {
         infor: {
-          "id": "",
-          "username": "",
-          "phone": "",
-          "email": "",
-          "status": "",
-          "createTime": ""
+          id: "",
+          username: "",
+          phone: "",
+          email: "",
+          status: "",
+          createTime: "",
         },
-        url: 'http://localhost:3000/photo/UserPhoto/test1',
+        url: '',
         activeName: 'first',
         currentDate: 'Sun May 19 2019',
-        acceptDuties : 10,
+        acceptDutiesNum : 10,
+        sponsorDuitesNum : 20,
+        finishedDuitesNum : 30,
+        doneDuitesNum : 40,
         uid: null,
+        num: 6,
+        money: 1000,
+        acceptDuties: [],
+        sponsorDuites: [],
 
         dialogHeadImageVisible: false,
         dialogInforVisible: false,
       };
     },
     created: function() {
-      alert(this.$route.query.uid);
+      this.uid = this.$route.query.uid;
+      this.url = 'api/photo/UserPhoto/'+this.uid,
+      //alert(this.$route.query.uid);
       console.log(this.$route.query.uid);
     },
     methods: {
       handleClick(tab, event) {
         console.log(tab, event);
+      },
+
+      refreshPhoto(done) {
+        //window.location.reload();
+        done();
       }
     }
   }
