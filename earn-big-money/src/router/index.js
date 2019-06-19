@@ -88,20 +88,31 @@ var router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.notNeedAuth)) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
-    if (Vue.cookies.isKey("id")) {
-      next({
-        name: 'MainPage',
-        //params: { id: Vue.cookies.get("id")}
-      })
-    } else {
-      next()
-    }
-  } else {
-    next() // 确保一定要调用 next()
-  }
+
+  	var url = "/api/users/checkStatus";
+  	//var url= "http://127.0.0.1:3000/users/login"
+  	//检查登录状态
+  	Vue.http.get(url).then(function(res){
+		Vue.cookies.set("id", res.body.id);
+
+		//跳转回主页面
+   		if (to.matched.some(record => record.meta.notNeedAuth)) {
+   			next({name: 'MainPage',})
+   		}
+   		//跳转
+   		else {
+   			next()
+   		}
+  	},function(res){
+  		//无登录状态
+   		if (res.status == '400') {
+   		   if (Vue.cookies.isKey("id")) {
+   		   		Vue.cookies.remove("id")
+   		   }
+   		}
+   		next()
+ 	});
+
 })
 
 export default router

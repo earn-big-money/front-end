@@ -123,7 +123,6 @@ export default {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     var register_url = "/api/users/create";
-                    var type = "post";
                     var data = { id: this.form.id, username: this.form.username, password: this.form.password, phone: this.form.phone,
                                     email: this.form.email, status: this.form.status};
                     var name = "RegisterSuccess";
