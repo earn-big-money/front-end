@@ -1,7 +1,7 @@
 <template>
     <div class="login_page">
         <el-container>
-              <el-header>Header</el-header>
+              <el-header></el-header>
 
               <el-container class="container">
                     <el-header >
@@ -30,7 +30,7 @@
                                 </el-form>
                             </el-tab-pane>
 
-                            <el-tab-pane :name="tabs.secondName">
+                            <!-- <el-tab-pane :name="tabs.secondName">
                                 <span slot="label" :class="{tabs_label_onclick: tabs.activeName== tabs.secondName}">短信登陆</span>
                                 <el-form> 
                                     <el-form-item label="" class="login_form_item">
@@ -43,7 +43,7 @@
                                         <el-button type="primary" round>登录</el-button>
                                   </el-form-item>
                                 </el-form>
-                            </el-tab-pane>
+                            </el-tab-pane> -->
                         </el-tabs>
 
                         <el-row class="login_option" type="flex" justify="space-around">
@@ -68,7 +68,7 @@
                     </el-container>
                     
               </el-container>
-              <el-footer>Footer</el-footer>
+              <el-footer></el-footer>
         </el-container>
     </div>
 </template>
@@ -99,14 +99,7 @@ export default {
     		var type = "post";
     		var data = { id: ""+this.form.id, password: ""+this.form.password};
             var path = "/";
-            //alert(data.id)
-            //alert(data.password)
             this.$http.post(url, data, {emulateJSON: true}).then(function(res){
-                    //alert(res.body)
-                    //console.log(res.body.data.uid); 
-                    //alert(res.body.data)
-                    //this.$router.push(path, {usr: "res.body.data.uid"});
-                    //
                     console.log(res.body); 
                     this.$cookies.set("id", this.form.id);
                     //this.$router.push(path), {usr: "res.body.data.uid"});
@@ -114,7 +107,7 @@ export default {
                 },function(res){
                     console.log(res.body)
                     if (res.status == '400') {
-                        this.warn = res.body.msg;
+                        this.warn = "用户名或密码不正确";
                     }
                 });
 

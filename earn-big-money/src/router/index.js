@@ -87,24 +87,21 @@ var router = new Router({
   ]
 })
 
-// router.beforeEach((to, from, next) => {
-//   if (to.matched.some(record => record.meta.notNeedAuth)) {
-//     console.log("jump");
-//     // this route requires auth, check if logged in
-//     // if not, redirect to login page.
-
-//     if (Vue.cookies.isKey("id")) {
-//       console.log("is login")
-//       next({
-//         name: 'MainPage',
-//         //params: { id: Vue.cookies.get("id")}
-//       })
-//     } else {
-//       next()
-//     }
-//   } else {
-//     next() // 确保一定要调用 next()
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.notNeedAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (Vue.cookies.isKey("id")) {
+      next({
+        name: 'MainPage',
+        //params: { id: Vue.cookies.get("id")}
+      })
+    } else {
+      next()
+    }
+  } else {
+    next() // 确保一定要调用 next()
+  }
+})
 
 export default router

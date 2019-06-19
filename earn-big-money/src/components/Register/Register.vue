@@ -38,8 +38,7 @@
                             </el-form-item>
                             
                         </el-form>
-                        <el-checkbox v-model="checked">勾选同意《<el-link type="primary">用户服务协议</el-link>》</el-checkbox>
-                        <el-button type="primary" round style="margin: 40px 0"  @click="onSubmit('form')">注册</el-button>
+                        <el-button type="primary" round style="margin: 0 0 40px 0"  @click="onSubmit('form')">注册</el-button>
                         <router-link to="Login"><el-button type="text">已有账号, 登陆</el-button></router-link>
                         
                     </el-container>
@@ -87,9 +86,10 @@ export default {
             rules: {
                 id: [
                     { required: true, message: '请输入用户名', trigger: 'blur' },
+                    { pattern: /^[A-Za-z][A-Za-z\d]{5,7}$/, message: '用户名格式为以字母为开头的6~8个数字或字母，', trigger: 'blur' },
                 ],
                 username: [
-                    { required: true, message: '请输入用户名', trigger: 'blur' },
+                    { required: true, message: '请输入用户昵称', trigger: 'blur' },
                 ],
                 password: [
                     { required: true, message: '请输入密码', trigger: 'blur' },
@@ -106,7 +106,7 @@ export default {
                 ],
                 phone: [
                     { required: true, message: '请输入手机号码', trigger: 'blur' },
-                    { pattern: /^[0-9-_]{11}$/, message: '手机号码格式不正确', trigger: 'blur' },
+                    { pattern: /^[0-9-_]{11}$/, message: '手机号码格式为11位数字', trigger: 'blur' },
                 ],
                 status: [
                     { required: true, message: '请输入身份', trigger: 'blur' },
@@ -129,10 +129,10 @@ export default {
                     var name = "RegisterSuccess";
 
                     this.$http.post(register_url, data, {emulateJSON: true}).then(function(res){
-                            console.log(res);
+                            console.log("register success", res);
 
                             var login_url = "/api/users/login";
-                            this.$http.post(url, data, {emulateJSON: true}).then(function(res){
+                            this.$http.post(login_url, data, {emulateJSON: true}).then(function(res){
 			                    console.log(res.body); 
 			                    this.$cookies.set("id", this.form.id);
 			                    this.$router.push(name);//, params: {id: this.form.id}});
