@@ -82,7 +82,7 @@ export default {
         onSubmit: function(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    var url = "/api/users/user/"+id;
+                    var url = "/api/users/user/"+this.id;
                     var type = "put";
                     var data = { username: this.form.username, phone: this.form.phone,
                                     email: this.form.email, status: this.form.status};
