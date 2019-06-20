@@ -21,7 +21,7 @@
             </el-form>
             
         </el-container>
-        <el-button >取 消</el-button>
+        <el-button @click="remove">取 消</el-button>
         <el-button @click="onSubmit('form')" type="primary" >确 定</el-button>
     </div>
 </template>
@@ -30,7 +30,6 @@
 
 export default {
     props:['id', 'username', 'email', 'phone', 'status' ],
-
     mounted: function(){
         this.form.username = this.username;
         this.form.email = this.email;
@@ -78,8 +77,8 @@ export default {
     },
 
     methods: {
-
         onSubmit: function(formName) {
+            var _this = this;
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     var url = "/api/users/user/"+this.id;
@@ -89,18 +88,30 @@ export default {
 
                     this.$http.put(url, data, {emulateJSON: true}).then(function(res){
                             console.log(res);
+                            this.$message({
+                                message: '修改信息成功!',
+                                type: 'success'
+                            });
                         },function(res){
                             console.log('请求失败处理');
-                            console.log(res.body)
+                            this.$message.error('修改信息失败!');
+                            console.log(res.body);
                         });
-
-                    
                 } else {
                     console.log('error submit!!');
-                     return false;
+                    return false;
                 }
             });
+            _this.quit();
         },
+
+        quit: function(){
+            this.$emit('methodReviseSucceed', 'quit');
+        },
+
+        remove: function(){
+            this.$emit('methodReviseFailed', 'quit');
+        }
     }
 };
 </script>

@@ -6,6 +6,7 @@
             action="/api/photo/UploadUserPhoto"
             :show-file-list="true"
             :on-change="handleChange"
+            :on-success="successUpload"
             :file-list="fileList"
             accept=".png"
             list-type="picture">
@@ -27,6 +28,13 @@ export default {
     methods: {
         handleChange(file, fileList) {
             this.fileList = fileList.slice(-1);
+        },
+        successUpload(response, file, fileList) {
+            this.$message({
+                message: '更新头像成功!',
+                type: 'success'
+            });
+            this.$emit('methodUploadSucceed', 'quit');
         }
     }
 };
