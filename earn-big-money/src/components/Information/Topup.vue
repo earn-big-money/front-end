@@ -1,16 +1,16 @@
 <template>
     <div class="topup_page">
         <el-container>
-            <el-header>充值页面</el-header>
             <el-main>
                 <el-form ref="form" :model="form" :rules="rules" label-position='right' label-width="80px"> 
                     <el-form-item label="充值金额" class="form_item" prop="money">
-                        <el-input v-model="form.money" placeholder="请输入充值金额" clearable></el-input>
+                        <el-input style="width: 300px" v-model="form.money" placeholder="请输入充值金额" clearable></el-input>
                     </el-form-item>
                 </el-form>
             </el-main>
             <el-footer>
-                <el-button type="primary" round style="margin: 40px 0"  @click="onSubmit('form')">确认</el-button>
+                <el-button @click="cancle">取 消</el-button>
+                <el-button type="primary" @click="onSubmit('form')">确认</el-button>
             </el-footer>
         </el-container>
     </div>
@@ -39,31 +39,25 @@ export default {
     		var data = { amount: m };
             this.$http.post("/api/trades/topup", data, {emulateJSON: true}).then(function(res){
                 console.log(res.body); 
-                //alert("充值成功！");
                 this.$message({
                     message: '充值成功!',
                     type: 'success'
                 });
-                this.$router.push({
-                    path: '/Information',
-                    name: 'Information'
-                });
             },function(res){
                 this.$message.error('充值失败，请稍后重试!');
-                //alert("充值失败，请稍后重试！");
-                this.$router.push({
-                    path: '/Information',
-                    name: 'Information'
-                });
             });
-    	},
+            this.$emit('methodTopupSucceed', 'quit');
+        },
+        cancle: function(){
+            this.$emit('methodTopupFailed', 'quit');
+        }
     }
 };
 </script>
 
 <style scoped>
 .form_item {
-    width: 600px;
+    width: 400px;
     margin: 0 auto;
 }
 </style>

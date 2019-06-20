@@ -1,6 +1,18 @@
 <template>
     <el-container class="all">
-        <el-aside class="leftside">
+        <el-header style="padding: 0px;">
+          <el-menu :default-active="1"
+            class="el-menu-demo"
+            mode="horizontal"
+            background-color="#545c64"
+            text-color="#fff"
+            active-text-color="#ffd04b"
+            @select="handleSelect">
+            <el-menu-item index="1">返回主页</el-menu-item>
+          </el-menu>
+        </el-header>
+        <el-container>
+        <el-aside width="300px" style="background: rgb(178, 190, 194);">
           <div style="overflow:hidden; width:300px; height: 100px; margin-top: 20px;">
             <div>
               <div class="cover" @click="dialogHeadImageVisible = true">更换头像</div>
@@ -14,7 +26,7 @@
           </div>
           <div style="border: 0px solid yellow; overflow: hidden">
             <p style="float: left; margin-bottom: 3px; margin-left: 15px; display: inline-block; font-size: 12pt;">账户余额： {{money}}</p>
-            <el-button style="padding: 3px 4px; float: right; margin-right: 12px;" size="mini" round>充值</el-button>
+            <el-button style="padding: 3px 4px; float: right; margin-right: 12px;" size="mini" round @click="dialogTopupVisible = true">充值</el-button>
           </div>
           <div style="margin-top:10px; width:300px; height: 55px;border: 0px solid yellow;">
             <div class="part">
@@ -42,7 +54,7 @@
             <p style="padding: 2px"><span>中山大学团委</span><span style="float: right">管理员</span></p>
           </div>
         </el-aside>
-        <el-main class="rightside">
+        <el-main>
           <el-tabs v-model="activeName" @tab-click="handleClick" style="margin: 0 auto;">
             <el-tab-pane label="个人信息" name="first">
               <p style="text-align:left; margin: 30px 80px 10px 80px;">  昵称  ： {{infor.username}}</P><hr style="margin: 0 80px; opacity: 0.4">
@@ -109,7 +121,7 @@
           </el-tabs>
         </el-main>
         <el-dialog title="修改头像" :visible.sync="dialogHeadImageVisible" :before-close="refreshPhoto" width="400px">
-          <v-userPhoto @methodUploadSucceed="UploadSucceed"></v-userPhoto>
+          <v-userPhoto @methodUploadSucceed="Succeed"></v-userPhoto>
         </el-dialog>
         <el-dialog title="修改个人信息" :visible.sync="dialogInforVisible">
           <v-reviseInfor 
@@ -118,11 +130,15 @@
             :email="infor.email"
             :phone="infor.phone"
             :status="infor.status"
-            @methodReviseSucceed="pro1"
-            @methodReviseFailed="pro2"
+            @methodReviseSucceed="Succeed"
+            @methodReviseFailed="ReviseFailed"
             ref='reviseInfor'
           ></v-reviseInfor>
         </el-dialog>
+        <el-dialog title="充值" :visible.sync="dialogTopupVisible">
+          <v-topup @methodTopupSucceed="Succeed" @methodTopupFailed="TopupFailed"></v-topup>
+        </el-dialog>
+      </el-container>
     </el-container>
 </template>
 
@@ -130,8 +146,10 @@
   .all{
     width: 1000px;
     height: 100%;
+    min-height: 100%;
     border: 0px solid red;
-    margin: 0 auto;
+    margin: 0 10%;
+    position: absolute; 
   }
 
   .leftside{
@@ -236,12 +254,14 @@
 <script>
   import userPhoto from './userPhoto.vue'
   import reviseInfor from './reviseInfor.vue'
+  import topup from './Topup.vue'
   
   export default {
     inject: ["reload"],
     components: {
       "v-userPhoto":userPhoto,
-      "v-reviseInfor":reviseInfor
+      "v-reviseInfor":reviseInfor,
+      "v-topup":topup,
     },
     beforeCreate() {
       
@@ -327,6 +347,7 @@
 
         dialogHeadImageVisible: false,
         dialogInforVisible: false,
+        dialogTopupVisible: false,
       };
     },
     created: function() {
@@ -344,15 +365,22 @@
         this.reload();
         done();
       },
-      pro1: function (str) {
+      /*ReviseSucceed: function (str) {
         this.reload();
-      },
-      pro2: function (str) {
+      },*/
+      ReviseFailed: function (str) {
         this.dialogInforVisible = false;
       },
-      UploadSucceed: function () {
-        this.dialogHeadImageVisible = false;
+      Succeed: function () {
         this.reload();
+      },
+      TopupFailed: function (str) {
+        this.dialogTopupVisible = false;
+      },
+      handleSelect(key, keyPath) {
+        if(key == 1){
+          this.$router.push({path:'/'});
+        }
       },
       handleCurrentChangeSponsor(val) {
         this.$http.get('api/duties/screen?pageNumber='+val+'&countPerPage=6&selectBySponsor='+this.uid).then(function(response){
