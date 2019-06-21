@@ -1,7 +1,7 @@
 <template>
     <el-container class="all">
         <el-header style="padding: 0px;">
-          <el-menu :default-active="1"
+          <el-menu :default-active="checkStatus"
             class="el-menu-demo"
             mode="horizontal"
             background-color="#545c64"
@@ -38,12 +38,12 @@
               <span>待完成任务</span>
             </div>
             <div class="part">
-              <div class="number">{{ finishedDutiesNum }}</div>
-              <span>已完成任务</span>
-            </div>
-            <div class="part">
               <div class="number">{{ doneDutiesNum }}</div>
               <span>已确认任务</span>
+            </div>
+            <div class="part">
+              <div class="number">{{ finishedDutiesNum }}</div>
+              <span>已完成任务</span>
             </div>
           </div>
           <div style="text-align: left; padding: 10px; margin-top: 20px;">
@@ -68,7 +68,7 @@
               <div>
                 <el-row>
                   <el-col :span="6" v-for="(o, index) in sponsorPageNum" :key="o" :offset="index % 2 == 0 ? 1 : 1">
-                    <el-card :body-style="{ padding: '0px' }" style="margin: 10px 0px;">
+                    <el-card @click.native="detail(sponsorDuties[index].did)" :body-style="{ padding: '0px' }" class="card">
                       <img :src="url2" class="image">
                       <div style="padding: 10px;">
                         <span>{{ sponsorDuties[index].dtitle }}</span>
@@ -95,7 +95,7 @@
               <div>
                 <el-row>
                   <el-col :span="6" v-for="(o, index) in acceptPageNum" :key="o" :offset="index % 2 == 0 ? 1 : 1">
-                    <el-card :body-style="{ padding: '0px' }" style="margin: 10px 0px;">
+                    <el-card @click.native="detail(acceptDuties[index].did)" :body-style="{ padding: '0px' }" class="card">
                       <img :src="url2" class="image">
                       <div style="padding: 10px;">
                         <span>{{ acceptDuties[index].dtitle }}</span>
@@ -144,6 +144,7 @@
 
 <style scoped>
   .all{
+    background-color: white !important;
     width: 1000px;
     height: 100%;
     min-height: 100%;
@@ -201,6 +202,14 @@
   }
 
   .seticon:hover{
+    cursor: pointer;
+  }
+
+  .card{
+    margin: 10px 0px;
+  }
+  
+  .card:hover{
     cursor: pointer;
   }
 
@@ -344,6 +353,7 @@
         money: '',
         acceptDuties: [],
         sponsorDuties: [],
+        checkStatus: "1",
 
         dialogHeadImageVisible: false,
         dialogInforVisible: false,
@@ -378,7 +388,7 @@
         this.dialogTopupVisible = false;
       },
       handleSelect(key, keyPath) {
-        if(key == 1){
+        if(key == "1"){
           this.$router.push({path:'/'});
         }
       },
@@ -397,6 +407,9 @@
         }, function(response){
 
         });
+      },
+      detail:function (did){
+        this.$router.push({name:'TaskDetail',params:{dutyid: did}});
       }
     }
   }

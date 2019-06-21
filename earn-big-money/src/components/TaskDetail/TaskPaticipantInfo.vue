@@ -58,7 +58,7 @@
 				if(this.newFinishUsers.length != 0){
 					var confirmForm = {did:this.taskId, accepters:this.newFinishUsers}
 					this.$http.post('/api/duties/confirm',confirmForm).then(function(response){
-						alert('提交成功')
+						this.$message.success('提交成功')
 						this.initPage()
 					}, function(response){
 						console.log(response.body)
