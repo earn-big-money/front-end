@@ -40,11 +40,14 @@ export default {
 		}
 	},
 	mounted: function () {
+		
 		if(this.$cookies.get('id') ){
 			this.userId = this.$cookies.get('id')
 		}
 		else{
+			
 			this.$router.push({path:'/'});
+			
 		}
 
 	},
@@ -73,7 +76,7 @@ export default {
 						this.createStep ++
 					}
 					else{
-						alert('信息尚未填写正确')
+						this.$message.warning('信息尚未填写正确')
 					}
 					break;
 				case 2:
@@ -82,7 +85,7 @@ export default {
 						this.sendForm()
 					}
 					else{
-						alert('信息尚未填写正确')
+						this.$message.warning('信息尚未填写正确')
 					}
 					break
 				default:
@@ -112,10 +115,12 @@ export default {
 			}
 
 			this.$http.post('/api/duties/create',requestForm).then(function(response){
-				alert('创建成功')
+				this.$message.success('创建成功');
 				this.$router.push({path:'/'});
 			}, function(response){
-				alert(response.body)
+				this.createStep = 1
+				this.$message.error(response.body.msg);
+				
 			});
 		},
 

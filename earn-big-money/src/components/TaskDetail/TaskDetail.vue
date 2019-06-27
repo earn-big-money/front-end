@@ -178,7 +178,8 @@
 
 			}, function(response){
 				console.log(response.body)
-				alert('error')
+				this.$message.error(response.body)
+				
 			});
 		},
 
@@ -187,7 +188,7 @@
 			//检查是否能参加
 
 			if(this.duty.maxAccepters==this.duty.curAccepters){
-				alert('参加人数已满')
+				this.$message.warning('参加人数已满')
 				return
 			}
 			else {
@@ -195,11 +196,11 @@
 				var eDate = new Date(this.duty.endTime)
 				var nDate = new Date()
 				if(nDate < sDate){
-					alert('活动还没开始')
+					this.$message.warning('活动还没开始')
 					return
 				}
 				else if(nDate > eDate){
-					alert('活动已经结束')
+					this.$message.warning('活动已经结束')
 					return
 				}
 			}
@@ -207,7 +208,7 @@
 
 			var takeForm = {did: this.duty.id}
 			this.$http.post('/api/duties/take', takeForm).then(function(response){
-				console.log(response.body)
+				
 				this.initPage()
 				var successMsg = ''
 				if(this.duty.type == '其他'){
@@ -217,7 +218,7 @@
 					successMsg = '报名成功，请完成问卷'
 				}
 
-				alert(successMsg)
+				this.$message.success(successMsg)
 				//重载问卷并跳转到问卷
 				this.surveyWritable = true
 				this.loadSurvey = false
@@ -226,7 +227,8 @@
 					this.checkStatus = 'checkContent'
 				})
 			}, function(response){
-				alert(response.body)
+				console.log(response.body)
+				this.$message.error(response.body)
 			});
 		},
 
@@ -235,9 +237,9 @@
 			this.$http.post('/api/duties/commit', commitForm).then(function(response){
 				console.log(response.body)
 				this.initPage()
-				alert('确认完成任务成功')
+				this.$message.success('确认完成任务成功')
 			}, function(response){
-				alert(response.body)
+				this.$message.error(response.body)
 			});
 		},
 		//dangerous todo
@@ -247,15 +249,15 @@
 				var answers = response.body.data
 				for(let answer of answers){
 					if(answer.uid == checkUser){
-							this.$refs.SurveyViewer.model.data = JSON.parse(answer.scontent)
-							this.checkUser = checkUser
-							if(isSkip){
-								this.checkStatus = 'checkContent'
-							}
+						this.$refs.SurveyViewer.model.data = JSON.parse(answer.scontent)
+						this.checkUser = checkUser
+						if(isSkip){
+							this.checkStatus = 'checkContent'
+						}
 					}
 				}
 			}, function(response){
-				alert(response.body)
+				this.$message.warning(response.body)
 			});
 		}
 

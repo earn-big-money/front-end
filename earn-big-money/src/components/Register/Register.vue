@@ -142,6 +142,9 @@ export default {
                         },function(res){
                             console.log('请求失败处理');
                             console.log(res.body)
+                            if (res.status == '400') {
+	                    		alert("用户名，手机或邮箱重复");
+	                		}
 
                         });
 

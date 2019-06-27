@@ -1,6 +1,18 @@
 <template>
     <el-container class="all">
-        <el-aside class="leftside">
+        <el-header style="padding: 0px;">
+          <el-menu :default-active="checkStatus"
+            class="el-menu-demo"
+            mode="horizontal"
+            background-color="#545c64"
+            text-color="#fff"
+            active-text-color="#ffd04b"
+            @select="handleSelect">
+            <el-menu-item index="1">返回主页</el-menu-item>
+          </el-menu>
+        </el-header>
+        <el-container>
+        <el-aside width="300px" style="background: rgb(178, 190, 194);">
           <div style="overflow:hidden; width:300px; height: 100px; margin-top: 20px;">
             <div>
               <div class="cover" @click="dialogHeadImageVisible = true">更换头像</div>
@@ -14,24 +26,24 @@
           </div>
           <div style="border: 0px solid yellow; overflow: hidden">
             <p style="float: left; margin-bottom: 3px; margin-left: 15px; display: inline-block; font-size: 12pt;">账户余额： {{money}}</p>
-            <el-button style="padding: 3px 4px; float: right; margin-right: 12px;" size="mini" round>充值</el-button>
+            <el-button style="padding: 3px 4px; float: right; margin-right: 12px;" size="mini" round @click="dialogTopupVisible = true">充值</el-button>
           </div>
           <div style="margin-top:10px; width:300px; height: 55px;border: 0px solid yellow;">
             <div class="part">
-              <div class="number">{{acceptDutiesNum}}</div>
-              <span>已接收任务</span>
-            </div>
-            <div class="part">
-              <div class="number">{{sponsorDuitesNum}}</div>
+              <div class="number">{{ sponsorDutiesNum }}</div>
               <span>已发布任务</span>
             </div>
             <div class="part">
-              <div class="number">{{finishedDuitesNum}}</div>
-              <span>已完成任务</span>
+              <div class="number">{{ acceptDutiesNum }}</div>
+              <span>待完成任务</span>
             </div>
             <div class="part">
-              <div class="number">{{doneDuitesNum}}</div>
+              <div class="number">{{ doneDutiesNum }}</div>
               <span>已确认任务</span>
+            </div>
+            <div class="part">
+              <div class="number">{{ finishedDutiesNum }}</div>
+              <span>已完成任务</span>
             </div>
           </div>
           <div style="text-align: left; padding: 10px; margin-top: 20px;">
@@ -42,7 +54,7 @@
             <p style="padding: 2px"><span>中山大学团委</span><span style="float: right">管理员</span></p>
           </div>
         </el-aside>
-        <el-main class="rightside">
+        <el-main>
           <el-tabs v-model="activeName" @tab-click="handleClick" style="margin: 0 auto;">
             <el-tab-pane label="个人信息" name="first">
               <p style="text-align:left; margin: 30px 80px 10px 80px;">  昵称  ： {{infor.username}}</P><hr style="margin: 0 80px; opacity: 0.4">
@@ -52,56 +64,64 @@
               <p style="text-align:left; margin: 10px 80px;">  身份  ： {{infor.status}}</P><hr style="margin: 0 80px; opacity: 0.4">
               <p style="text-align:left; margin: 10px 80px;">创建时间： {{infor.createTime}}</P>
             </el-tab-pane>
-            <el-tab-pane label="已接收任务" name="second">
+            <el-tab-pane label="已发布任务" name="second">
               <div>
                 <el-row>
-                  <el-col :span="6" v-for="(o, index) in num" :key="o" :offset="index % 2 == 0 ? 1 : 1">
-                    <el-card :body-style="{ padding: '0px' }" style="margin: 10px 0px;">
-                      <img :src="url" class="image">
+                  <el-col :span="6" v-for="(o, index) in sponsorPageNum" :key="o" :offset="index % 2 == 0 ? 1 : 1">
+                    <el-card @click.native="detail(sponsorDuties[index].did)" :body-style="{ padding: '0px' }" class="card">
+                      <img :src="url2" class="image">
                       <div style="padding: 10px;">
-                        <span>任务标题</span>
+                        <span>{{ sponsorDuties[index].dtitle }}</span>
                         <div class="bottom clearfix">
-                          <time class="time">{{ currentDate }}</time>
+                          <time class="time">{{ sponsorDuties[index].dintroduction }}</time>
                         </div>
                       </div>
                     </el-card>
                   </el-col>
                 </el-row>
               </div>
-              <!--<el-pagination style="margin-top: 10px;"
-                :page-size="13"
-                :pager-count="8"
+              <el-pagination
+                @current-change="handleCurrentChangeSponsor"
+                style="margin-top: 20px;"
+                background
+                :hide-on-single-page='true'
+                :page-size="6"
+                :pager-count="5"
                 layout="prev, pager, next"
-                :total="100">
-              </el-pagination>-->
+                :total=sponsorDutiesNum>
+              </el-pagination>
             </el-tab-pane>
-            <el-tab-pane label="已发布任务" name="third">
+            <el-tab-pane label="已接受任务" name="third">
               <div>
                 <el-row>
-                  <el-col :span="6" v-for="(o, index) in 6" :key="o" :offset="index % 2 == 0 ? 1 : 1">
-                    <el-card :body-style="{ padding: '0px' }" style="margin: 10px 0px;">
-                      <img :src="url" class="image">
+                  <el-col :span="6" v-for="(o, index) in acceptPageNum" :key="o" :offset="index % 2 == 0 ? 1 : 1">
+                    <el-card @click.native="detail(acceptDuties[index].did)" :body-style="{ padding: '0px' }" class="card">
+                      <img :src="url2" class="image">
                       <div style="padding: 10px;">
-                        <span>任务标题</span>
+                        <span>{{ acceptDuties[index].dtitle }}</span>
                         <div class="bottom clearfix">
-                          <time class="time">{{ currentDate }}</time>
+                          <time class="time">{{ acceptDuties[index].dintroduction }}</time>
                         </div>
                       </div>
                     </el-card>
                   </el-col>
                 </el-row>
               </div>
-              <!--<el-pagination style="margin-top: 10px;"
-                :page-size="13"
-                :pager-count="8"
+              <el-pagination
+                @current-change="handleCurrentChangeAccepter"
+                style="margin-top: 20px;"
+                background
+                :hide-on-single-page='true'
+                :page-size="6"
+                :pager-count="5"
                 layout="prev, pager, next"
-                :total="100">
-              </el-pagination>-->
+                :total=acceptDutiesNum+finishedDutiesNum+doneDutiesNum>
+              </el-pagination>
             </el-tab-pane>
           </el-tabs>
         </el-main>
         <el-dialog title="修改头像" :visible.sync="dialogHeadImageVisible" :before-close="refreshPhoto" width="400px">
-          <v-userPhoto></v-userPhoto>
+          <v-userPhoto @methodUploadSucceed="Succeed"></v-userPhoto>
         </el-dialog>
         <el-dialog title="修改个人信息" :visible.sync="dialogInforVisible">
           <v-reviseInfor 
@@ -110,18 +130,27 @@
             :email="infor.email"
             :phone="infor.phone"
             :status="infor.status"
+            @methodReviseSucceed="Succeed"
+            @methodReviseFailed="ReviseFailed"
             ref='reviseInfor'
           ></v-reviseInfor>
         </el-dialog>
+        <el-dialog title="充值" :visible.sync="dialogTopupVisible">
+          <v-topup @methodTopupSucceed="Succeed" @methodTopupFailed="TopupFailed"></v-topup>
+        </el-dialog>
+      </el-container>
     </el-container>
 </template>
 
 <style scoped>
   .all{
+    background-color: white !important;
     width: 1000px;
     height: 100%;
+    min-height: 100%;
     border: 0px solid red;
-    margin: 0 auto;
+    margin: 0 10%;
+    position: absolute; 
   }
 
   .leftside{
@@ -176,6 +205,14 @@
     cursor: pointer;
   }
 
+  .card{
+    margin: 10px 0px;
+  }
+  
+  .card:hover{
+    cursor: pointer;
+  }
+
   .part{
     width: 70px;
     height: 55px;
@@ -226,18 +263,20 @@
 <script>
   import userPhoto from './userPhoto.vue'
   import reviseInfor from './reviseInfor.vue'
+  import topup from './Topup.vue'
   
   export default {
+    inject: ["reload"],
     components: {
       "v-userPhoto":userPhoto,
-      "v-reviseInfor":reviseInfor
+      "v-reviseInfor":reviseInfor,
+      "v-topup":topup,
     },
     beforeCreate() {
       
     },
     mounted: function () {
     
-
       this.$http.get('api/users/user/'+this.uid).then(function(response){
         this.infor.id = response.data.id;
         this.infor.username = response.data.username;
@@ -250,20 +289,41 @@
 
       });
 
-      this.$http.get('api/duties/screen?pageNumber=1&countPerPage=7&selectBySponsor='+this.uid).then(function(response){
-        this.sponsorDuitesNum = response.data.count;
+      this.$http.get('api/duties/screen?pageNumber=1&countPerPage=6&selectBySponsor='+this.uid).then(function(response){
+        this.sponsorDuties = response.data.content;
+        this.sponsorPageNum = response.data.count;
       }, function(response){
 
       });
 
-      this.$http.get('api/duties/screen?pageNumber=1&countPerPage=7&selectByAccepter='+this.uid).then(function(response){
-        this.acceptDutiesNum = response.data.count;
+      this.$http.get('api/duties/screen?pageNumber=1&countPerPage=6&selectByAccepter='+this.uid).then(function(response){
+        this.acceptDuties = response.data.content;
+        this.acceptPageNum = response.data.count;
       }, function(response){
 
       });
 
       this.$http.get('api/trades').then(function(response){
         this.money = response.data.balance;
+      }, function(response){
+
+      });
+
+      this.$http.get('api/duties/getDutyNum').then(function(response){
+        for( let nums of response.data.data){
+          if(nums.status == 'accepted'){
+            this.acceptDutiesNum = nums['count(*)'];
+          }
+          if(nums.status == 'done'){
+            this.doneDutiesNum = nums['count(*)'];
+          }
+          if(nums.status == 'published'){
+            this.sponsorDutiesNum = nums['count(*)'];
+          }
+          if(nums.status == 'finish'){
+            this.finishedDutiesNum = nums['count(*)'];
+          }
+        }
       }, function(response){
 
       });
@@ -280,25 +340,29 @@
           createTime: "",
         },
         url: '',
+        url2: './../../static/ad3.gif',
         activeName: 'first',
         currentDate: 'Sun May 19 2019',
-        acceptDutiesNum : 10,
-        sponsorDuitesNum : 20,
-        finishedDuitesNum : 30,
-        doneDuitesNum : 40,
+        acceptDutiesNum : 0,
+        sponsorDutiesNum : 0,
+        finishedDutiesNum : 0,
+        doneDutiesNum : 0,
         uid: null,
-        num: 6,
-        money: 1000,
+        sponsorPageNum: '',
+        acceptPageNum: '',
+        money: '',
         acceptDuties: [],
-        sponsorDuites: [],
+        sponsorDuties: [],
+        checkStatus: "1",
 
         dialogHeadImageVisible: false,
         dialogInforVisible: false,
+        dialogTopupVisible: false,
       };
     },
     created: function() {
       this.uid = this.$route.query.uid;
-      this.url = 'api/photo/UserPhoto/'+this.uid,
+      this.url = 'api/photo/UserPhoto/'+this.uid+ "?t=" + Math.random(),
       //alert(this.$route.query.uid);
       console.log(this.$route.query.uid);
     },
@@ -306,10 +370,46 @@
       handleClick(tab, event) {
         console.log(tab, event);
       },
-
-      refreshPhoto(done) {
-        //window.location.reload();
+      refreshPhoto(done){
+        this.url = 'api/photo/UserPhoto/'+this.uid + "?t=" + Math.random();
+        this.reload();
         done();
+      },
+      /*ReviseSucceed: function (str) {
+        this.reload();
+      },*/
+      ReviseFailed: function (str) {
+        this.dialogInforVisible = false;
+      },
+      Succeed: function () {
+        this.reload();
+      },
+      TopupFailed: function (str) {
+        this.dialogTopupVisible = false;
+      },
+      handleSelect(key, keyPath) {
+        if(key == "1"){
+          this.$router.push({path:'/'});
+        }
+      },
+      handleCurrentChangeSponsor(val) {
+        this.$http.get('api/duties/screen?pageNumber='+val+'&countPerPage=6&selectBySponsor='+this.uid).then(function(response){
+          this.sponsorDuties = response.data.content;
+          this.sponsorPageNum = response.data.count;
+        }, function(response){
+
+        });
+      },
+      handleCurrentChangeAccepter(val) {
+        this.$http.get('api/duties/screen?pageNumber='+val+'&countPerPage=6&selectByAccepter='+this.uid).then(function(response){
+          this.acceptDuties = response.data.content;
+          this.acceptPageNum = response.data.count;
+        }, function(response){
+
+        });
+      },
+      detail:function (did){
+        this.$router.push({name:'TaskDetail',params:{dutyid: did}});
       }
     }
   }
