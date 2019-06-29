@@ -1053,7 +1053,7 @@ export default {
         var index = parseInt(event.currentTarget.getAttribute('index'))
         //alert(this.nowduty[index].did)
         this.$router.push({name:'TaskDetail',params:{dutyid:this.nowduty[index].did}});
-        alert(this.nowduty[index].did);
+        //alert(this.nowduty[index].did);
       },
       pageClick: function() {
         var index = parseInt(event.currentTarget.getAttribute('index'));
@@ -1089,7 +1089,7 @@ export default {
         var page = $('#page'+index.toString()).text();
         if(this.nowpage.toString()==page) return;
         var url = '/api/duties/screen?pageNumber=' + page +'&countPerPage=7&sortType='+this.sortBy+'&sortOrder=ascend';
-        alert(url);
+        //alert(url);
         $.ajax({
           type: 'GET',
           url: url,
